@@ -1,0 +1,1364 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>THÍ ĐIỂM PHÂN BỔ HẠN NGẠCH PHÁT THẢI KHÍ NHÀ KÍNH 2025-2026</title>
+<style>
+:root{
+  --iki-blue:#004B87;
+  --iki-blue-light:#e7f0f7;
+  --iki-blue-dark:#00325a;
+  --accent-orange:#F26522;
+  --accent-orange-light:#fdeee5;
+  --accent-yellow:#D9A404;
+  --accent-yellow-light:#fdf3d6;
+  --accent-red:#E4032E;
+  --accent-red-light:#fbe4e7;
+  --bg:#F5F7FA;
+  --surface:#FFFFFF;
+  --text-dark:#2B2F33;
+  --text-mid:#5A6068;
+  --text-light:#8A9099;
+  --border:#E3E7EC;
+  --shadow: 0 1px 3px rgba(0,20,40,0.08), 0 1px 2px rgba(0,20,40,0.06);
+  --shadow-md: 0 4px 14px rgba(0,20,40,0.09);
+  --radius: 10px;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  font-family:Arial, "Helvetica Neue", Helvetica, sans-serif;
+  font-size:14px;
+  color:var(--text-dark);
+  background:var(--bg);
+  line-height:1.5;
+}
+::-webkit-scrollbar{width:10px;height:10px;}
+::-webkit-scrollbar-thumb{background:#c7cfd8;border-radius:6px;}
+::-webkit-scrollbar-track{background:transparent;}
+
+/* ===== Header ===== */
+.app-header{
+  background: linear-gradient(135deg, var(--iki-blue) 0%, var(--iki-blue-dark) 100%);
+  color:#fff;
+  padding:18px 28px 16px;
+  position:sticky; top:0; z-index:100;
+  box-shadow: var(--shadow-md);
+}
+.header-top{
+  display:flex; align-items:flex-start; justify-content:space-between; gap:20px; flex-wrap:wrap;
+}
+.header-title-block{max-width:980px;}
+.header-eyebrow{
+  font-size:11px; letter-spacing:1.5px; text-transform:uppercase; opacity:0.75; font-weight:bold; margin-bottom:6px;
+}
+.header-title{
+  font-size:19px; font-weight:bold; line-height:1.35; margin:0;
+  text-transform:uppercase;
+}
+.header-sub{
+  font-size:12.5px; opacity:0.85; margin-top:6px;
+}
+.header-meta{
+  display:flex; gap:22px; flex-wrap:wrap; font-size:12px; opacity:0.9; text-align:right;
+}
+.header-meta .metaitem{min-width:90px;}
+.header-meta .metaitem b{display:block; font-size:17px; font-weight:bold;}
+
+/* ===== Nav Tabs (4 pages) ===== */
+.main-nav{
+  display:flex; gap:6px; margin-top:16px; flex-wrap:wrap;
+}
+.main-nav button{
+  font-family:inherit; font-size:13.5px; font-weight:bold; color:#fff;
+  background:rgba(255,255,255,0.10); border:1px solid rgba(255,255,255,0.18);
+  padding:9px 18px; border-radius:8px 8px 0 0; cursor:pointer;
+  transition:all .15s ease; display:flex; align-items:center; gap:7px;
+}
+.main-nav button .dot{width:8px;height:8px;border-radius:50%;background:currentColor;opacity:.7;}
+.main-nav button:hover{background:rgba(255,255,255,0.18);}
+.main-nav button.active{
+  background:var(--bg); color:var(--iki-blue); border-color:var(--bg);
+}
+.main-nav button.active.sector-nhietdien{color:var(--accent-red);}
+.main-nav button.active.sector-ximang{color:var(--accent-orange);}
+.main-nav button.active.sector-satthep{color:var(--accent-yellow);}
+
+/* ===== Layout ===== */
+.page{display:none; padding:22px 28px 60px;}
+.page.active{display:block; animation:fadein .25s ease;}
+@keyframes fadein{from{opacity:0; transform:translateY(4px);} to{opacity:1; transform:translateY(0);}}
+
+.section-title{
+  font-size:15px; font-weight:bold; color:var(--iki-blue); text-transform:uppercase;
+  letter-spacing:.4px; margin:30px 0 12px; display:flex; align-items:center; gap:9px;
+}
+.section-title .bar{width:4px; height:16px; background:var(--iki-blue); border-radius:2px;}
+.page[data-accent="red"] .section-title .bar{background:var(--accent-red);}
+.page[data-accent="red"] .section-title{color:var(--accent-red);}
+.page[data-accent="orange"] .section-title .bar{background:var(--accent-orange);}
+.page[data-accent="orange"] .section-title{color:var(--accent-orange);}
+.page[data-accent="yellow"] .section-title .bar{background:var(--accent-yellow);}
+.page[data-accent="yellow"] .section-title{color:var(--accent-yellow);}
+/* Trang chuyên ngành: tiêu đề luôn màu đỏ, không theo màu accent riêng của ngành */
+#page-nhietdien .section-title, #page-ximang .section-title, #page-satthep .section-title{color:var(--accent-red);}
+#page-nhietdien .section-title .bar, #page-ximang .section-title .bar, #page-satthep .section-title .bar{background:var(--accent-red);}
+.section-title:first-child{margin-top:4px;}
+.section-hint{font-size:12px;color:var(--text-light);font-weight:normal;text-transform:none;letter-spacing:0;margin-left:4px;}
+
+/* ===== KPI cards ===== */
+.kpi-row{display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:14px;}
+.kpi-card{
+  background:var(--surface); border-radius:var(--radius); box-shadow:var(--shadow);
+  padding:16px 18px; border-left:4px solid var(--iki-blue); position:relative; overflow:hidden;
+}
+.kpi-card .kpi-label{font-size:12px; color:var(--text-mid); font-weight:bold; text-transform:uppercase; letter-spacing:.3px;}
+.kpi-card .kpi-value{font-size:24px; font-weight:bold; color:var(--text-dark); margin-top:6px;}
+.kpi-card .kpi-unit{font-size:11.5px; color:var(--text-light); font-weight:normal;}
+.kpi-card .kpi-foot{font-size:11.5px; margin-top:5px; color:var(--text-mid);}
+.kpi-card .kpi-foot.up{color:#1a8f4c;}
+.kpi-card .kpi-foot.down{color:#c22222;}
+
+/* Sector overview cards */
+.sector-card-row{display:grid; grid-template-columns:repeat(3,1fr); gap:16px;}
+.sector-card{
+  background:var(--surface); border-radius:var(--radius); box-shadow:var(--shadow);
+  padding:18px 20px; border-top:4px solid var(--iki-blue);
+}
+.sector-card.nhietdien{border-top-color:var(--accent-red);}
+.sector-card.ximang{border-top-color:var(--accent-orange);}
+.sector-card.satthep{border-top-color:var(--accent-yellow);}
+.sector-card .sc-head{display:flex; align-items:center; justify-content:space-between; margin-bottom:10px;}
+.sector-card .sc-title{font-size:14.5px; font-weight:bold; color:var(--text-dark);}
+.sector-card.nhietdien .sc-title{color:var(--accent-red);}
+.sector-card.ximang .sc-title{color:var(--accent-orange);}
+.sector-card.satthep .sc-title{color:var(--accent-yellow);}
+.sector-card .sc-badge{font-size:11px; background:var(--iki-blue-light); color:var(--iki-blue); padding:3px 9px; border-radius:20px; font-weight:bold;}
+.sector-card.nhietdien .sc-badge{background:var(--accent-red-light); color:var(--accent-red);}
+.sector-card.ximang .sc-badge{background:var(--accent-orange-light); color:var(--accent-orange);}
+.sector-card.satthep .sc-badge{background:var(--accent-yellow-light); color:var(--accent-yellow);}
+.sc-stat-grid{display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:10px;}
+.sc-stat{background:var(--bg); border-radius:7px; padding:8px 10px;}
+.sc-stat .lbl{font-size:10.5px; color:var(--text-light); text-transform:uppercase; font-weight:bold;}
+.sc-stat .val{font-size:15px; font-weight:bold; color:var(--text-dark); margin-top:2px;}
+.sc-growth{font-size:12px; font-weight:bold; margin-top:2px;}
+.sc-growth.up{color:#1a8f4c;} .sc-growth.down{color:#c22222;}
+.sc-boxplot{margin-top:8px;}
+
+/* ===== Grid panels ===== */
+.panel{background:var(--surface); border-radius:var(--radius); box-shadow:var(--shadow); padding:16px 18px;}
+.grid-2{display:grid; grid-template-columns:1fr 1fr; gap:16px;}
+.grid-3{display:grid; grid-template-columns:2fr 1fr; gap:16px;}
+.panel-title{font-size:13px; font-weight:bold; color:var(--text-dark); margin-bottom:10px; display:flex; align-items:center; justify-content:space-between;}
+.panel-title .ptag{font-size:10.5px; font-weight:bold; color:#fff; background:var(--iki-blue); padding:2px 8px; border-radius:20px;}
+
+/* map metric toggle */
+.chip-toggle{display:inline-flex; background:var(--bg); border-radius:20px; padding:3px; gap:2px;}
+.chip-toggle button{
+  font-family:inherit; font-size:11.5px; font-weight:bold; border:none; background:transparent; color:var(--text-mid);
+  padding:5px 13px; border-radius:16px; cursor:pointer;
+}
+.chip-toggle button.active{background:var(--iki-blue); color:#fff;}
+.page[data-accent="red"] .chip-toggle button.active{background:var(--accent-red);}
+.page[data-accent="orange"] .chip-toggle button.active{background:var(--accent-orange);}
+.page[data-accent="yellow"] .chip-toggle button.active{background:var(--accent-yellow);}
+
+/* Year tabs on sector pages */
+.year-tabs{display:flex; gap:8px; margin-bottom:18px;}
+.year-tabs button{
+  font-family:inherit; font-size:14px; font-weight:bold; padding:9px 26px; border-radius:8px;
+  border:1.5px solid var(--border); background:var(--surface); color:var(--text-mid); cursor:pointer; transition:.15s;
+}
+.year-tabs button.active{background:var(--iki-blue); border-color:var(--iki-blue); color:#fff;}
+.page[data-accent="red"] .year-tabs button.active{background:var(--accent-red); border-color:var(--accent-red);}
+.page[data-accent="orange"] .year-tabs button.active{background:var(--accent-orange); border-color:var(--accent-orange);}
+.page[data-accent="yellow"] .year-tabs button.active{background:var(--accent-yellow); border-color:var(--accent-yellow);}
+
+/* Top lists */
+.rank-list{list-style:none; margin:0; padding:0;}
+.rank-list li{display:flex; align-items:center; gap:10px; padding:8px 2px; border-bottom:1px solid var(--border); font-size:12.5px;}
+.rank-list li:last-child{border-bottom:none;}
+.rank-num{width:22px; height:22px; border-radius:50%; background:var(--iki-blue-light); color:var(--iki-blue); font-weight:bold; font-size:11px; display:flex; align-items:center; justify-content:center; flex-shrink:0;}
+.rank-num.top1{background:var(--iki-blue); color:#fff;}
+.rank-name{flex:1; min-width:0; font-weight:bold; color:var(--text-dark); line-height:1.4;}
+.rank-sub{font-size:10.5px; color:var(--text-light);}
+.rank-val{font-weight:bold; color:var(--iki-blue); font-size:12.5px; white-space:nowrap;}
+.page[data-accent="red"] .rank-val{color:var(--accent-red);}
+.page[data-accent="orange"] .rank-val{color:var(--accent-orange);}
+.page[data-accent="yellow"] .rank-val{color:var(--accent-yellow);}
+.rank-bar-bg{background:var(--bg); border-radius:4px; height:5px; margin-top:4px; overflow:hidden;}
+.rank-bar-fill{height:100%; background:var(--iki-blue); border-radius:4px;}
+.page[data-accent="red"] .rank-bar-fill{background:var(--accent-red);}
+.page[data-accent="orange"] .rank-bar-fill{background:var(--accent-orange);}
+.page[data-accent="yellow"] .rank-bar-fill{background:var(--accent-yellow);}
+
+/* Search + table */
+.search-row{display:flex; gap:10px; flex-wrap:wrap; margin-bottom:14px;}
+.search-row input, .search-row select{
+  font-family:inherit; font-size:13px; padding:9px 12px; border-radius:8px; border:1.5px solid var(--border);
+  background:var(--surface); color:var(--text-dark);
+}
+.search-row input{flex:1; min-width:200px;}
+.search-row input:focus, .search-row select:focus{outline:none; border-color:var(--iki-blue);}
+.page[data-accent="red"] .search-row input:focus{border-color:var(--accent-red);}
+.page[data-accent="orange"] .search-row input:focus{border-color:var(--accent-orange);}
+.page[data-accent="yellow"] .search-row input:focus{border-color:var(--accent-yellow);}
+
+.table-wrap{overflow:auto; max-height:480px; border:1px solid var(--border); border-radius:8px;}
+table.data-table{width:100%; border-collapse:collapse; font-size:12.5px;}
+table.data-table thead th{
+  position:sticky; top:0; background:var(--iki-blue); color:#fff; text-align:left; padding:9px 10px;
+  font-weight:bold; white-space:nowrap; z-index:1;
+}
+.page[data-accent="red"] table.data-table thead th{background:var(--accent-red);}
+.page[data-accent="orange"] table.data-table thead th{background:var(--accent-orange);}
+.page[data-accent="yellow"] table.data-table thead th{background:var(--accent-yellow);}
+table.data-table tbody td{padding:8px 10px; border-bottom:1px solid var(--border); color:var(--text-dark); vertical-align:top;}
+table.data-table tbody tr:hover{background:var(--iki-blue-light);}
+table.data-table tbody tr:nth-child(even){background:#fafbfc;}
+table.data-table tbody tr:nth-child(even):hover{background:var(--iki-blue-light);}
+.tag-sector{font-size:10.5px; font-weight:bold; padding:2px 8px; border-radius:20px; white-space:nowrap;}
+.tag-sector.nhietdien{background:var(--accent-red-light); color:var(--accent-red);}
+.tag-sector.ximang{background:var(--accent-orange-light); color:var(--accent-orange);}
+.tag-sector.satthep{background:var(--accent-yellow-light); color:var(--accent-yellow);}
+.result-count{font-size:11.5px; color:var(--text-light); margin-bottom:8px;}
+
+/* group table */
+.group-block{border:1px solid var(--border); border-radius:8px; margin-bottom:10px; overflow:hidden;}
+.group-head{background:var(--iki-blue-light); padding:9px 12px; display:flex; justify-content:space-between; align-items:center; font-size:12.5px; flex-wrap:wrap; gap:6px;}
+.page[data-accent="red"] .group-head{background:var(--accent-red-light);}
+.page[data-accent="orange"] .group-head{background:var(--accent-orange-light);}
+.page[data-accent="yellow"] .group-head{background:var(--accent-yellow-light);}
+.group-head b{color:var(--iki-blue);}
+.page[data-accent="red"] .group-head b{color:var(--accent-red);}
+.page[data-accent="orange"] .group-head b{color:var(--accent-orange);}
+.page[data-accent="yellow"] .group-head b{color:var(--accent-yellow);}
+.group-sub-table{width:100%; border-collapse:collapse; font-size:12px;}
+.group-sub-table td{padding:6px 12px; border-top:1px solid var(--border);}
+.group-sub-table th{font-size:10.5px; color:var(--text-light); text-transform:uppercase; font-weight:bold; border-top:1px solid var(--border);}
+
+.footer-note{margin-top:40px; padding-top:16px; border-top:1px solid var(--border); font-size:11px; color:var(--text-light); text-align:center;}
+
+@media (max-width:1100px){
+  .kpi-row{grid-template-columns:repeat(2,1fr);}
+  .sector-card-row{grid-template-columns:1fr;}
+  .grid-2, .grid-3{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<header class="app-header">
+  <div class="header-top">
+    <div class="header-title-block">
+      <div class="header-eyebrow">Dashboard giám sát &amp; phân bổ hạn ngạch</div>
+      <h1 class="header-title">Thí điểm phân bổ hạn ngạch phát thải khí nhà kính cho năm 2025 và năm 2026 theo Quyết định 13/QĐ-TTg và Quyết định 699/QĐ-BTNMT</h1>
+      <div class="header-sub">Lĩnh vực nhiệt điện · xi măng · sắt thép — Đơn vị hạn ngạch: tấn CO2 tương đương (tấn CO2tđ)</div>
+    </div>
+    <div class="header-meta" id="headerMeta"></div>
+  </div>
+  <nav class="main-nav" id="mainNav">
+    <button data-page="overview" class="active"><span class="dot"></span>1. Tổng quan</button>
+    <button data-page="nhietdien" class="sector-nhietdien"><span class="dot"></span>2. Nhiệt điện</button>
+    <button data-page="ximang" class="sector-ximang"><span class="dot"></span>3. Xi măng</button>
+    <button data-page="satthep" class="sector-satthep"><span class="dot"></span>4. Sắt thép</button>
+  </nav>
+</header>
+
+<main id="mainContent"></main>
+
+<script id="data-bundle" type="application/json">{"enterprises": [{"stt": 1, "sector": "Nhiệt điện", "name": "Công ty nhiệt điện Na Dương", "province_old": "Lạng Sơn", "province_new": "Lạng Sơn", "address": "Thị trấn Na Dương, huyện Lộc Bình, tỉnh Lang Sơn", "mst": "0104297034-001", "group": null, "rep": "Phạm Đức Tuyên", "q2025": 1035566, "q2026": 1134493}, {"stt": 2, "sector": "Nhiệt điện", "name": "Công ty nhiệt điện Sơn động Việt Nam", "province_old": "Bắc Giang", "province_new": "Bắc Ninh", "address": "Thị trấn Tây Yên Tử, huyện Sơn Đông, tỉnh Bắc Giang", "mst": "0104297034-003", "group": null, "rep": "Dương Hồng Đường", "q2025": 2032458, "q2026": 2226618}, {"stt": 3, "sector": "Nhiệt điện", "name": "Công ty Nhiệt điện Uông Bí", "province_old": "Quảng Ninh", "province_new": "Quảng Ninh", "address": "Khu 6, Quang Trung, thành phố Uông Bí, tỉnh Quảng Ninh", "mst": "5701662152-010", "group": null, "rep": "Đỗ Trung Kiên", "q2025": 5691098, "q2026": 6234766}, {"stt": 4, "sector": "Nhiệt điện", "name": "Công ty Cổ phần Nhiệt điện Quảng Ninh", "province_old": "Quảng Ninh", "province_new": "Quảng Ninh", "address": "T33K5, phường Hà Khánh, Hạ Long, tỉnh Quảng Ninh", "mst": "5700434869", "group": null, "rep": "Nguyễn Việt Dũng", "q2025": 11097421, "q2026": 12157553}, {"stt": 5, "sector": "Nhiệt điện", "name": "Công ty Nhiệt điện Cẩm Phả - TKV", "province_old": "Quảng Ninh", "province_new": "Quảng Ninh", "address": "Tổ 4, khu 4A, Phường Cẩm Thịnh, Cẩm Phả, tỉnh Quảng Ninh", "mst": "0104297034-008", "group": null, "rep": "Trần Văn Hoan", "q2025": 3585092, "q2026": 3927575}, {"stt": 6, "sector": "Nhiệt điện", "name": "Công ty TNHH Điện Lực AES Mông Dương - Nhà máy nhiệt điện Mông Dương II", "province_old": "Quảng Ninh", "province_new": "Quảng Ninh", "address": "Khu 8, phường Mông Dương, Cẩm Phả, tỉnh Quảng Ninh", "mst": "5701384498", "group": null, "rep": "Oliver Robert Jean Marquette", "q2025": 12190431, "q2026": 13354978}, {"stt": 7, "sector": "Nhiệt điện", "name": "Công ty Nhiệt điện Đông Triều - TKV - Nhà máy nhiệt điện Mạo Khê", "province_old": "Quảng Ninh", "province_new": "Quảng Ninh", "address": "Thôn Đồng Sơn, xã Bình Khê, Đông Triều, tỉnh Quảng Ninh", "mst": "0104297034-006", "group": null, "rep": "Nguyễn Đình Tuấn", "q2025": 4436759, "q2026": 4860601}, {"stt": 8, "sector": "Nhiệt điện", "name": "Nhà máy nhiệt điện Mông Dương I - Công ty Nhiệt điện Mông Dương", "province_old": "Quảng Ninh", "province_new": "Quảng Ninh", "address": "Phường Mông Dương, Cẩm Phả, tỉnh Quảng Ninh", "mst": "3502208399-008", "group": null, "rep": "Nguyễn Hữu Tuấn", "q2025": 9556403, "q2026": 10469322}, {"stt": 9, "sector": "Nhiệt điện", "name": "Công ty Cổ phần Nhiệt điện Hải Phòng", "province_old": "Hải Phòng", "province_new": "Hải Phòng", "address": "Xã Tam Hưng, huyện Thủy Nguyên, thành phố Hải Phòng", "mst": "0200493225", "group": null, "rep": "Dương Sơn Bá", "q2025": 10239469, "q2026": 11217642}, {"stt": 10, "sector": "Nhiệt điện", "name": "Nhà máy điện Nghi Sơn 1", "province_old": "Thanh Hóa", "province_new": "Thanh Hóa", "address": "Xã Hải Hà, thị xã Nghi Sơn, tỉnh Thanh Hóa", "mst": "5701662152-011", "group": null, "rep": "Võ Mạnh Hà", "q2025": 5036163, "q2026": 5517266}, {"stt": 11, "sector": "Nhiệt điện", "name": "Công ty Điện lực Dầu khí Hà Tĩnh", "province_old": "Hà Tĩnh", "province_new": "Hà Tĩnh", "address": "Xóm Hải Phong, xã Kỳ Lợi, thị xã Kỳ Anh, tỉnh Hà Tĩnh", "mst": "0102276173-007", "group": null, "rep": "Trịnh Bảo Ngọc", "q2025": 7214687, "q2026": 7903903}, {"stt": 12, "sector": "Nhiệt điện", "name": "Công ty TNHH Hưng Nghiệp Formosa", "province_old": "Đồng Nai", "province_new": "Đồng Nai", "address": "KCN Nhơn Trạch III _ Giai đoạn 1, thị trấn Hiệp Phước, huyện Nhơn Trạch, tỉnh Đồng Nai", "mst": "3600517557", "group": null, "rep": "Huang Chien Fu", "q2025": 2558365, "q2026": 2802764}, {"stt": 13, "sector": "Nhiệt điện", "name": "Công ty TNHH Điện lực Vĩnh Tân 1 (Nhà máy nhiệt điện BOT Vĩnh Tân 1)", "province_old": "Bình Thuận", "province_new": "Lâm Đồng", "address": "Thôn Vĩnh Phúc, xã Vĩnh Tân, huyện Tuy Phong, tỉnh Bình Thuận", "mst": "3401060812", "group": null, "rep": "Chen HongPeng", "q2025": 11856608, "q2026": 12989265}, {"stt": 14, "sector": "Nhiệt điện", "name": "Công ty Nhiệt điện Vĩnh Tân -CW nhánh TNHH MTV Tổng công ty Phát điện 3 (Nhà máy nhiệt điện Vĩnh Tân 2)", "province_old": "Bình Thuận", "province_new": "Lâm Đồng", "address": "Thôn Vĩnh Phúc, xã Vĩnh Tân, huyện Tuy Phong, tỉnh Bình Thuận", "mst": "3502208399-007", "group": null, "rep": "Thiên Thanh Sơn", "q2025": 10530658, "q2026": 11536648}, {"stt": 15, "sector": "Nhiệt điện", "name": "Nhà máy nhiệt điện Vĩnh Tân 4 - 4 Mở rộng - Chi nhánh Tập đoàn Điện lực Việt Nam", "province_old": "Bình Thuận", "province_new": "Lâm Đồng", "address": "Thôn Vĩnh Phúc, xã Vĩnh Tân, huyện Tuy Phong, tỉnh Bình Thuận", "mst": "0100100079-088", "group": null, "rep": "Vũ Thanh Hải", "q2025": 8528067, "q2026": 9342750}, {"stt": 16, "sector": "Nhiệt điện", "name": "Nhà máy điện Diesel Phú Quý", "province_old": "Bình Thuận", "province_new": "Lâm Đồng", "address": "Thôn Triều Dương, xã Tam Thanh, huyện Phú Qúy, tỉnh Bình Thuận", "mst": "0300942001-012", "group": null, "rep": "Phan Sỹ Duy", "q2025": 21460, "q2026": 23510}, {"stt": 17, "sector": "Nhiệt điện", "name": "Nhà máy nhiệt điện Phú Mỹ 1 - Công ty Nhiệt điện Phú Mỹ", "province_old": "Bà Rịa - Vũng Tàu", "province_new": "Hồ Chí Minh", "address": "Khu công nghiệp Phú Mỹ 1, phường Phú Mỹ, thị xã Phú Mỹ, tỉnh Bà Rịa - Vũng Tàu", "mst": "3502208399-010", "group": "NHÓM-01 (3 cơ sở)", "rep": "Trần Đình Ân", "q2025": 2519925, "q2026": 2760653}, {"stt": 18, "sector": "Nhiệt điện", "name": "Nhà máy nhiệt điện Phú Mỹ 2,1 và Phú Mỹ 2,1 mở rộng - Công ty Nhiệt điện Phú Mỹ", "province_old": "Bà Rịa - Vũng Tàu", "province_new": "Hồ Chí Minh", "address": "Khu công nghiệp Phú Mỹ 1, phường Phú Mỹ, thị xã Phú Mỹ, tỉnh Bà Rịa - Vũng Tàu", "mst": "3502208399-010", "group": "NHÓM-01 (3 cơ sở)", "rep": "Trần Đình Ân", "q2025": 1079828, "q2026": 1182984}, {"stt": 19, "sector": "Nhiệt điện", "name": "Nhà máy nhiệt điện Phú Mỹ 4 - Công ty Nhiệt điện Phú Mỹ", "province_old": "Bà Rịa - Vũng Tàu", "province_new": "Hồ Chí Minh", "address": "Khu công nghiệp Phú Mỹ 1, phường Phú Mỹ, thị xã Phú Mỹ, tỉnh Bà Rịa - Vũng Tàu", "mst": "3502208399-010", "group": "NHÓM-01 (3 cơ sở)", "rep": "Trần Đình Ân", "q2025": 876004, "q2026": 959689}, {"stt": 20, "sector": "Nhiệt điện", "name": "Công ty Cổ phần Nhiệt điện Bà Rịa", "province_old": "Bà Rịa - Vũng Tàu", "province_new": "Hồ Chí Minh", "address": "Khu phố Hương Giang, phường Long Hương, thành phố Bà Rịa, tỉnh Bà Rịa - Vũng Tàu", "mst": "3500701305", "group": null, "rep": "Lê Văn Huy", "q2025": 68969, "q2026": 75558}, {"stt": 21, "sector": "Nhiệt điện", "name": "Nhà máy Điện An Hội", "province_old": "Bà Rịa - Vũng Tàu", "province_new": "Hồ Chí Minh", "address": "Đường số 16, Khu công nghiệp Phú Mỹ 1, phường Phú Mỹ, thị xã Phú Mỹ, tỉnh Bà Rịa - Vũng Tàu", "mst": "0300942001-026", "group": null, "rep": "Nguyễn Văn Giáp", "q2025": 31803, "q2026": 34842}, {"stt": 22, "sector": "Nhiệt điện", "name": "Chi nhánh Tổng Công ty Điện lực Dầu khí Việt Nam - Công ty Cổ phần - Công ty Điện lục Dầu khí Nhơn Trạch", "province_old": "Đồng Nai", "province_new": "Đồng Nai", "address": "Ấp 3, xã Phước Khánh, huyện Nhơn Trạch, tỉnh Đồng Nai", "mst": "0102276173-003", "group": null, "rep": "Nguyễn Thanh Tùng", "q2025": 407990, "q2026": 446965}, {"stt": 23, "sector": "Nhiệt điện", "name": "Nhà máy nhiệt điện VEDAN", "province_old": "Đồng Nai", "province_new": "Đồng Nai", "address": "TP, Biên Hòa, tỉnh Đồng Nai", "mst": "3600239719", "group": null, "rep": "Yang Tou Hisung", "q2025": 512653, "q2026": 561627}, {"stt": 24, "sector": "Nhiệt điện", "name": "Nhà máy nhiệt điện Amata", "province_old": "Đồng Nai", "province_new": "Đồng Nai", "address": "TP, Biên Hòa, tỉnh Đồng Nai", "mst": "3600257958", "group": null, "rep": "Peradach Patanachan", "q2025": 89, "q2026": 97}, {"stt": 25, "sector": "Nhiệt điện", "name": "Nhà máy nhiệt điện Nhơn Trạch 2", "province_old": "Đồng Nai", "province_new": "Đồng Nai", "address": "Huyện Nhơn Trạch, tỉnh Đồng Nai", "mst": "3600897316", "group": null, "rep": "Ngô Đức Nhân", "q2025": 1617372, "q2026": 1771879}, {"stt": 26, "sector": "Nhiệt điện", "name": "Công ty Nhiệt điện Duyên Hải (Nhà máy Duyên Hải 1)", "province_old": "Trà Vinh", "province_new": "Vĩnh Long", "address": "Xã Dân Thành, thị xã Duyên Hải, tỉnh Trà Vinh", "mst": "5701662152-009", "group": "NHÓM-02 (3 cơ sở)", "rep": "Ngô Văn Sỹ", "q2025": 9663688, "q2026": 10586856}, {"stt": 27, "sector": "Nhiệt điện", "name": "Công ty Nhiệt điện Duyên Hải (Nhà máy Duyên Hải 3)", "province_old": "Trà Vinh", "province_new": "Vĩnh Long", "address": "Xã Dân Thành, thị xã Duyên Hải, tỉnh Trà Vinh", "mst": "5701662152-009", "group": "NHÓM-02 (3 cơ sở)", "rep": "Ngô Văn Sỹ", "q2025": 3623243, "q2026": 3969369}, {"stt": 28, "sector": "Nhiệt điện", "name": "Công ty Nhiệt điện Duyên Hải (Nhà máy Duyên Hải 3 MR)", "province_old": "Trà Vinh", "province_new": "Vĩnh Long", "address": "Xã Dân Thành, thị xã Duyên Hải, tỉnh Trà Vinh", "mst": "5701662152-009", "group": "NHÓM-02 (3 cơ sở)", "rep": "Ngô Văn Sỹ", "q2025": 2728391, "q2026": 2989033}, {"stt": 29, "sector": "Nhiệt điện", "name": "Công ty TNHH gang thép Hưng Nghiệp Formosa Hà Tĩnh", "province_old": "Hà Tĩnh", "province_new": "Hà Tĩnh", "address": "Khu kinh tế Vũng Áng, phường Vũng Áng, tỉnh Hà Tĩnh", "mst": "3000437821", "group": "NHÓM-03 (2 cơ sở)", "rep": "Chen, Chun-Liang", "q2025": 5199840, "q2026": 5696578}, {"stt": 30, "sector": "Nhiệt điện", "name": "Công ty Điện lực dầu khí Cà Mau (Nhà máy điện Cà Mau 1)", "province_old": "Cà Mau", "province_new": "Cà Mau", "address": "Xã An Khánh, huyện U Minh, tỉnh Cà Mau", "mst": "0102276173-002", "group": "NHÓM-04 (2 cơ sở)", "rep": "Đoàn Công Đức", "q2025": 1006602, "q2026": 1102763}, {"stt": 31, "sector": "Nhiệt điện", "name": "Công ty Điện lực dầu khí Cà Mau (Nhà máy điện Cà Mau 2)", "province_old": "Cà Mau", "province_new": "Cà Mau", "address": "Xã An Khánh, huyện U Minh, tỉnh Cà Mau", "mst": "0102276173-002", "group": "NHÓM-04 (2 cơ sở)", "rep": "Đoàn Công Đức", "q2025": 1550998, "q2026": 1699164}, {"stt": 32, "sector": "Nhiệt điện", "name": "Công ty cổ phần nhiệt điện An Khánh", "province_old": "Thái Nguyên", "province_new": "Thái Nguyên", "address": "Tổ 22 phường Quang Trung, thành phố Thái Nguyên, tỉnh Thái Nguyên", "mst": "4600421021", "group": null, "rep": "Nguyễn Văn Thắng", "q2025": 924021, "q2026": 1012292}, {"stt": 33, "sector": "Nhiệt điện", "name": "Công ty nhiệt điện Cao Ngạn", "province_old": "Thái Nguyên", "province_new": "Thái Nguyên", "address": "Phường Quan Triều, thành phố Thái Nguyên, tỉnh Thái Nguyên", "mst": "0104297034-002", "group": null, "rep": "Nguyễn Mạnh Cường", "q2025": 1240305, "q2026": 1358791}, {"stt": 34, "sector": "Nhiệt điện", "name": "Ban điều hành nhà máy điện Kiên Hải", "province_old": "An Giang", "province_new": "An Giang", "address": "Số 287, ấp 2, Hòn Tre, đặc khu Kiên Hải, tỉnh An Giang", "mst": "1700403486", "group": null, "rep": "Huỳnh Cao Phướng", "q2025": 5539, "q2026": 6068}, {"stt": 1, "sector": "Sắt thép", "name": "Công ty TNHH khoáng sản và luyện kim Việt Trung", "province_old": "Lào Cai", "province_new": "Lào Cai", "address": "Khu công nghiệp Tằng Loỏng, huyện Bảo Thắng, tỉnh Lào Cai", "mst": "5300232681", "group": null, "rep": "Ngô Sỹ Hiếu", "q2025": 255476, "q2026": 297830}, {"stt": 2, "sector": "Sắt thép", "name": "Công ty cổ phần Gang thép Cao Bằng", "province_old": "Cao Bằng", "province_new": "Cao Bằng", "address": "Số 52, phố Kim Đồng, phường Hợp Giang, thành phố Cao Bằng, tỉnh Cao Bằng", "mst": "4800162247", "group": null, "rep": "Nguyễn Văn Phương", "q2025": 391158, "q2026": 456006}, {"stt": 3, "sector": "Sắt thép", "name": "Công ty cổ phần luyện thép Việt Ý", "province_old": "Hải Phòng", "province_new": "Hải Phòng", "address": "Khu công nghiệp cầu Kiền, xã Hoàng Động, huyện Thủy Nguyên, thành phố Hải Phòng", "mst": "0900222647-004", "group": null, "rep": "Yasuhiro Yonemura", "q2025": 33053, "q2026": 38533}, {"stt": 4, "sector": "Sắt thép", "name": "Công ty cổ phần luyện thép cao cấp Việt Nhật", "province_old": "Hải Phòng", "province_new": "Hải Phòng", "address": "Khu công nghiệp Nam Cầu Kiền, xã Kiền Bái, huyện Thủy Nguyên, thành phố Hải Phòng", "mst": "0201572208", "group": null, "rep": "Đặng Việt Bách", "q2025": 902, "q2026": 1052}, {"stt": 5, "sector": "Sắt thép", "name": "Công ty TNHH MTV Thép Hòa Phát", "province_old": "Hưng Yên", "province_new": "Hưng Yên", "address": "Khu công nghiệp Phố Nối A, xã Giai Phạm, huyện Yên Mỹ, tỉnh Hưng Yên", "mst": "0900629369", "group": null, "rep": "Kiều Chí Công", "q2025": 2406, "q2026": 2804}, {"stt": 6, "sector": "Sắt thép", "name": "Công ty TNHH Gang Thép Hung Nghiệp Formosa Hà Tĩnh", "province_old": "Hà Tĩnh", "province_new": "Hà Tĩnh", "address": "Khu kinh tế Vũng Áng, phường Kỳ Long, thị xã Kỳ Anh, tỉnh Hà Tĩnh", "mst": "3000437821", "group": "NHÓM-03 (2 cơ sở)", "rep": "Chen, Chun-Liang", "q2025": 13666930, "q2026": 15932703}, {"stt": 7, "sector": "Sắt thép", "name": "Công ty cổ phần Thép Hòa Phát Dung Quất", "province_old": "Quảng Ngãi", "province_new": "Quảng Ngãi", "address": "Khu kinh tế Dung Quất, xã Bình Đông, huyện Bình Son, tỉnh Quảng Ngãi", "mst": "4300793861", "group": null, "rep": "Mai Văn Hà", "q2025": 11218848, "q2026": 13078765}, {"stt": 8, "sector": "Sắt thép", "name": "Công ty cổ phần Thép Thủ Đức - Vnsteel", "province_old": "Hồ Chí Minh", "province_new": "Hồ Chí Minh", "address": "Km9 Xa lộ Hà Nội, phường Trường Thọ, thành phố Thủ Đức, thành phố Hồ Chí Minh", "mst": "0305409326", "group": null, "rep": "Hoàng Đức Hoa", "q2025": 12842, "q2026": 14971}, {"stt": 9, "sector": "Sắt thép", "name": "Công ty TNHH thép Tung Ho Việt Nam", "province_old": "Bà Rịa - Vũng Tàu", "province_new": "Hồ Chí Minh", "address": "Khu công nghiệp Phú Mỹ 2, phường Phú Mỹ, thị xã Phú Mỹ, tỉnh Bà Rịa - Vũng Tàu", "mst": "3500791394", "group": null, "rep": "Hou, Wu-Sheng", "q2025": 52001, "q2026": 60622}, {"stt": 10, "sector": "Sắt thép", "name": "Nhà máy thép Pomina 2", "province_old": "Bà Rịa - Vũng Tàu", "province_new": "Hồ Chí Minh", "address": "Khu công nghiệp Phú Mỹ 1, phường Phú Mỹ, thị xã Phú Mỹ, tỉnh Bà Rịa - Vũng Tàu", "mst": "3500793105", "group": null, "rep": "Đỗ Văn Khánh", "q2025": 14952, "q2026": 17431}, {"stt": 11, "sector": "Sắt thép", "name": "Công ty TNHH MTV Thép Miền Nam", "province_old": "Bà Rịa - Vũng Tàu", "province_new": "Hồ Chí Minh", "address": "Khu công nghiệp Phú Mỹ 1, phường Phú Mỹ, thị xã Phú Mỹ, tỉnh Bà Rịa - Vũng Tàu", "mst": "3502269994", "group": null, "rep": "Nguyễn Nguyên Ngọc", "q2025": 46390, "q2026": 54081}, {"stt": 12, "sector": "Sắt thép", "name": "Công ty TNHH Posco SS - Vina", "province_old": "Bà Rịa - Vũng Tàu", "province_new": "Hồ Chí Minh", "address": "Đường N1, khu công nghiệp Phú Mỹ 2, phường Phú Mỹ, thị xã Phú Mỹ, tỉnh Bà Rịa - Vũng Tàu", "mst": "3501620257", "group": null, "rep": "Seo Kyeongcheol", "q2025": 50549, "q2026": 58930}, {"stt": 13, "sector": "Sắt thép", "name": "Công ty TNHH Thép Vina Kyoei", "province_old": "Bà Rịa - Vũng Tàu", "province_new": "Hồ Chí Minh", "address": "Khu công nghiệp Phú Mỹ 1, phường Phú Mỹ, thị xã Phú Mỹ, tỉnh Bà Rịa - Vũng Tàu", "mst": "3500106761", "group": null, "rep": "Hidekazu Fukunishi", "q2025": 44367, "q2026": 51723}, {"stt": 14, "sector": "Sắt thép", "name": "Công ty TNHH thép VAS An Hưng Tường", "province_old": "Bình Dương", "province_new": "Hồ Chí Minh", "address": "Khu phố 3, phường Tân Định, thị xã Bến Cát, tỉnh Bình Dương", "mst": "3700256179", "group": null, "rep": "Nguyễn Trần Quý", "q2025": 2050, "q2026": 2390}, {"stt": 15, "sector": "Sắt thép", "name": "Công ty TNHH thép Sa Mi Na", "province_old": "Bình Dương", "province_new": "Hồ Chí Minh", "address": "Số 137C, khu B, khu phố Tân Thắng, phường Tân Bình, thành phố Dĩ An, tỉnh Bình Dương", "mst": "3700598687", "group": null, "rep": "Phạm Hoàng Cung", "q2025": 265, "q2026": 310}, {"stt": 16, "sector": "Sắt thép", "name": "Công ty cổ phần thép Tuệ Minh", "province_old": "Bình Dương", "province_new": "Hồ Chí Minh", "address": "Lô A5, đường D2, khu công nghiệp Đất Cuốc, xã Đất Cuốc, huyện Bắc Tân Uyên, tỉnh Bình Dương", "mst": "3701729269", "group": null, "rep": "Vũ Minh Tư", "q2025": 2559, "q2026": 2983}, {"stt": 17, "sector": "Sắt thép", "name": "Công ty cổ phần Sản xuất thép Vina One", "province_old": "Long An", "province_new": "Tây Ninh", "address": "Ấp Voi Lá, xã Long Hiệp, huyện Bến Lức, tỉnh Long An", "mst": "1100549268", "group": null, "rep": "Huỳnh Nghĩa Thiện", "q2025": 246, "q2026": 287}, {"stt": 18, "sector": "Sắt thép", "name": "Công ty TNHH MTV thép VAS Nghi Sơn", "province_old": "Thanh Hóa", "province_new": "Thanh Hóa", "address": "Khu liên hợp Gang thép Nghi Sơn, khu kinh tế Nghi Sơn, thị xã Nghi Sơn, tỉnh Thanh Hóa", "mst": "2801115888", "group": null, "rep": "Nguyễn Bảo Giang", "q2025": 6602, "q2026": 7696}, {"stt": 19, "sector": "Sắt thép", "name": "Công ty cổ phần Cơ khí Gang thép", "province_old": "Thái Nguyên", "province_new": "Thái Nguyên", "address": "Phường Cam Giá, thành phố Thái Nguyên, tỉnh Thái Nguyên", "mst": "4600479367", "group": null, "rep": "Bùi Thái Sơn", "q2025": 715, "q2026": 833}, {"stt": 20, "sector": "Sắt thép", "name": "Công ty cổ phần Thép Hòa Phát", "province_old": "Hải Dương", "province_new": "Hải Phòng", "address": "Phường Hiệp Sơn, thị xã Kinh Môn, tỉnh Hải Dương", "mst": "0800384651", "group": null, "rep": "Đỗ Thị Thảo", "q2025": 4494857, "q2026": 5240036}, {"stt": 21, "sector": "Sắt thép", "name": "Công ty cổ phần Gang Thép Thái Nguyên", "province_old": "Thái Nguyên", "province_new": "Thái Nguyên", "address": "Phường Cam Giá, thành phố Thái Nguyên, tỉnh Thái Nguyên", "mst": "4600100155", "group": null, "rep": "Nguyễn Minh Hạnh", "q2025": 487238, "q2026": 568015}, {"stt": 22, "sector": "Sắt thép", "name": "Công ty cổ phần thép Đà Nẵng", "province_old": "Đà Nẵng", "province_new": "Đà Nẵng", "address": "Đường Tạ Quang Bửu, khu công nghiệp Liên Chiểu, thành phố Đà Nẵng", "mst": "0400101549", "group": null, "rep": "Nguyễn Văn Dũng", "q2025": 11961, "q2026": 13944}, {"stt": 23, "sector": "Sắt thép", "name": "Công ty cổ phần Thép Vicasa - Vnsteel", "province_old": "Đồng Nai", "province_new": "Đồng Nai", "address": "Khu công nghiệp Biên Hòa 1, Đường số 9, thành phố Biên Hòa, tỉnh Đồng Nai", "mst": "3600961762", "group": null, "rep": "Ngô Tiến Thọ", "q2025": 15530, "q2026": 18105}, {"stt": 24, "sector": "Sắt thép", "name": "Công ty TNHH thép đặc biệt Shengli Việt Nam", "province_old": "Thái Bình", "province_new": "Hưng Yên", "address": "Khu công nghiệp Cầu Nghìn, huyện Quỳnh Phụ, tỉnh Thái Bình", "mst": "1000440676", "group": null, "rep": "Zhang Chun Tuan", "q2025": 2893, "q2026": 3372}, {"stt": 25, "sector": "Sắt thép", "name": "Công ty cổ phần Luyện kim đen Thái Nguyên", "province_old": "Thái Nguyên", "province_new": "Thái Nguyên", "address": "Xã Nam Hòa, huyện Đồng Hỷ, tỉnh Thái Nguyên", "mst": "4600400261", "group": null, "rep": "Chu Phương Đông", "q2025": 236403, "q2026": 275595}, {"stt": 1, "sector": "Xi măng", "name": "Công ty Cổ phần Xi măng X18", "province_old": "Hòa Bình", "province_new": "Phú Thọ", "address": "Xã Ngọc Lương, huyên Yên Thủy, tỉnh Hòa Bình", "mst": "5400253188", "group": null, "rep": "Lê Ngọc Hùng", "q2025": 109943, "q2026": 120305}, {"stt": 2, "sector": "Xi măng", "name": "Nhà máy Xi măng Trung Sơn (Công ty Cổ phần Xây dựng và Du lịch Bình Minh)", "province_old": "Hòa Bình", "province_new": "Phú Thọ", "address": "Xóm Lộc Môn, xã Trung Sơn, huyện Lương Sơn, tỉnh Hòa Bình", "mst": "5400478632", "group": null, "rep": "Đỗ Trần Minh", "q2025": 648135, "q2026": 709220}, {"stt": 3, "sector": "Xi măng", "name": "Nhà máy Xi măng Vĩnh Sơn (Công ty TNHH Xi măng Vĩnh Sơn)", "province_old": "Hòa Bình", "province_new": "Phú Thọ", "address": "Xã Trung Sơn, huyện Lương Sơn, tỉnh Hòa Bình", "mst": "5400208756", "group": null, "rep": "Đỗ Quân", "q2025": 369109, "q2026": 403897}, {"stt": 4, "sector": "Xi măng", "name": "Công ty Cổ phần Xi măng Mai Sơn", "province_old": "Sơn La", "province_new": "Sơn La", "address": "Xã Nà Bó, huyện Mai Sơn, tỉnh Sơn La", "mst": "5500230970", "group": null, "rep": "Mã Đề Thuấn", "q2025": 359956, "q2026": 393882}, {"stt": 5, "sector": "Xi măng", "name": "Nhà máy xi măng Điện Biên", "province_old": "Điện Biên", "province_new": "Điện Biên", "address": "Bản Na Hai, xã Pom Lót, huyện Điện Biên, tỉnh Điện Biên", "mst": "5600177368", "group": null, "rep": "Trần Khác Đại", "q2025": 171860, "q2026": 188058}, {"stt": 6, "sector": "Xi măng", "name": "Nhà máy Xi măng Yên Bái, Công ty Cổ phần Xi măng và Khoáng sản Yên Bái", "province_old": "Yên Bái", "province_new": "Lào Cai", "address": "Thị trấn Yên Bình, huyện Yên Bình, tỉnh Yên Bái", "mst": "5200216647", "group": null, "rep": "Phạm Quang Phú", "q2025": 400233, "q2026": 437954}, {"stt": 7, "sector": "Xi măng", "name": "Nhà máy Xi măng Yên Bình, Công ty Cổ phần Xi măng Yên Bình", "province_old": "Yên Bái", "province_new": "Lào Cai", "address": "Thị trấn Yên Bình, huyện Yên Bình, tỉnh Yên Bái", "mst": "5200213597", "group": null, "rep": "Mai Thế Loan", "q2025": 598709, "q2026": 655136}, {"stt": 8, "sector": "Xi măng", "name": "Công ty cổ phần xi măng Phú Thọ", "province_old": "Phú Thọ", "province_new": "Phú Thọ", "address": "Khu 12, Thị trấn Thanh Ba, huyện Thanh Ba, tỉnh Phú Thọ", "mst": "2600116271", "group": null, "rep": "Tràn Tuấn Đạt", "q2025": 126022, "q2026": 137899}, {"stt": 9, "sector": "Xi măng", "name": "Công ty cổ phần xi măng VIMCEM Sông Thao", "province_old": "Phú Thọ", "province_new": "Phú Thọ", "address": "Xã Ninh Dân, huyện Thanh Ba, tỉnh Phú Thọ", "mst": "2600279082", "group": null, "rep": "Nguyễn Quang Huy", "q2025": 836948, "q2026": 915828}, {"stt": 10, "sector": "Xi măng", "name": "Nhà máy xi măng Tuyên Quang, Công ty cổ phần xi măng Tuyên Quang", "province_old": "Tuyên Quang", "province_new": "Tuyên Quang", "address": "Xã Tràng Đà, thành phố Tuyên Quang, tỉnh Tuyên Quang", "mst": "5000119170", "group": null, "rep": "Nguyễn Mạnh Danh", "q2025": 124008, "q2026": 135696}, {"stt": 11, "sector": "Xi măng", "name": "Nhà máy xi măng Tân Quang, Công ty cổ phần xi măng Tân Quang- VVMI, Tổng công ty công nghiệp mỏ Việt Bắc TKV", "province_old": "Tuyên Quang", "province_new": "Tuyên Quang", "address": "Xã Tràng Đà, thành phố Tuyên Quang, tỉnh Tuyên Quang", "mst": "5000280116", "group": null, "rep": "Lê Danh Thắng", "q2025": 638702, "q2026": 698898}, {"stt": 12, "sector": "Xi măng", "name": "Nhà máy sản xuất Xi măng Quán Triều, Công ty Cổ phần Xi măng Quán Triều", "province_old": "Thái Nguyên", "province_new": "Thái Nguyên", "address": "Xã An Khánh, huyện Đại Từ, tỉnh Thái Nguyên", "mst": "4600409377", "group": null, "rep": "Trần Việt Cường", "q2025": 592455, "q2026": 648292}, {"stt": 13, "sector": "Xi măng", "name": "Nhà máy sản xuất Xi măng La Hiên, Công ty cổ phần Xi măng La Hiên", "province_old": "Thái Nguyên", "province_new": "Thái Nguyên", "address": "Xã La Hiên, huyện Võ Nhai, tỉnh Thái Nguyên", "mst": "4600422240", "group": null, "rep": "Trần Quang Khải", "q2025": 480806, "q2026": 526121}, {"stt": 14, "sector": "Xi măng", "name": "Nhà máy sản xuất Xi măng Quang Sơn, Công ty cổ phần Xi măng Quang Sơn", "province_old": "Thái Nguyên", "province_new": "Thái Nguyên", "address": "Xã Quang Sơn, huyện Đồng Hỷ, tỉnh Thái Nguyên", "mst": "4600964966", "group": null, "rep": "Hà Quang Sáng", "q2025": 404692, "q2026": 442833}, {"stt": 15, "sector": "Xi măng", "name": "Công ty Cổ phần xi măng Đồng Bành", "province_old": "Lạng Sơn", "province_new": "Lạng Sơn", "address": "Thị trấn Chi Lăng, huyện Chi Lăng, tỉnh Lạng Sơn", "mst": "4900225282", "group": null, "rep": "Đỗ Cao Sơn", "q2025": 679217, "q2026": 743232}, {"stt": 16, "sector": "Xi măng", "name": "Công ty Cổ phần Xi măng Hồng Phong", "province_old": "Lạng Sơn", "province_new": "Lạng Sơn", "address": "Xã Hồng Phong, huyện Cao Lộc, tỉnh Lạng Sơn", "mst": "4900102650", "group": null, "rep": "Trần Duyên Tùng", "q2025": 104067, "q2026": 113875}, {"stt": 17, "sector": "Xi măng", "name": "Nhà máy xi măng Cẩm Phả, Công ty Cổ phần Xi măng Cẩm Phả", "province_old": "Quảng Ninh", "province_new": "Quảng Ninh", "address": "Phường Cẩm Thạch, thành phố Cẩm Phả, tỉnh Quảng Ninh", "mst": "5700804196", "group": null, "rep": "Nguyễn Thái Hưng", "q2025": 1616252, "q2026": 1768581}, {"stt": 18, "sector": "Xi măng", "name": "Công ty Cổ phần Xi măng và Xây dựng Quảng Ninh, Nhà máy xi măng Lam Thạch", "province_old": "Quảng Ninh", "province_new": "Quảng Ninh", "address": "Khu Hợp Thành, phường Phương Nam, thành phố Uông Bí, tỉnh Quảng Ninh", "mst": "5700100263-013", "group": null, "rep": "Đặng Văn Học", "q2025": 933095, "q2026": 1021037}, {"stt": 19, "sector": "Xi măng", "name": "Công ty Cổ phần Xi măng Hạ Long", "province_old": "Quảng Ninh", "province_new": "Quảng Ninh", "address": "Xã Lê Lợi, thành phố Hạ Long, tỉnh Quảng Ninh", "mst": "5700466028", "group": null, "rep": "Mai Hồng Hải", "q2025": 989857, "q2026": 1083149}, {"stt": 20, "sector": "Xi măng", "name": "Công ty Cổ phần Xi măng Thăng Long", "province_old": "Quảng Ninh", "province_new": "Quảng Ninh", "address": "Xã Lê Lợi, thành phố Hạ Long, tỉnh Quảng Ninh", "mst": "5700360871", "group": null, "rep": "Rizkie Agustiansyah Gaharu", "q2025": 1175783, "q2026": 1286599}, {"stt": 21, "sector": "Xi măng", "name": "Nhà máy xi măng Bút Sơn, Công ty Cổ phần Xi măng Vicem Bút Sơn", "province_old": "Hà Nam", "province_new": "Ninh Bình", "address": "Xã Thanh Sơn, huyện Kim Bảng, tỉnh Hà Nam", "mst": "0700117613", "group": null, "rep": "Đỗ Tiến Trình", "q2025": 2453235, "q2026": 2684448}, {"stt": 22, "sector": "Xi măng", "name": "Nhà máy xi măng Hoàng Long, Công ty Cổ phần Xi măng Hoàng Long", "province_old": "Hà Nam", "province_new": "Ninh Bình", "address": "Thôn Bồng Lạng, xã Thanh Nghị, huyện Thanh Liêm, tỉnh Hà Nam", "mst": "0700222569", "group": null, "rep": "Nguyễn Sỹ Tiệp", "q2025": 133575, "q2026": 146165}, {"stt": 23, "sector": "Xi măng", "name": "Nhà máy xi măng Thành Thắng, Công ty Cổ phần Xi măng Thành Thắng", "province_old": "Hà Nam", "province_new": "Ninh Bình", "address": "Xã Thanh Nghị, huyện Thanh Liêm, tỉnh Hà Nam", "mst": "0700651198", "group": null, "rep": "Nguyễn Thị Bích Loan", "q2025": 6853859, "q2026": 7499822}, {"stt": 24, "sector": "Xi măng", "name": "Nhà máy Xi măng Vissai Hà Nam - DC2, Tập đoàn The Vissai", "province_old": "Hà Nam", "province_new": "Ninh Bình", "address": "Xã Thanh Thủy, huyện Thanh Liêm, tỉnh Hà Nam", "mst": "0700507853", "group": "NHÓM-05 (2 cơ sở)", "rep": "Đỗ Anh Tuấn", "q2025": 822644, "q2026": 900177}, {"stt": 25, "sector": "Xi măng", "name": "Nhà máy Xi măng Xuân Thành, Công ty Cổ phần Xi măng Xuân Thành", "province_old": "Hà Nam", "province_new": "Ninh Bình", "address": "Thôn Bồng Lạng, xã Thanh Nghị, huyện Thanh Liêm, tỉnh Hà Nam", "mst": "0700576529", "group": null, "rep": "Vũ Quang Bắc", "q2025": 5297794, "q2026": 5797101}, {"stt": 26, "sector": "Xi măng", "name": "Dây chuyền 2 Nhà máy clinker, Tập đoàn The Vissai", "province_old": "Hà Nam", "province_new": "Ninh Bình", "address": "Xã Thanh Tân, huyện Thanh Liêm, tỉnh Hà Nam", "mst": "0700507853", "group": "NHÓM-05 (2 cơ sở)", "rep": "Đỗ Anh Tuấn", "q2025": 714977, "q2026": 782362}, {"stt": 27, "sector": "Xi măng", "name": "Công ty TNHH MTV Xi măng Vicem Hoàng Thạch", "province_old": "Hải Dương", "province_new": "Hải Phòng", "address": "Phường Minh Tân, thị xã Kinh Môn, tỉnh Hải Dương", "mst": "0800004797", "group": null, "rep": "Lê Xuân Khôi", "q2025": 2701207, "q2026": 2955791}, {"stt": 28, "sector": "Xi măng", "name": "Công ty TNHH sản xuất vật liệu xây dựng Thành Công III", "province_old": "Hải Dương", "province_new": "Hải Phòng", "address": "Phường Hiệp Sơn, thị xã Kinh Môn, tỉnh Hài Dương", "mst": "0800297991", "group": null, "rep": "Lê Khánh Bảo Long", "q2025": 357054, "q2026": 390705}, {"stt": 29, "sector": "Xi măng", "name": "Nhà máy Xi măng Chinfon, Công ty Xi măng Chinfon", "province_old": "Hải Phòng", "province_new": "Hải Phòng", "address": "Thị trấn Minh Đức, huyện Thủy Nguyên, thành phố Hải Phòng", "mst": "0200110200", "group": null, "rep": "Lo Lung - Too", "q2025": 2907941, "q2026": 3182009}, {"stt": 30, "sector": "Xi măng", "name": "Nhà máy xi măng Hải Phòng, Công ty TNHH MTV Vicem Hải Phòng", "province_old": "Hải Phòng", "province_new": "Hải Phòng", "address": "Thị trần Minh Đức, huyện Thủy Nguyên, thành phố Hải Phòng", "mst": "0200155219", "group": null, "rep": "Trần Văn Toan", "q2025": 1217320, "q2026": 1332050}, {"stt": 31, "sector": "Xi măng", "name": "Nhà máy Xi măng Vissai Ninh Bình, Tập đoàn The Vissai", "province_old": "Ninh Bình", "province_new": "Ninh Bình", "address": "Lô C7, cụm công nghiệp Gián Khẩu, huyện Gia Viễn, tỉnh Ninh Bình", "mst": "2700280638", "group": null, "rep": "Hoàng Mạnh Tùng", "q2025": 2072885, "q2026": 2268250}, {"stt": 32, "sector": "Xi măng", "name": "Công ty VICEM xi măng Tam Điệp", "province_old": "Ninh Bình", "province_new": "Ninh Bình", "address": "Khu công nghiệp Tam Điệp I, tỉnh Ninh Bình", "mst": "2700260173", "group": null, "rep": "Trần Anh Tuấn", "q2025": 1242230, "q2026": 1359308}, {"stt": 33, "sector": "Xi măng", "name": "Nhà máy Xi măng Bỉm Sơn, Công ty Cổ phần Xi măng Bỉm Sơn", "province_old": "Thanh Hóa", "province_new": "Thanh Hóa", "address": "Phường Ba Đình, thị xã Bỉm Sơn, tỉnh Thanh Hóa", "mst": "2800232620", "group": null, "rep": "Lê Huy Quân", "q2025": 2510131, "q2026": 2746706}, {"stt": 34, "sector": "Xi măng", "name": "Nhà máy Xi măng Long Son, Công ty TNHH Long Sơn", "province_old": "Thanh Hóa", "province_new": "Thanh Hóa", "address": "Phường Đông Sơn, thị xã Bỉm Sơn, tỉnh Thanh Hóa", "mst": "2700271520-003", "group": null, "rep": "Trịnh Quang Hải", "q2025": 8511370, "q2026": 9313550}, {"stt": 35, "sector": "Xi măng", "name": "Nhà máy Xi măng Công Thanh, Tập đoàn Công Thanh", "province_old": "Thanh Hóa", "province_new": "Thanh Hóa", "address": "Xã Tân Trường, huyện Tĩnh Gia, tỉnh Thanh Hóa", "mst": "0304186356", "group": null, "rep": "Nguyễn Thị Hoàng Thi", "q2025": 499301, "q2026": 546359}, {"stt": 36, "sector": "Xi măng", "name": "Nhà máy Xi măng Nghi Sơn 2, Công ty Xi măng Nghi Sơn", "province_old": "Thanh Hóa", "province_new": "Thanh Hóa", "address": "Xã Hải Thượng, huyện Tĩnh Gia, tỉnh Thanh Hóa", "mst": "2800464741", "group": null, "rep": "Ichizawa Kazuhiko", "q2025": 3875392, "q2026": 4240640}, {"stt": 37, "sector": "Xi măng", "name": "Nhà máy Xi măng Tân Thắng, Công ty Xi măng Tân Thắng", "province_old": "Nghệ An", "province_new": "Nghệ An", "address": "Xã Tân Thắng, huyện Quỳnh Lưu, tỉnh Nghệ An", "mst": "2901132319", "group": null, "rep": "Văn Đình Quý", "q2025": 841042, "q2026": 920308}, {"stt": 38, "sector": "Xi măng", "name": "Nhà máy Xi măng Sông Lam 1, Tập đoàn The Vissai", "province_old": "Nghệ An", "province_new": "Nghệ An", "address": "Xã Bài Sơn, huyện Đô Lương, tỉnh Nghệ An", "mst": "2900601487", "group": null, "rep": "Hoàng Minh Tuấn", "q2025": 4681235, "q2026": 5122432}, {"stt": 39, "sector": "Xi măng", "name": "Nhà máy Xi măng Sông Lam 2, Tập đoàn The Vissai", "province_old": "Nghệ An", "province_new": "Nghệ An", "address": "Huyện Anh Sơn, tỉnh Nghệ An", "mst": "2900325156", "group": null, "rep": "Hoàng Mạnh Khởi", "q2025": 507149, "q2026": 554947}, {"stt": 40, "sector": "Xi măng", "name": "Nhà máy Xi măng Công ty Cổ phần Xi măng Vicem Hoàng Mai", "province_old": "Nghệ An", "province_new": "Nghệ An", "address": "Phường Quỳnh Thiện, huyện Quỳnh Lưu, tỉnh Nghệ An", "mst": "2900329295", "group": null, "rep": "Nguyễn Đình Dũng", "q2025": 1290862, "q2026": 1412524}, {"stt": 41, "sector": "Xi măng", "name": "Công ty cổ phần xi măng sông Gianh", "province_old": "Quảng Bình", "province_new": "Quảng Trị", "address": "Thôn Cương Trung C, xã Tiến Hóa, huyên Tuyên Hóa, tỉnh Quảng Bình", "mst": "3100946237", "group": null, "rep": "Supakit Phucharoensilp", "q2025": 1137938, "q2026": 1245186}, {"stt": 42, "sector": "Xi măng", "name": "Công ty cổ phần vật liệu xây dựng Việt Nam", "province_old": "Quảng Bình", "province_new": "Quảng Trị", "address": "Thôn Xuân Hạ, xã Văn Hóa, huyện Tuyên Hóa, tỉnh Quảng Bình", "mst": "3100405421", "group": null, "rep": "Supakit Phucharoensilp", "q2025": 727399, "q2026": 795955}, {"stt": 43, "sector": "Xi măng", "name": "Nhà máy Xi măng Vạn Ninh, Công ty cổ phần Xi măng Vicem Hải Vân", "province_old": "Quảng Bình", "province_new": "Quảng Trị", "address": "Thôn Áng Sơn, xã Vạn Ninh, huyện Quảng Ninh, tỉnh Quảng Bình", "mst": "0400101235-003", "group": null, "rep": "Hoàng Xuân Thịnh", "q2025": 271549, "q2026": 297142}, {"stt": 44, "sector": "Xi măng", "name": "Công ty Hữu Hạn Xi Măng Luks", "province_old": "Thừa Thiên Huế", "province_new": "Huế", "address": "Phường Tứ Hạ, thị xã Hương Trà, tỉnh Thừa Thiên Huế", "mst": "3300100875", "group": null, "rep": "Luk Jack Fung", "q2025": 354936, "q2026": 388387}, {"stt": 45, "sector": "Xi măng", "name": "Công ty cổ phần Xi măng Đồng Lâm", "province_old": "Thừa Thiên Huế", "province_new": "Huế", "address": "Thôn Cổ Xuân, xã Phong Xuân, huyện Phong Điền, tỉnh Thừa Thiên Huế", "mst": "3300384306", "group": null, "rep": "Phạm Phước Hiền Hòa", "q2025": 1254493, "q2026": 1372727}, {"stt": 46, "sector": "Xi măng", "name": "Công ty TNHH MTV Xi măng Xuân Thành Quảng Nam", "province_old": "Quảng Nam", "province_new": "Đà Nẵng", "address": "Thôn Đồng Râm, thị trấn Thạnh Mỹ, huyện Nam Giang, tỉnh Quảng Nam", "mst": "4001193087", "group": null, "rep": "Nguyễn Thị Thu", "q2025": 835087, "q2026": 913792}, {"stt": 47, "sector": "Xi măng", "name": "Nhà máy Xi măng Bình Phước, Công ty cổ phần Xi măng Vicem Hà Tiên 1", "province_old": "Bình Phước", "province_new": "Đồng Nai", "address": "Xã Thanh Lương, thị xã Bình Long, tỉnh Bình Phước", "mst": "0301446422-012", "group": null, "rep": "Lê Ngọc Tuấn", "q2025": 1982913, "q2026": 2169798}, {"stt": 48, "sector": "Xi măng", "name": "Nhà máy Xi măng Tây Ninh, Công ty cổ phần xi măng FICO Tây Ninh - Tổng Công ty vật liệu xây dựng số 1", "province_old": "Tây Ninh", "province_new": "Tây Ninh", "address": "Xã Tân Hòa, huyện Tân Châu, tỉnh Tây Ninh", "mst": "3900365922-003", "group": null, "rep": "Châu Ngọc Phúc", "q2025": 1072694, "q2026": 1173794}, {"stt": 49, "sector": "Xi măng", "name": "Nhà máy Xi măng Kiên Lương, Công ty cổ phần Xi măng Vicem Hà Tiên 1", "province_old": "Kiên Giang", "province_new": "An Giang", "address": "Thị trấn Kiên Lương, huyện Kiên Lương, tỉnh Kiên Giang", "mst": "0301446422-013", "group": null, "rep": "Lâm Hiện Đạt", "q2025": 2045386, "q2026": 2238159}, {"stt": 50, "sector": "Xi măng", "name": "Nhà máy Xi măng INSEE, Công ty TNHH Siam City Cement (Việt Nam)", "province_old": "Kiên Giang", "province_new": "An Giang", "address": "Xã Bình An, huyện Kiên Lương, tỉnh Kiên Giang", "mst": "0300608568-001", "group": null, "rep": "Eamon John Ginley", "q2025": 1505630, "q2026": 1647533}, {"stt": 51, "sector": "Xi măng", "name": "Công ty TNHH Duyên Hà, Nhà máy xi măng Duyên Hà", "province_old": "Ninh Bình", "province_new": "Ninh Bình", "address": "Thôn Hệ, xã Ninh Vân, huyện Hoa Lư, tỉnh Ninh Bình", "mst": "0100520789-002", "group": null, "rep": "Phạm Văn Duyên", "q2025": 1324157, "q2026": 1448956}], "sector_summary": {"Nhiệt điện": {"count": 34, "q2025_total": 138667965, "q2026_total": 151914862, "growth_pct": 9.55, "q2025_min": 89, "q2025_max": 12190431, "q2025_median": 2539145.0, "q26_min": 97, "q26_max": 13354978, "q26_median": 2781708.5, "q2025_list": [1035566, 2032458, 5691098, 11097421, 3585092, 12190431, 4436759, 9556403, 10239469, 5036163, 7214687, 2558365, 11856608, 10530658, 8528067, 21460, 2519925, 1079828, 876004, 68969, 31803, 407990, 512653, 89, 1617372, 9663688, 3623243, 2728391, 5199840, 1006602, 1550998, 924021, 1240305, 5539], "q2026_list": [1134493, 2226618, 6234766, 12157553, 3927575, 13354978, 4860601, 10469322, 11217642, 5517266, 7903903, 2802764, 12989265, 11536648, 9342750, 23510, 2760653, 1182984, 959689, 75558, 34842, 446965, 561627, 97, 1771879, 10586856, 3969369, 2989033, 5696578, 1102763, 1699164, 1012292, 1358791, 6068]}, "Xi măng": {"count": 51, "q2025_total": 73363234, "q2026_total": 80277575, "growth_pct": 9.42, "q2025_min": 104067, "q2025_max": 8511370, "q2025_median": 836948, "q26_min": 113875, "q26_max": 9313550, "q26_median": 915828, "q2025_list": [109943, 648135, 369109, 359956, 171860, 400233, 598709, 126022, 836948, 124008, 638702, 592455, 480806, 404692, 679217, 104067, 1616252, 933095, 989857, 1175783, 2453235, 133575, 6853859, 822644, 5297794, 714977, 2701207, 357054, 2907941, 1217320, 2072885, 1242230, 2510131, 8511370, 499301, 3875392, 841042, 4681235, 507149, 1290862, 1137938, 727399, 271549, 354936, 1254493, 835087, 1982913, 1072694, 2045386, 1505630, 1324157], "q2026_list": [120305, 709220, 403897, 393882, 188058, 437954, 655136, 137899, 915828, 135696, 698898, 648292, 526121, 442833, 743232, 113875, 1768581, 1021037, 1083149, 1286599, 2684448, 146165, 7499822, 900177, 5797101, 782362, 2955791, 390705, 3182009, 1332050, 2268250, 1359308, 2746706, 9313550, 546359, 4240640, 920308, 5122432, 554947, 1412524, 1245186, 795955, 297142, 388387, 1372727, 913792, 2169798, 1173794, 2238159, 1647533, 1448956]}, "Sắt thép": {"count": 25, "q2025_total": 31051193, "q2026_total": 36199017, "growth_pct": 16.58, "q2025_min": 246, "q2025_max": 13666930, "q2025_median": 15530, "q26_min": 287, "q26_max": 15932703, "q26_median": 18105, "q2025_list": [255476, 391158, 33053, 902, 2406, 13666930, 11218848, 12842, 52001, 14952, 46390, 50549, 44367, 2050, 265, 2559, 246, 6602, 715, 4494857, 487238, 11961, 15530, 2893, 236403], "q2026_list": [297830, 456006, 38533, 1052, 2804, 15932703, 13078765, 14971, 60622, 17431, 54081, 58930, 51723, 2390, 310, 2983, 287, 7696, 833, 5240036, 568015, 13944, 18105, 3372, 275595]}}, "overview": {"total_dn": 110, "total_q2025": 243082392, "total_q2026": 268391454, "growth_pct": 10.41}, "province_all": {"Lạng Sơn": {"count": 3, "q2025": 1818850, "q2026": 1991600}, "Bắc Ninh": {"count": 1, "q2025": 2032458, "q2026": 2226618}, "Quảng Ninh": {"count": 10, "q2025": 51272191, "q2026": 56164161}, "Hải Phòng": {"count": 8, "q2025": 21951803, "q2026": 24357818}, "Thanh Hóa": {"count": 6, "q2025": 20438959, "q2026": 22372217}, "Hà Tĩnh": {"count": 3, "q2025": 26081457, "q2026": 29533184}, "Đồng Nai": {"count": 7, "q2025": 7094912, "q2026": 7771235}, "Lâm Đồng": {"count": 4, "q2025": 30936793, "q2026": 33892173}, "Hồ Chí Minh": {"count": 14, "q2025": 4802504, "q2026": 5277167}, "Vĩnh Long": {"count": 3, "q2025": 16015322, "q2026": 17545258}, "Cà Mau": {"count": 2, "q2025": 2557600, "q2026": 2801927}, "Thái Nguyên": {"count": 8, "q2025": 4366635, "q2026": 4832772}, "An Giang": {"count": 3, "q2025": 3556555, "q2026": 3891760}, "Lào Cai": {"count": 3, "q2025": 1254418, "q2026": 1390920}, "Cao Bằng": {"count": 1, "q2025": 391158, "q2026": 456006}, "Hưng Yên": {"count": 2, "q2025": 5299, "q2026": 6176}, "Quảng Ngãi": {"count": 1, "q2025": 11218848, "q2026": 13078765}, "Tây Ninh": {"count": 2, "q2025": 1072940, "q2026": 1174081}, "Đà Nẵng": {"count": 2, "q2025": 847048, "q2026": 927736}, "Phú Thọ": {"count": 5, "q2025": 2090157, "q2026": 2287149}, "Sơn La": {"count": 1, "q2025": 359956, "q2026": 393882}, "Điện Biên": {"count": 1, "q2025": 171860, "q2026": 188058}, "Tuyên Quang": {"count": 2, "q2025": 762710, "q2026": 834594}, "Ninh Bình": {"count": 9, "q2025": 20915356, "q2026": 22886589}, "Nghệ An": {"count": 4, "q2025": 7320288, "q2026": 8010211}, "Quảng Trị": {"count": 3, "q2025": 2136886, "q2026": 2338283}, "Huế": {"count": 2, "q2025": 1609429, "q2026": 1761114}}, "province_by_sector": {"Nhiệt điện": {"Lạng Sơn": {"count": 1, "q2025": 1035566, "q2026": 1134493}, "Bắc Ninh": {"count": 1, "q2025": 2032458, "q2026": 2226618}, "Quảng Ninh": {"count": 6, "q2025": 46557204, "q2026": 51004795}, "Hải Phòng": {"count": 1, "q2025": 10239469, "q2026": 11217642}, "Thanh Hóa": {"count": 1, "q2025": 5036163, "q2026": 5517266}, "Hà Tĩnh": {"count": 2, "q2025": 12414527, "q2026": 13600481}, "Đồng Nai": {"count": 5, "q2025": 5096469, "q2026": 5583332}, "Lâm Đồng": {"count": 4, "q2025": 30936793, "q2026": 33892173}, "Hồ Chí Minh": {"count": 5, "q2025": 4576529, "q2026": 5013726}, "Vĩnh Long": {"count": 3, "q2025": 16015322, "q2026": 17545258}, "Cà Mau": {"count": 2, "q2025": 2557600, "q2026": 2801927}, "Thái Nguyên": {"count": 2, "q2025": 2164326, "q2026": 2371083}, "An Giang": {"count": 1, "q2025": 5539, "q2026": 6068}}, "Sắt thép": {"Lào Cai": {"count": 1, "q2025": 255476, "q2026": 297830}, "Cao Bằng": {"count": 1, "q2025": 391158, "q2026": 456006}, "Hải Phòng": {"count": 3, "q2025": 4528812, "q2026": 5279621}, "Hưng Yên": {"count": 2, "q2025": 5299, "q2026": 6176}, "Hà Tĩnh": {"count": 1, "q2025": 13666930, "q2026": 15932703}, "Quảng Ngãi": {"count": 1, "q2025": 11218848, "q2026": 13078765}, "Hồ Chí Minh": {"count": 9, "q2025": 225975, "q2026": 263441}, "Tây Ninh": {"count": 1, "q2025": 246, "q2026": 287}, "Thanh Hóa": {"count": 1, "q2025": 6602, "q2026": 7696}, "Thái Nguyên": {"count": 3, "q2025": 724356, "q2026": 844443}, "Đà Nẵng": {"count": 1, "q2025": 11961, "q2026": 13944}, "Đồng Nai": {"count": 1, "q2025": 15530, "q2026": 18105}}, "Xi măng": {"Phú Thọ": {"count": 5, "q2025": 2090157, "q2026": 2287149}, "Sơn La": {"count": 1, "q2025": 359956, "q2026": 393882}, "Điện Biên": {"count": 1, "q2025": 171860, "q2026": 188058}, "Lào Cai": {"count": 2, "q2025": 998942, "q2026": 1093090}, "Tuyên Quang": {"count": 2, "q2025": 762710, "q2026": 834594}, "Thái Nguyên": {"count": 3, "q2025": 1477953, "q2026": 1617246}, "Lạng Sơn": {"count": 2, "q2025": 783284, "q2026": 857107}, "Quảng Ninh": {"count": 4, "q2025": 4714987, "q2026": 5159366}, "Ninh Bình": {"count": 9, "q2025": 20915356, "q2026": 22886589}, "Hải Phòng": {"count": 4, "q2025": 7183522, "q2026": 7860555}, "Thanh Hóa": {"count": 4, "q2025": 15396194, "q2026": 16847255}, "Nghệ An": {"count": 4, "q2025": 7320288, "q2026": 8010211}, "Quảng Trị": {"count": 3, "q2025": 2136886, "q2026": 2338283}, "Huế": {"count": 2, "q2025": 1609429, "q2026": 1761114}, "Đà Nẵng": {"count": 1, "q2025": 835087, "q2026": 913792}, "Đồng Nai": {"count": 1, "q2025": 1982913, "q2026": 2169798}, "Tây Ninh": {"count": 1, "q2025": 1072694, "q2026": 1173794}, "An Giang": {"count": 2, "q2025": 3551016, "q2026": 3885692}}}, "prov_sector_year": {"Nhiệt điện": {"Lạng Sơn": {"count": 1, "q2025": 1035566, "q2026": 1134493, "names": ["Công ty nhiệt điện Na Dương"]}, "Bắc Ninh": {"count": 1, "q2025": 2032458, "q2026": 2226618, "names": ["Công ty nhiệt điện Sơn động Việt Nam"]}, "Quảng Ninh": {"count": 6, "q2025": 46557204, "q2026": 51004795, "names": ["Công ty Nhiệt điện Uông Bí", "Công ty Cổ phần Nhiệt điện Quảng Ninh", "Công ty Nhiệt điện Cẩm Phả - TKV", "Công ty TNHH Điện Lực AES Mông Dương - Nhà máy nhiệt điện Mông Dương II", "Công ty Nhiệt điện Đông Triều - TKV - Nhà máy nhiệt điện Mạo Khê", "Nhà máy nhiệt điện Mông Dương I - Công ty Nhiệt điện Mông Dương"]}, "Hải Phòng": {"count": 1, "q2025": 10239469, "q2026": 11217642, "names": ["Công ty Cổ phần Nhiệt điện Hải Phòng"]}, "Thanh Hóa": {"count": 1, "q2025": 5036163, "q2026": 5517266, "names": ["Nhà máy điện Nghi Sơn 1"]}, "Hà Tĩnh": {"count": 2, "q2025": 12414527, "q2026": 13600481, "names": ["Công ty Điện lực Dầu khí Hà Tĩnh", "Công ty TNHH gang thép Hưng Nghiệp Formosa Hà Tĩnh"]}, "Đồng Nai": {"count": 5, "q2025": 5096469, "q2026": 5583332, "names": ["Công ty TNHH Hưng Nghiệp Formosa", "Chi nhánh Tổng Công ty Điện lực Dầu khí Việt Nam - Công ty Cổ phần - Công ty Điện lục Dầu khí Nhơn Trạch", "Nhà máy nhiệt điện VEDAN", "Nhà máy nhiệt điện Amata", "Nhà máy nhiệt điện Nhơn Trạch 2"]}, "Lâm Đồng": {"count": 4, "q2025": 30936793, "q2026": 33892173, "names": ["Công ty TNHH Điện lực Vĩnh Tân 1 (Nhà máy nhiệt điện BOT Vĩnh Tân 1)", "Công ty Nhiệt điện Vĩnh Tân -CW nhánh TNHH MTV Tổng công ty Phát điện 3 (Nhà máy nhiệt điện Vĩnh Tân 2)", "Nhà máy nhiệt điện Vĩnh Tân 4 - 4 Mở rộng - Chi nhánh Tập đoàn Điện lực Việt Nam", "Nhà máy điện Diesel Phú Quý"]}, "Hồ Chí Minh": {"count": 5, "q2025": 4576529, "q2026": 5013726, "names": ["Nhà máy nhiệt điện Phú Mỹ 1 - Công ty Nhiệt điện Phú Mỹ", "Nhà máy nhiệt điện Phú Mỹ 2,1 và Phú Mỹ 2,1 mở rộng - Công ty Nhiệt điện Phú Mỹ", "Nhà máy nhiệt điện Phú Mỹ 4 - Công ty Nhiệt điện Phú Mỹ", "Công ty Cổ phần Nhiệt điện Bà Rịa", "Nhà máy Điện An Hội"]}, "Vĩnh Long": {"count": 3, "q2025": 16015322, "q2026": 17545258, "names": ["Công ty Nhiệt điện Duyên Hải (Nhà máy Duyên Hải 1)", "Công ty Nhiệt điện Duyên Hải (Nhà máy Duyên Hải 3)", "Công ty Nhiệt điện Duyên Hải (Nhà máy Duyên Hải 3 MR)"]}, "Cà Mau": {"count": 2, "q2025": 2557600, "q2026": 2801927, "names": ["Công ty Điện lực dầu khí Cà Mau (Nhà máy điện Cà Mau 1)", "Công ty Điện lực dầu khí Cà Mau (Nhà máy điện Cà Mau 2)"]}, "Thái Nguyên": {"count": 2, "q2025": 2164326, "q2026": 2371083, "names": ["Công ty cổ phần nhiệt điện An Khánh", "Công ty nhiệt điện Cao Ngạn"]}, "An Giang": {"count": 1, "q2025": 5539, "q2026": 6068, "names": ["Ban điều hành nhà máy điện Kiên Hải"]}}, "Sắt thép": {"Lào Cai": {"count": 1, "q2025": 255476, "q2026": 297830, "names": ["Công ty TNHH khoáng sản và luyện kim Việt Trung"]}, "Cao Bằng": {"count": 1, "q2025": 391158, "q2026": 456006, "names": ["Công ty cổ phần Gang thép Cao Bằng"]}, "Hải Phòng": {"count": 3, "q2025": 4528812, "q2026": 5279621, "names": ["Công ty cổ phần luyện thép Việt Ý", "Công ty cổ phần luyện thép cao cấp Việt Nhật", "Công ty cổ phần Thép Hòa Phát"]}, "Hưng Yên": {"count": 2, "q2025": 5299, "q2026": 6176, "names": ["Công ty TNHH MTV Thép Hòa Phát", "Công ty TNHH thép đặc biệt Shengli Việt Nam"]}, "Hà Tĩnh": {"count": 1, "q2025": 13666930, "q2026": 15932703, "names": ["Công ty TNHH Gang Thép Hung Nghiệp Formosa Hà Tĩnh"]}, "Quảng Ngãi": {"count": 1, "q2025": 11218848, "q2026": 13078765, "names": ["Công ty cổ phần Thép Hòa Phát Dung Quất"]}, "Hồ Chí Minh": {"count": 9, "q2025": 225975, "q2026": 263441, "names": ["Công ty cổ phần Thép Thủ Đức - Vnsteel", "Công ty TNHH thép Tung Ho Việt Nam", "Nhà máy thép Pomina 2", "Công ty TNHH MTV Thép Miền Nam", "Công ty TNHH Posco SS - Vina", "Công ty TNHH Thép Vina Kyoei", "Công ty TNHH thép VAS An Hưng Tường", "Công ty TNHH thép Sa Mi Na", "Công ty cổ phần thép Tuệ Minh"]}, "Tây Ninh": {"count": 1, "q2025": 246, "q2026": 287, "names": ["Công ty cổ phần Sản xuất thép Vina One"]}, "Thanh Hóa": {"count": 1, "q2025": 6602, "q2026": 7696, "names": ["Công ty TNHH MTV thép VAS Nghi Sơn"]}, "Thái Nguyên": {"count": 3, "q2025": 724356, "q2026": 844443, "names": ["Công ty cổ phần Cơ khí Gang thép", "Công ty cổ phần Gang Thép Thái Nguyên", "Công ty cổ phần Luyện kim đen Thái Nguyên"]}, "Đà Nẵng": {"count": 1, "q2025": 11961, "q2026": 13944, "names": ["Công ty cổ phần thép Đà Nẵng"]}, "Đồng Nai": {"count": 1, "q2025": 15530, "q2026": 18105, "names": ["Công ty cổ phần Thép Vicasa - Vnsteel"]}}, "Xi măng": {"Phú Thọ": {"count": 5, "q2025": 2090157, "q2026": 2287149, "names": ["Công ty Cổ phần Xi măng X18", "Nhà máy Xi măng Trung Sơn (Công ty Cổ phần Xây dựng và Du lịch Bình Minh)", "Nhà máy Xi măng Vĩnh Sơn (Công ty TNHH Xi măng Vĩnh Sơn)", "Công ty cổ phần xi măng Phú Thọ", "Công ty cổ phần xi măng VIMCEM Sông Thao"]}, "Sơn La": {"count": 1, "q2025": 359956, "q2026": 393882, "names": ["Công ty Cổ phần Xi măng Mai Sơn"]}, "Điện Biên": {"count": 1, "q2025": 171860, "q2026": 188058, "names": ["Nhà máy xi măng Điện Biên"]}, "Lào Cai": {"count": 2, "q2025": 998942, "q2026": 1093090, "names": ["Nhà máy Xi măng Yên Bái, Công ty Cổ phần Xi măng và Khoáng sản Yên Bái", "Nhà máy Xi măng Yên Bình, Công ty Cổ phần Xi măng Yên Bình"]}, "Tuyên Quang": {"count": 2, "q2025": 762710, "q2026": 834594, "names": ["Nhà máy xi măng Tuyên Quang, Công ty cổ phần xi măng Tuyên Quang", "Nhà máy xi măng Tân Quang, Công ty cổ phần xi măng Tân Quang- VVMI, Tổng công ty công nghiệp mỏ Việt Bắc TKV"]}, "Thái Nguyên": {"count": 3, "q2025": 1477953, "q2026": 1617246, "names": ["Nhà máy sản xuất Xi măng Quán Triều, Công ty Cổ phần Xi măng Quán Triều", "Nhà máy sản xuất Xi măng La Hiên, Công ty cổ phần Xi măng La Hiên", "Nhà máy sản xuất Xi măng Quang Sơn, Công ty cổ phần Xi măng Quang Sơn"]}, "Lạng Sơn": {"count": 2, "q2025": 783284, "q2026": 857107, "names": ["Công ty Cổ phần xi măng Đồng Bành", "Công ty Cổ phần Xi măng Hồng Phong"]}, "Quảng Ninh": {"count": 4, "q2025": 4714987, "q2026": 5159366, "names": ["Nhà máy xi măng Cẩm Phả, Công ty Cổ phần Xi măng Cẩm Phả", "Công ty Cổ phần Xi măng và Xây dựng Quảng Ninh, Nhà máy xi măng Lam Thạch", "Công ty Cổ phần Xi măng Hạ Long", "Công ty Cổ phần Xi măng Thăng Long"]}, "Ninh Bình": {"count": 9, "q2025": 20915356, "q2026": 22886589, "names": ["Nhà máy xi măng Bút Sơn, Công ty Cổ phần Xi măng Vicem Bút Sơn", "Nhà máy xi măng Hoàng Long, Công ty Cổ phần Xi măng Hoàng Long", "Nhà máy xi măng Thành Thắng, Công ty Cổ phần Xi măng Thành Thắng", "Nhà máy Xi măng Vissai Hà Nam - DC2, Tập đoàn The Vissai", "Nhà máy Xi măng Xuân Thành, Công ty Cổ phần Xi măng Xuân Thành", "Dây chuyền 2 Nhà máy clinker, Tập đoàn The Vissai", "Nhà máy Xi măng Vissai Ninh Bình, Tập đoàn The Vissai", "Công ty VICEM xi măng Tam Điệp", "Công ty TNHH Duyên Hà, Nhà máy xi măng Duyên Hà"]}, "Hải Phòng": {"count": 4, "q2025": 7183522, "q2026": 7860555, "names": ["Công ty TNHH MTV Xi măng Vicem Hoàng Thạch", "Công ty TNHH sản xuất vật liệu xây dựng Thành Công III", "Nhà máy Xi măng Chinfon, Công ty Xi măng Chinfon", "Nhà máy xi măng Hải Phòng, Công ty TNHH MTV Vicem Hải Phòng"]}, "Thanh Hóa": {"count": 4, "q2025": 15396194, "q2026": 16847255, "names": ["Nhà máy Xi măng Bỉm Sơn, Công ty Cổ phần Xi măng Bỉm Sơn", "Nhà máy Xi măng Long Son, Công ty TNHH Long Sơn", "Nhà máy Xi măng Công Thanh, Tập đoàn Công Thanh", "Nhà máy Xi măng Nghi Sơn 2, Công ty Xi măng Nghi Sơn"]}, "Nghệ An": {"count": 4, "q2025": 7320288, "q2026": 8010211, "names": ["Nhà máy Xi măng Tân Thắng, Công ty Xi măng Tân Thắng", "Nhà máy Xi măng Sông Lam 1, Tập đoàn The Vissai", "Nhà máy Xi măng Sông Lam 2, Tập đoàn The Vissai", "Nhà máy Xi măng Công ty Cổ phần Xi măng Vicem Hoàng Mai"]}, "Quảng Trị": {"count": 3, "q2025": 2136886, "q2026": 2338283, "names": ["Công ty cổ phần xi măng sông Gianh", "Công ty cổ phần vật liệu xây dựng Việt Nam", "Nhà máy Xi măng Vạn Ninh, Công ty cổ phần Xi măng Vicem Hải Vân"]}, "Huế": {"count": 2, "q2025": 1609429, "q2026": 1761114, "names": ["Công ty Hữu Hạn Xi Măng Luks", "Công ty cổ phần Xi măng Đồng Lâm"]}, "Đà Nẵng": {"count": 1, "q2025": 835087, "q2026": 913792, "names": ["Công ty TNHH MTV Xi măng Xuân Thành Quảng Nam"]}, "Đồng Nai": {"count": 1, "q2025": 1982913, "q2026": 2169798, "names": ["Nhà máy Xi măng Bình Phước, Công ty cổ phần Xi măng Vicem Hà Tiên 1"]}, "Tây Ninh": {"count": 1, "q2025": 1072694, "q2026": 1173794, "names": ["Nhà máy Xi măng Tây Ninh, Công ty cổ phần xi măng FICO Tây Ninh - Tổng Công ty vật liệu xây dựng số 1"]}, "An Giang": {"count": 2, "q2025": 3551016, "q2026": 3885692, "names": ["Nhà máy Xi măng Kiên Lương, Công ty cổ phần Xi măng Vicem Hà Tiên 1", "Nhà máy Xi măng INSEE, Công ty TNHH Siam City Cement (Việt Nam)"]}}}, "groups": [{"group": "NHÓM-01 (3 cơ sở)", "sector": "Nhiệt điện", "base_mst": "3502208399", "count": 3, "q2025_total": 4475757, "q2026_total": 4903326, "items": [{"name": "Nhà máy nhiệt điện Phú Mỹ 1 - Công ty Nhiệt điện Phú Mỹ", "mst": "3502208399-010", "province": "Hồ Chí Minh", "q2025": 2519925, "q2026": 2760653}, {"name": "Nhà máy nhiệt điện Phú Mỹ 2,1 và Phú Mỹ 2,1 mở rộng - Công ty Nhiệt điện Phú Mỹ", "mst": "3502208399-010", "province": "Hồ Chí Minh", "q2025": 1079828, "q2026": 1182984}, {"name": "Nhà máy nhiệt điện Phú Mỹ 4 - Công ty Nhiệt điện Phú Mỹ", "mst": "3502208399-010", "province": "Hồ Chí Minh", "q2025": 876004, "q2026": 959689}]}, {"group": "NHÓM-02 (3 cơ sở)", "sector": "Nhiệt điện", "base_mst": "5701662152", "count": 3, "q2025_total": 16015322, "q2026_total": 17545258, "items": [{"name": "Công ty Nhiệt điện Duyên Hải (Nhà máy Duyên Hải 1)", "mst": "5701662152-009", "province": "Vĩnh Long", "q2025": 9663688, "q2026": 10586856}, {"name": "Công ty Nhiệt điện Duyên Hải (Nhà máy Duyên Hải 3)", "mst": "5701662152-009", "province": "Vĩnh Long", "q2025": 3623243, "q2026": 3969369}, {"name": "Công ty Nhiệt điện Duyên Hải (Nhà máy Duyên Hải 3 MR)", "mst": "5701662152-009", "province": "Vĩnh Long", "q2025": 2728391, "q2026": 2989033}]}, {"group": "NHÓM-03 (2 cơ sở)", "sector": "Nhiệt điện", "base_mst": "3000437821", "count": 2, "q2025_total": 18866770, "q2026_total": 21629281, "items": [{"name": "Công ty TNHH gang thép Hưng Nghiệp Formosa Hà Tĩnh", "mst": "3000437821", "province": "Hà Tĩnh", "q2025": 5199840, "q2026": 5696578}, {"name": "Công ty TNHH Gang Thép Hung Nghiệp Formosa Hà Tĩnh", "mst": "3000437821", "province": "Hà Tĩnh", "q2025": 13666930, "q2026": 15932703}]}, {"group": "NHÓM-04 (2 cơ sở)", "sector": "Nhiệt điện", "base_mst": "0102276173", "count": 2, "q2025_total": 2557600, "q2026_total": 2801927, "items": [{"name": "Công ty Điện lực dầu khí Cà Mau (Nhà máy điện Cà Mau 1)", "mst": "0102276173-002", "province": "Cà Mau", "q2025": 1006602, "q2026": 1102763}, {"name": "Công ty Điện lực dầu khí Cà Mau (Nhà máy điện Cà Mau 2)", "mst": "0102276173-002", "province": "Cà Mau", "q2025": 1550998, "q2026": 1699164}]}, {"group": "NHÓM-05 (2 cơ sở)", "sector": "Xi măng", "base_mst": "0700507853", "count": 2, "q2025_total": 1537621, "q2026_total": 1682539, "items": [{"name": "Nhà máy Xi măng Vissai Hà Nam - DC2, Tập đoàn The Vissai", "mst": "0700507853", "province": "Ninh Bình", "q2025": 822644, "q2026": 900177}, {"name": "Dây chuyền 2 Nhà máy clinker, Tập đoàn The Vissai", "mst": "0700507853", "province": "Ninh Bình", "q2025": 714977, "q2026": 782362}]}]}</script>
+<script id="svgmap-bundle" type="application/json">{"width": 480, "height": 900, "provinces": {"An Giang": "M88.0,845.7 L90.8,845.0 L91.1,845.6 L89.0,847.0 L88.0,845.7 Z M121.2,799.7 L122.6,801.0 L121.9,802.8 L123.2,804.3 L120.7,804.0 L119.5,801.7 L116.8,789.9 L114.9,787.4 L111.8,786.7 L110.2,783.1 L110.5,782.2 L115.7,783.2 L119.8,777.8 L124.8,782.7 L124.9,790.1 L121.2,799.7 Z M157.6,815.2 L159.2,815.8 L158.6,816.7 L156.1,816.7 L157.6,815.2 Z M148.6,782.3 L146.4,783.0 L147.0,780.9 L146.1,779.5 L148.6,779.1 L149.6,780.6 L152.8,777.5 L155.0,773.2 L158.3,772.6 L164.8,773.8 L171.6,773.6 L176.6,766.9 L185.2,761.8 L181.1,751.7 L184.3,747.9 L186.1,747.5 L185.4,750.0 L190.6,750.5 L190.9,754.4 L194.9,757.2 L195.1,759.0 L197.4,759.6 L195.9,761.7 L200.2,762.2 L199.5,765.9 L201.4,770.6 L207.8,772.9 L209.9,772.2 L212.1,773.7 L213.5,779.2 L212.3,778.9 L210.5,780.9 L210.8,782.3 L208.6,784.1 L208.8,785.3 L204.7,786.7 L205.6,788.6 L199.4,790.7 L197.3,788.2 L192.8,792.7 L197.1,796.4 L198.2,796.3 L201.1,800.3 L211.4,809.8 L210.3,813.0 L205.0,815.5 L205.4,816.9 L203.4,818.3 L203.8,819.5 L198.9,822.3 L199.6,823.9 L203.6,825.3 L201.4,829.1 L199.9,828.8 L199.7,827.6 L197.7,827.9 L196.7,826.2 L196.4,828.4 L199.0,832.7 L197.2,834.0 L196.9,838.2 L195.0,840.3 L179.6,830.8 L179.0,832.0 L177.2,831.0 L176.2,832.4 L174.5,830.6 L172.4,834.7 L169.7,832.5 L170.6,823.5 L173.1,813.8 L176.8,813.3 L182.0,808.3 L183.8,807.7 L185.2,809.0 L185.7,807.5 L183.9,803.9 L178.9,798.8 L172.5,799.3 L168.5,793.7 L165.3,791.5 L161.5,792.2 L158.4,796.5 L155.7,796.1 L154.7,789.6 L152.8,787.4 L151.6,788.2 L151.4,785.5 L148.6,782.3 Z", "Bắc Ninh": "M244.1,151.5 L238.8,151.9 L239.9,149.1 L238.7,147.5 L235.2,147.0 L233.7,144.9 L234.2,141.1 L233.0,138.6 L235.1,137.4 L234.1,135.8 L234.7,134.5 L232.7,133.8 L231.7,132.0 L233.3,131.3 L232.6,131.1 L233.5,129.7 L235.2,129.9 L236.5,126.0 L240.5,128.6 L242.1,119.4 L240.6,118.6 L243.5,115.2 L248.4,114.9 L249.7,116.1 L248.8,116.7 L248.7,121.5 L253.3,123.4 L255.8,122.8 L255.5,125.1 L258.3,125.5 L258.0,127.6 L259.0,128.4 L263.2,127.9 L263.5,126.0 L267.4,125.3 L269.7,122.3 L268.8,120.9 L271.5,117.0 L275.3,115.9 L280.4,116.7 L280.3,118.1 L282.9,119.8 L285.4,117.7 L288.8,118.8 L290.1,120.5 L288.8,122.6 L291.5,122.8 L292.8,126.4 L293.7,125.8 L295.3,126.8 L297.3,125.9 L298.3,126.9 L297.2,128.1 L297.3,130.6 L300.1,133.3 L296.5,135.1 L296.8,138.5 L294.3,141.9 L287.8,140.8 L288.2,142.9 L285.9,143.1 L276.8,141.3 L275.1,141.9 L270.9,140.5 L270.2,138.8 L267.8,137.9 L264.0,138.2 L259.3,142.2 L257.2,140.7 L257.9,143.2 L256.3,145.5 L257.2,148.5 L254.6,152.7 L251.8,152.2 L248.7,153.8 L248.7,152.7 L246.9,151.9 L246.3,152.9 L244.1,151.5 Z", "Cà Mau": "M185.8,885.6 L169.8,890.0 L163.4,887.9 L162.4,885.8 L163.4,884.7 L164.7,885.7 L167.3,884.6 L166.8,880.7 L171.1,879.3 L173.7,875.9 L168.3,877.5 L166.4,875.2 L167.7,868.1 L169.7,832.5 L172.4,834.7 L174.5,830.6 L176.2,832.4 L177.2,831.0 L179.0,832.0 L179.6,830.8 L195.0,840.3 L196.9,838.2 L197.2,834.0 L199.0,832.7 L196.4,828.4 L196.8,826.1 L197.7,827.9 L199.7,827.6 L199.9,828.8 L201.9,829.2 L204.1,828.2 L208.4,829.4 L211.2,828.5 L212.3,830.3 L211.8,837.2 L213.9,839.6 L215.0,838.9 L218.0,841.0 L221.1,841.6 L221.3,840.4 L224.6,839.4 L227.8,842.0 L229.4,840.0 L230.4,842.6 L227.6,843.8 L228.4,849.5 L207.1,859.8 L202.9,864.2 L200.0,872.3 L195.4,877.6 L190.0,879.5 L185.8,885.6 Z", "Cần Thơ": "M246.2,844.3 L228.5,849.4 L227.6,843.8 L230.5,842.4 L229.4,840.0 L227.8,842.0 L224.6,839.4 L221.3,840.4 L221.1,841.6 L218.0,841.0 L215.0,838.9 L213.9,839.6 L211.8,837.2 L212.3,830.3 L211.2,828.5 L208.4,829.4 L204.1,828.2 L201.8,829.1 L203.6,825.3 L199.6,823.9 L198.9,822.3 L203.8,819.5 L203.4,818.3 L205.4,816.9 L205.0,815.5 L210.3,813.0 L211.4,809.8 L201.1,800.3 L198.2,796.3 L197.1,796.4 L192.8,792.7 L194.9,790.0 L197.3,788.2 L199.4,790.7 L205.6,788.6 L204.7,786.7 L208.8,785.3 L215.0,790.4 L218.4,795.7 L225.8,800.5 L230.4,806.6 L236.4,810.4 L243.0,817.9 L256.5,829.2 L254.7,833.8 L251.2,835.6 L249.0,838.8 L249.9,841.4 L246.2,844.3 Z", "Cao Bằng": "M227.0,61.4 L222.6,55.2 L225.5,51.6 L223.4,48.7 L221.0,50.0 L218.9,49.7 L217.9,51.2 L215.0,51.9 L215.2,53.0 L211.9,53.7 L211.3,55.0 L209.0,55.0 L208.3,52.7 L209.2,51.2 L207.7,50.0 L207.4,47.8 L195.2,41.2 L195.3,40.3 L197.5,40.6 L197.7,38.5 L200.9,36.9 L201.7,33.9 L208.4,32.7 L210.9,26.7 L212.9,26.2 L212.6,28.1 L214.0,29.3 L221.6,29.1 L222.8,31.2 L229.1,34.0 L231.5,38.2 L234.1,36.5 L238.6,36.8 L239.0,33.8 L247.4,33.5 L250.6,34.1 L252.7,36.0 L254.5,38.8 L253.6,39.8 L255.3,41.0 L258.1,40.7 L259.3,41.9 L261.0,40.2 L263.4,40.6 L265.3,39.0 L268.3,38.9 L269.9,36.4 L272.3,38.1 L274.5,37.5 L277.5,41.3 L278.5,39.6 L280.6,39.9 L280.7,41.4 L284.4,43.6 L284.2,44.5 L287.3,44.0 L288.5,45.0 L284.1,48.6 L285.0,50.6 L283.5,51.3 L283.7,52.6 L281.6,54.8 L282.0,57.4 L277.5,58.5 L275.0,56.8 L273.4,64.3 L271.8,65.4 L272.2,67.5 L269.6,69.0 L267.9,68.8 L267.7,70.8 L266.4,71.3 L262.3,70.5 L260.2,71.4 L258.6,68.4 L253.0,65.3 L250.7,67.0 L249.7,69.7 L248.7,68.4 L245.0,68.8 L244.3,66.2 L245.9,64.6 L245.8,62.3 L243.1,59.7 L243.5,58.6 L241.6,58.3 L236.2,61.5 L234.7,61.3 L233.2,63.2 L230.8,61.8 L227.0,61.4 Z", "Đà Nẵng": "M346.5,445.2 L349.9,439.1 L349.4,437.7 L352.1,435.8 L354.7,437.3 L356.7,435.9 L360.8,437.9 L368.8,436.1 L366.7,437.4 L366.5,439.0 L364.7,440.7 L366.0,442.8 L368.6,444.2 L370.8,442.2 L371.5,443.0 L371.6,442.0 L369.9,441.3 L371.1,439.7 L372.5,439.5 L375.5,441.3 L376.5,440.1 L377.5,441.6 L375.6,442.9 L372.8,442.6 L372.1,443.9 L374.3,450.1 L377.0,453.3 L381.5,456.2 L382.7,461.4 L388.6,470.7 L394.1,477.4 L396.0,478.4 L397.7,477.6 L398.8,481.8 L401.3,484.3 L399.8,486.0 L395.5,486.1 L386.1,489.7 L382.9,488.6 L381.3,490.2 L376.1,490.2 L374.1,493.5 L375.7,494.8 L374.7,496.2 L375.6,497.6 L371.4,503.3 L371.7,505.9 L366.9,504.4 L366.1,505.3 L367.0,509.5 L366.3,510.2 L362.7,510.8 L360.2,508.4 L355.8,507.3 L354.6,504.7 L357.5,500.9 L357.4,498.7 L354.5,497.6 L353.1,495.5 L351.0,496.5 L349.8,495.5 L341.7,494.3 L341.5,489.7 L340.1,490.0 L337.8,487.5 L335.9,483.3 L333.9,483.0 L331.4,484.6 L328.9,483.3 L328.6,479.9 L326.4,479.6 L326.0,478.3 L320.7,478.7 L319.7,474.2 L318.4,473.8 L318.4,471.5 L314.5,470.4 L313.7,468.9 L314.5,466.0 L312.9,463.8 L310.7,464.1 L311.7,461.4 L310.6,458.9 L317.6,455.2 L321.8,454.9 L326.4,446.5 L330.6,448.0 L330.9,446.0 L334.8,444.9 L334.9,446.7 L339.9,448.9 L344.0,444.7 L346.5,445.2 Z M387.3,449.9 L389.4,451.2 L389.5,453.2 L386.1,450.7 L387.3,449.9 Z", "Đắk Lắk": "M352.4,661.3 L356.5,659.5 L357.5,657.7 L354.1,654.7 L350.7,654.0 L353.6,650.6 L351.7,647.4 L352.2,644.8 L351.2,643.7 L352.0,641.9 L349.1,641.1 L349.2,638.5 L348.3,637.8 L344.4,639.8 L335.7,638.3 L331.3,638.8 L327.3,632.9 L327.0,628.5 L328.0,628.1 L327.2,624.6 L334.1,608.6 L339.9,604.4 L343.5,605.0 L347.9,602.9 L354.0,604.5 L356.4,603.3 L358.0,604.0 L360.6,602.2 L361.8,602.9 L365.8,602.4 L370.1,604.8 L373.1,604.5 L378.0,606.5 L379.5,610.8 L381.6,611.3 L382.6,614.9 L384.9,617.0 L384.8,619.5 L388.2,622.4 L387.9,624.6 L392.5,624.9 L393.9,626.2 L397.5,626.8 L402.3,624.7 L402.6,618.6 L407.4,616.9 L409.1,611.9 L409.1,609.9 L405.4,605.5 L404.6,598.6 L401.0,599.5 L399.1,597.8 L401.8,593.0 L407.9,592.9 L408.9,594.9 L412.0,594.5 L414.3,596.1 L416.4,596.0 L419.9,592.9 L423.7,591.9 L423.9,588.6 L425.8,589.0 L426.0,586.4 L428.6,585.4 L430.4,586.6 L431.1,590.4 L434.5,592.9 L433.1,594.2 L434.7,595.8 L434.1,598.0 L436.4,599.1 L435.2,602.1 L432.7,602.2 L432.1,601.2 L434.1,599.6 L431.0,597.3 L429.7,603.3 L431.3,603.6 L432.4,605.5 L434.2,605.0 L433.6,607.7 L435.6,611.5 L434.2,613.8 L434.9,615.5 L434.3,618.2 L443.8,631.8 L443.6,635.0 L441.7,635.6 L442.3,633.7 L439.9,635.9 L438.4,634.4 L435.7,636.4 L431.9,636.2 L430.2,637.8 L429.1,636.7 L426.7,636.9 L425.0,639.6 L423.7,638.6 L421.9,641.8 L419.1,641.7 L415.5,645.5 L413.4,644.8 L411.0,645.8 L411.5,648.0 L408.5,650.0 L410.7,652.5 L408.3,656.8 L409.5,657.5 L409.1,659.1 L403.6,655.9 L401.3,657.8 L399.8,657.2 L397.1,660.9 L398.3,663.8 L397.0,668.2 L392.8,669.6 L389.6,668.3 L387.8,669.5 L386.1,667.6 L384.7,669.6 L383.7,669.5 L383.5,671.1 L377.3,671.2 L377.6,672.4 L375.0,673.9 L373.8,673.3 L371.7,676.4 L370.9,675.1 L368.7,675.7 L367.2,674.3 L364.5,675.5 L359.8,668.8 L355.9,668.3 L354.1,666.6 L352.4,661.3 Z", "Điện Biên": "M59.3,148.1 L57.2,144.3 L57.1,142.6 L55.1,142.1 L55.6,138.3 L52.7,136.7 L50.2,137.6 L49.3,136.3 L52.0,134.2 L54.6,134.0 L54.6,129.1 L57.3,124.9 L53.1,126.6 L54.0,123.7 L55.3,123.5 L60.3,117.2 L60.1,109.2 L58.9,107.7 L53.5,110.3 L52.3,109.2 L52.0,102.1 L50.8,101.8 L49.5,103.0 L50.5,108.3 L45.9,112.6 L41.5,113.1 L39.7,108.5 L40.8,105.0 L39.7,101.0 L37.6,99.8 L37.8,97.5 L31.4,94.2 L30.4,92.2 L32.2,90.7 L27.6,88.2 L27.2,85.7 L21.3,82.8 L20.5,80.5 L18.0,80.4 L17.6,78.6 L15.7,78.4 L15.2,75.7 L12.0,74.5 L13.1,72.7 L11.3,71.6 L11.5,70.4 L10.0,68.9 L10.5,67.4 L12.4,66.8 L17.0,68.1 L16.0,65.0 L20.5,60.2 L22.0,63.6 L24.9,65.4 L24.5,68.4 L28.1,71.2 L32.0,77.1 L33.7,78.2 L35.8,77.2 L38.1,78.7 L38.8,81.5 L41.2,82.7 L42.8,80.2 L40.7,77.6 L41.6,77.0 L44.7,78.5 L46.2,80.3 L45.5,84.9 L49.9,88.7 L52.6,89.1 L52.9,88.0 L56.3,87.2 L56.3,86.2 L56.6,88.6 L59.9,91.1 L60.7,89.5 L66.4,89.2 L66.8,86.6 L69.3,88.6 L70.9,87.8 L77.6,90.3 L77.8,86.2 L80.5,83.5 L83.8,83.3 L85.7,88.3 L88.6,90.9 L87.6,92.1 L90.6,94.7 L89.4,98.9 L91.7,100.9 L92.9,105.8 L96.3,111.5 L95.0,111.4 L92.9,113.6 L94.0,114.8 L91.4,120.4 L88.0,121.2 L87.4,126.0 L81.2,126.5 L80.4,127.4 L82.3,129.9 L83.8,130.2 L82.7,132.3 L86.4,133.5 L86.9,135.2 L86.5,141.9 L84.2,143.2 L86.0,147.9 L82.8,148.3 L78.2,146.1 L78.7,148.3 L77.0,148.8 L78.7,155.2 L77.2,155.6 L77.5,158.1 L73.6,158.2 L70.7,156.9 L67.7,158.1 L62.8,148.6 L59.3,148.1 Z", "Đồng Nai": "M291.1,766.2 L287.6,767.3 L283.4,762.8 L284.3,760.6 L287.2,758.4 L287.7,759.6 L288.9,758.6 L290.5,759.2 L290.1,757.9 L291.1,756.7 L288.5,751.0 L285.5,749.9 L284.0,747.5 L286.0,746.9 L284.7,745.0 L287.0,743.5 L286.3,741.8 L287.9,741.5 L290.5,744.1 L292.6,744.0 L293.5,742.0 L295.0,741.8 L296.1,736.5 L292.2,732.9 L293.2,732.2 L292.8,731.0 L294.0,730.8 L293.6,729.2 L295.2,725.3 L292.6,724.3 L290.5,725.9 L290.7,727.1 L289.6,726.6 L289.6,723.0 L285.3,722.7 L284.4,720.0 L286.6,718.5 L286.0,716.1 L283.5,717.0 L283.6,718.6 L280.8,721.6 L278.8,721.5 L278.6,724.3 L275.3,723.8 L275.1,722.3 L272.1,723.4 L270.7,722.3 L270.9,720.0 L272.8,718.3 L271.8,716.5 L270.8,717.6 L267.8,715.7 L263.9,715.9 L264.2,713.6 L267.3,712.9 L267.9,710.9 L263.3,699.8 L265.4,696.3 L264.8,694.4 L266.5,693.8 L263.2,687.5 L265.7,686.6 L267.9,687.9 L276.0,687.4 L276.4,688.3 L276.9,687.4 L277.9,688.0 L277.6,686.6 L279.3,688.1 L281.5,687.8 L285.8,681.1 L293.2,682.3 L298.1,680.3 L298.3,679.1 L302.8,676.3 L302.5,674.8 L303.6,675.2 L304.6,672.9 L306.3,672.3 L307.1,669.6 L310.2,668.3 L311.2,678.5 L312.3,679.2 L311.8,684.3 L312.5,683.6 L314.0,685.2 L315.4,684.7 L317.3,685.8 L323.4,694.9 L321.4,699.7 L315.1,702.2 L314.0,707.2 L316.2,708.7 L316.5,712.4 L318.6,713.0 L319.5,710.8 L320.6,713.1 L319.9,714.6 L321.9,713.9 L324.3,714.6 L326.1,716.9 L323.6,720.1 L326.3,719.4 L327.6,722.4 L329.8,724.2 L330.4,723.6 L328.8,726.9 L329.2,730.3 L327.6,730.9 L327.7,732.2 L326.7,732.2 L326.6,734.0 L323.9,737.2 L325.0,738.7 L324.4,740.3 L321.5,742.3 L326.2,744.9 L328.1,744.5 L330.3,746.6 L332.1,756.3 L327.5,759.1 L324.5,756.9 L319.5,761.4 L319.0,764.4 L317.0,765.0 L315.9,764.1 L315.9,759.8 L310.6,760.0 L310.4,758.7 L309.3,758.8 L306.2,760.5 L306.0,764.0 L303.8,765.9 L300.7,765.6 L298.0,767.0 L298.6,768.2 L297.1,770.3 L292.9,768.6 L291.1,766.2 Z", "Đồng Tháp": "M237.7,785.0 L231.5,789.0 L234.0,792.1 L233.6,793.2 L231.4,793.4 L231.1,795.5 L227.0,795.4 L225.4,793.4 L224.9,794.0 L222.6,792.5 L219.9,796.7 L218.4,795.7 L215.0,790.4 L208.4,784.8 L210.3,783.1 L212.0,779.1 L213.5,779.2 L212.2,774.0 L209.9,772.2 L207.8,772.9 L201.4,770.6 L199.5,765.9 L200.2,762.2 L195.9,761.7 L197.4,759.6 L195.1,759.0 L194.9,757.2 L190.9,754.4 L190.6,750.5 L199.5,753.6 L204.7,746.9 L206.2,748.0 L207.5,747.4 L214.0,751.7 L215.8,755.3 L214.8,755.3 L225.7,765.5 L228.9,766.8 L233.4,772.7 L244.8,773.6 L244.8,770.5 L255.7,769.8 L259.4,772.3 L261.3,776.1 L262.7,775.4 L265.0,776.9 L265.7,777.9 L263.4,779.1 L265.8,781.2 L270.2,778.9 L271.9,780.1 L273.7,779.8 L273.5,778.8 L276.0,777.8 L277.0,776.0 L278.1,778.3 L279.2,778.5 L282.9,775.0 L287.6,782.2 L285.2,782.3 L285.1,787.3 L283.6,788.8 L285.0,789.9 L285.1,791.4 L283.5,793.3 L279.0,790.6 L270.9,788.9 L261.4,784.4 L251.5,785.9 L244.0,788.2 L237.7,785.0 Z", "Gia Lai": "M354.0,604.5 L347.9,602.9 L343.5,605.0 L339.7,604.4 L334.1,608.6 L335.5,605.3 L334.7,595.3 L329.7,582.5 L324.8,579.5 L326.2,575.8 L325.0,575.0 L326.0,573.8 L325.9,570.1 L329.3,568.3 L329.0,566.5 L333.2,566.0 L334.5,563.5 L336.7,563.4 L337.2,557.6 L338.9,554.2 L343.2,555.3 L344.6,553.9 L346.6,554.6 L347.8,553.4 L347.7,551.4 L350.1,550.5 L353.5,553.0 L358.1,553.0 L359.8,550.9 L361.0,551.5 L362.7,548.6 L362.1,547.6 L363.6,547.3 L364.3,545.7 L366.3,545.9 L366.1,546.7 L370.5,544.1 L374.9,544.1 L375.1,542.6 L380.2,536.3 L378.6,533.5 L379.7,531.6 L381.0,531.7 L383.4,534.3 L386.7,535.0 L388.8,534.4 L389.9,532.3 L393.8,535.8 L399.2,530.9 L401.0,532.4 L402.7,531.8 L403.0,527.2 L405.7,527.6 L407.2,526.2 L410.2,526.9 L412.5,525.6 L417.8,527.9 L421.6,533.0 L420.7,533.8 L424.1,540.9 L424.0,545.2 L427.8,550.6 L428.5,553.3 L427.6,555.2 L430.3,559.1 L429.0,561.0 L431.8,566.2 L432.2,569.5 L431.2,570.6 L434.4,574.3 L434.2,580.9 L433.9,581.9 L430.1,581.4 L430.6,586.9 L428.6,585.4 L426.0,586.4 L425.8,589.0 L423.9,588.6 L423.7,591.9 L419.9,592.9 L417.8,595.4 L414.3,596.1 L412.0,594.5 L408.9,594.9 L407.9,592.9 L405.2,592.4 L401.3,593.7 L399.1,597.8 L399.7,599.1 L404.6,598.6 L405.4,605.5 L409.2,610.1 L407.4,616.9 L402.6,618.6 L402.3,624.7 L397.5,626.8 L393.9,626.2 L392.5,624.9 L387.9,624.6 L388.2,622.4 L384.8,619.5 L384.9,617.0 L382.6,614.9 L381.6,611.3 L379.5,610.8 L378.0,606.5 L373.1,604.5 L370.1,604.8 L364.1,601.9 L354.0,604.5 Z", "Hà Nội": "M214.1,160.4 L211.6,159.0 L213.9,156.2 L210.6,156.8 L206.8,155.1 L202.4,150.5 L200.4,151.5 L197.5,150.6 L196.9,148.7 L198.4,145.4 L196.7,142.9 L196.9,141.3 L200.1,138.5 L200.6,135.5 L202.8,134.0 L205.7,136.0 L208.3,142.3 L211.1,142.8 L216.6,141.6 L215.9,139.6 L218.5,138.9 L217.8,137.9 L220.3,138.0 L220.8,139.3 L223.2,138.0 L222.3,136.2 L226.0,131.6 L226.3,129.5 L230.3,129.6 L230.9,132.5 L232.7,132.5 L232.7,133.8 L234.7,134.5 L234.1,135.8 L235.1,137.4 L233.0,138.6 L234.2,141.1 L233.7,144.9 L235.2,147.0 L238.7,147.5 L239.9,149.1 L238.8,151.9 L236.5,152.6 L236.6,154.1 L233.8,153.4 L233.0,155.1 L233.8,156.8 L232.5,158.0 L234.9,159.8 L233.6,161.8 L233.8,163.6 L236.8,165.3 L236.5,168.6 L237.2,169.8 L239.0,169.5 L238.6,171.0 L236.3,172.7 L234.8,170.9 L231.6,173.1 L228.2,171.9 L228.9,172.9 L227.7,173.7 L226.7,177.6 L225.0,177.8 L223.5,175.8 L221.2,175.6 L221.0,174.4 L219.0,174.7 L220.2,173.5 L219.1,171.2 L220.0,170.2 L217.9,164.2 L216.8,164.2 L217.5,162.2 L214.8,161.4 L214.0,163.1 L212.5,163.6 L214.1,160.4 Z", "Hà Tĩnh": "M213.3,325.0 L211.5,325.1 L211.1,323.1 L209.3,322.3 L209.8,321.1 L209.2,318.8 L208.4,319.5 L208.6,317.9 L205.7,317.8 L203.7,320.9 L201.3,320.4 L198.4,318.0 L198.9,314.3 L197.8,314.2 L197.2,316.0 L197.2,314.8 L194.6,314.6 L193.8,312.4 L190.4,310.7 L190.4,307.0 L188.4,307.0 L185.6,303.5 L186.3,298.0 L188.8,293.6 L193.0,294.8 L196.1,293.0 L201.8,295.6 L209.3,293.8 L211.8,297.2 L215.0,295.7 L216.9,296.6 L219.7,295.6 L221.9,290.4 L224.9,290.0 L223.4,285.9 L225.2,284.4 L228.3,294.0 L233.7,302.3 L235.4,302.0 L239.0,307.9 L244.7,313.6 L248.3,314.1 L253.7,317.2 L259.9,323.5 L262.5,324.1 L263.4,322.6 L264.6,322.7 L263.7,324.5 L265.0,327.3 L269.1,332.3 L265.5,333.0 L264.6,331.6 L259.0,330.5 L255.9,333.3 L255.6,335.3 L253.0,334.1 L248.8,335.0 L241.5,333.1 L243.4,330.7 L242.2,329.0 L239.8,328.4 L237.9,326.2 L235.8,326.5 L234.8,324.7 L228.1,326.4 L228.6,328.1 L225.6,329.0 L223.3,327.8 L221.3,330.4 L217.1,330.5 L214.1,329.3 L213.3,325.0 Z", "Hải Phòng": "M274.4,173.3 L271.2,174.1 L270.1,175.5 L268.0,174.7 L266.7,175.8 L264.9,172.1 L262.5,170.4 L262.9,168.1 L256.7,170.4 L255.7,169.1 L255.9,170.0 L254.3,169.5 L253.5,170.1 L254.7,170.7 L253.5,170.6 L251.4,168.0 L251.5,166.8 L247.5,164.7 L246.1,162.0 L248.2,154.9 L246.8,154.3 L246.6,152.0 L248.7,152.7 L248.7,153.8 L251.8,152.2 L255.0,152.5 L257.2,148.5 L256.3,145.5 L257.9,143.2 L257.2,140.7 L259.3,142.2 L264.0,138.2 L268.5,138.7 L267.5,144.3 L265.0,145.0 L265.3,147.8 L269.4,148.4 L269.4,149.2 L272.9,148.6 L275.8,151.3 L283.4,152.2 L284.4,154.0 L283.4,159.1 L284.2,160.9 L288.2,163.1 L290.6,161.8 L292.4,163.5 L284.1,164.5 L286.7,171.3 L284.3,168.9 L280.7,170.6 L280.0,173.4 L277.7,175.0 L274.4,173.3 Z M293.0,162.7 L294.2,162.5 L294.4,162.8 L294.1,162.9 L294.2,163.2 L293.9,163.4 L294.0,163.7 L293.5,163.8 L293.0,162.7 Z M293.3,161.1 L294.9,161.2 L294.9,161.8 L293.8,161.5 L292.9,162.7 L293.3,161.1 Z M295.4,159.5 L295.7,161.1 L297.8,160.2 L299.0,161.5 L298.6,160.2 L300.2,160.1 L300.9,163.0 L301.1,161.7 L302.0,163.1 L302.7,162.4 L304.4,163.6 L304.5,164.6 L302.7,163.5 L304.1,165.0 L303.1,165.2 L301.3,162.6 L302.5,164.7 L301.5,164.7 L301.4,165.1 L302.5,165.1 L302.0,165.4 L301.0,165.1 L300.8,166.1 L300.0,164.6 L300.7,166.3 L302.4,167.0 L301.4,166.9 L301.2,168.9 L299.1,168.2 L300.6,167.6 L299.2,166.8 L297.9,166.9 L298.0,168.1 L295.3,164.2 L293.2,164.0 L294.5,163.9 L294.3,162.8 L295.0,163.4 L294.4,162.3 L295.0,161.9 L295.4,159.5 Z M342.3,201.2 L341.1,204.2 L338.4,204.0 L342.3,201.2 Z", "Huế": "M318.0,445.3 L312.7,439.9 L311.4,440.5 L307.5,438.5 L306.7,435.9 L307.4,433.4 L303.3,430.1 L300.8,430.8 L299.6,430.1 L299.0,427.2 L301.4,425.7 L301.5,422.1 L304.3,422.5 L306.2,421.6 L305.2,419.8 L301.6,417.9 L301.7,416.2 L312.6,413.8 L314.2,415.0 L317.4,412.8 L316.3,410.6 L317.3,409.9 L317.6,410.7 L317.6,410.1 L317.0,409.3 L321.2,404.5 L355.6,429.5 L357.9,430.0 L358.5,428.3 L359.5,428.7 L362.8,435.2 L369.0,436.2 L360.9,438.0 L356.7,435.9 L354.8,437.4 L351.8,435.9 L349.6,437.7 L350.0,439.2 L346.5,445.5 L344.0,444.7 L339.9,448.9 L334.9,446.7 L334.8,444.9 L330.9,446.0 L330.5,448.0 L327.2,446.2 L325.3,446.9 L324.7,443.2 L322.4,443.7 L321.7,444.9 L320.5,444.2 L318.0,445.3 Z", "Hưng Yên": "M254.5,191.9 L253.8,190.4 L255.6,187.7 L251.3,186.3 L252.1,183.5 L249.5,182.4 L248.7,178.2 L246.7,177.3 L245.2,174.7 L242.2,175.2 L240.7,173.3 L240.3,170.1 L236.8,169.2 L236.9,165.5 L234.4,164.6 L233.5,162.7 L234.9,159.8 L232.5,158.2 L233.8,156.8 L233.0,155.1 L233.8,153.4 L236.6,154.1 L236.5,152.6 L238.4,151.9 L245.6,152.2 L248.2,154.9 L246.8,157.7 L246.5,163.4 L251.5,166.8 L251.4,168.0 L253.5,170.6 L254.7,170.7 L253.5,170.1 L254.3,169.5 L255.9,170.0 L255.7,169.1 L256.7,170.4 L262.9,168.1 L262.5,170.4 L264.9,172.1 L266.7,175.8 L268.0,174.7 L270.1,175.5 L271.2,174.1 L274.4,173.3 L277.7,175.0 L273.5,178.7 L274.4,184.8 L273.0,189.5 L275.3,193.1 L273.9,197.0 L270.2,192.6 L265.0,193.9 L259.0,188.9 L254.5,191.9 Z", "Khánh Hòa": "M412.7,727.1 L408.7,725.6 L409.5,724.3 L402.3,720.9 L402.6,717.4 L397.7,717.3 L395.6,712.7 L392.0,712.3 L390.2,709.6 L390.8,707.2 L397.2,705.9 L399.0,703.8 L397.0,700.9 L397.3,698.7 L394.2,697.6 L396.2,695.2 L396.7,688.2 L399.7,682.3 L397.4,678.8 L400.7,676.3 L398.9,671.4 L399.4,668.2 L397.8,667.1 L398.3,663.8 L397.1,660.9 L399.0,657.9 L401.3,657.8 L403.5,656.0 L409.1,659.1 L409.5,657.5 L408.3,656.8 L410.7,652.5 L408.5,650.0 L411.5,648.0 L411.0,645.8 L413.4,644.8 L415.5,645.5 L419.1,641.7 L421.9,641.8 L423.7,638.6 L425.0,639.6 L426.7,636.9 L429.1,636.7 L430.2,637.8 L431.9,636.2 L435.7,636.4 L438.4,634.4 L439.8,635.9 L437.9,637.2 L439.1,641.5 L442.0,646.2 L444.0,646.9 L442.6,648.0 L442.9,652.3 L440.3,649.9 L439.9,648.6 L441.1,648.1 L440.3,645.4 L440.1,646.3 L438.6,646.1 L438.4,647.9 L436.3,646.6 L439.3,643.7 L437.7,638.6 L436.7,638.7 L436.0,640.6 L430.2,644.9 L428.0,648.6 L428.9,649.4 L428.4,652.2 L431.2,651.2 L430.9,655.7 L434.3,657.6 L434.0,660.6 L437.0,662.4 L436.2,663.8 L435.0,662.9 L434.1,665.4 L427.3,658.9 L426.1,660.8 L426.5,662.0 L428.5,662.3 L428.7,666.0 L431.2,667.8 L428.8,669.2 L428.5,671.8 L429.7,673.9 L428.5,676.1 L430.0,677.6 L428.4,679.0 L428.3,680.6 L431.1,686.7 L433.6,688.7 L432.1,690.5 L433.4,693.1 L431.5,694.7 L429.5,692.9 L427.4,694.5 L427.9,698.5 L430.3,700.5 L430.6,702.1 L428.4,702.2 L428.8,703.3 L424.4,711.9 L422.2,710.4 L418.4,711.0 L417.1,721.3 L417.9,723.9 L412.7,727.1 Z M432.4,672.0 L435.0,673.3 L436.3,672.8 L436.7,674.5 L434.5,674.6 L434.7,673.7 L433.6,675.3 L430.4,672.6 L432.2,673.1 L432.4,672.0 Z M434.8,648.6 L439.6,649.0 L441.0,653.3 L435.1,649.7 L434.8,648.6 Z", "Lai Châu": "M66.8,86.9 L66.4,89.2 L60.7,89.5 L59.9,91.1 L56.6,88.6 L56.3,86.2 L56.3,87.2 L52.9,88.0 L52.6,89.1 L50.1,88.8 L45.5,84.9 L46.2,80.3 L44.7,78.5 L41.6,77.0 L40.7,77.6 L42.8,80.2 L41.2,82.7 L38.8,81.5 L38.1,78.7 L35.8,77.2 L33.7,78.2 L32.0,77.1 L28.1,71.2 L24.5,68.4 L24.9,65.4 L22.0,63.6 L20.5,60.0 L22.5,59.0 L22.0,57.6 L26.3,54.9 L24.1,52.2 L27.2,51.0 L28.7,47.2 L31.6,46.4 L35.2,50.9 L37.4,49.1 L40.3,51.7 L42.3,50.8 L48.1,54.4 L48.1,55.5 L52.6,56.5 L56.5,63.9 L60.0,64.2 L62.6,66.4 L65.5,65.9 L65.7,62.4 L71.6,59.5 L70.1,57.4 L71.7,54.4 L74.2,54.2 L77.6,52.0 L77.7,48.9 L79.7,46.3 L79.7,44.7 L85.0,46.4 L86.9,47.9 L86.1,50.1 L88.3,54.2 L92.4,58.0 L94.7,58.3 L96.1,61.4 L93.8,65.1 L97.9,69.1 L105.1,68.4 L107.1,72.5 L105.8,74.1 L109.6,76.4 L112.4,80.7 L112.1,82.0 L116.4,84.3 L118.0,91.9 L117.4,92.6 L119.2,94.6 L116.7,97.5 L115.4,96.7 L113.8,97.3 L113.4,99.1 L117.9,107.1 L115.1,108.4 L115.2,110.6 L113.1,109.9 L113.0,111.2 L111.4,111.1 L110.2,107.8 L108.7,108.2 L107.0,105.8 L105.5,105.7 L105.8,104.0 L102.1,103.0 L103.7,99.8 L102.6,99.5 L99.4,93.1 L93.1,90.8 L91.1,92.0 L90.2,94.4 L89.0,93.9 L87.6,92.1 L88.6,90.9 L85.7,88.3 L83.9,83.3 L80.5,83.5 L77.8,86.2 L77.6,90.3 L70.9,87.8 L69.3,88.6 L66.8,86.9 Z", "Lâm Đồng": "M414.3,772.1 L414.8,774.0 L414.4,774.8 L412.7,774.2 L412.2,772.0 L414.3,772.1 Z M342.9,766.6 L332.0,770.9 L330.4,762.7 L327.9,759.4 L332.1,756.3 L331.3,749.1 L328.1,744.5 L326.2,744.9 L321.5,742.3 L324.4,740.3 L325.0,738.7 L323.9,737.2 L326.6,734.0 L326.7,732.2 L327.7,732.2 L327.6,730.9 L329.2,730.3 L328.8,726.9 L330.4,723.6 L329.8,724.2 L327.6,722.4 L326.3,719.4 L323.6,720.1 L326.1,716.9 L324.3,714.6 L321.9,713.9 L319.9,714.6 L320.6,713.1 L319.5,710.8 L318.6,713.0 L316.5,712.4 L316.2,708.7 L314.0,707.2 L315.1,702.2 L321.4,699.7 L323.4,694.9 L317.3,685.8 L315.4,684.7 L314.0,685.2 L312.5,683.6 L311.8,684.3 L312.3,679.2 L311.2,678.5 L310.3,668.4 L318.5,666.1 L321.0,669.9 L323.8,671.2 L324.4,668.7 L330.3,665.2 L331.0,663.4 L330.3,661.6 L332.5,656.6 L331.5,655.0 L333.1,652.8 L331.3,638.8 L335.7,638.3 L344.4,639.8 L348.4,637.8 L349.1,641.1 L352.0,641.9 L351.2,643.7 L352.2,644.8 L351.7,647.4 L353.6,650.6 L350.7,654.0 L354.1,654.7 L357.5,657.7 L356.5,659.5 L352.5,661.2 L353.5,665.6 L355.9,668.3 L358.3,668.0 L361.4,670.2 L364.5,675.6 L367.2,674.3 L368.7,675.7 L370.9,675.1 L371.7,676.4 L373.8,673.3 L375.0,673.9 L377.6,672.4 L377.3,671.2 L383.5,671.1 L383.7,669.5 L384.7,669.6 L386.1,667.6 L387.8,669.5 L389.6,668.3 L394.1,669.3 L397.9,667.1 L399.4,668.2 L398.9,671.4 L400.7,676.3 L397.4,678.8 L399.2,680.5 L399.6,682.7 L396.7,688.2 L396.2,695.2 L394.2,697.3 L397.3,698.7 L397.0,700.9 L399.0,703.8 L397.2,705.9 L390.8,707.2 L390.2,709.6 L392.0,712.3 L395.6,712.7 L397.7,717.3 L402.6,717.4 L402.3,720.9 L409.5,724.8 L404.1,726.8 L402.3,728.5 L400.7,734.4 L399.5,735.5 L396.0,733.8 L388.4,736.3 L385.6,742.4 L378.9,743.9 L377.5,748.1 L375.8,747.8 L374.9,750.4 L373.8,748.7 L371.0,748.0 L362.5,750.4 L360.8,751.8 L357.0,763.1 L350.5,761.9 L346.8,763.0 L342.9,766.6 Z", "Lạng Sơn": "M258.3,125.5 L255.5,125.1 L255.8,122.8 L253.3,123.4 L248.7,121.5 L248.8,116.7 L250.5,115.2 L250.1,113.7 L252.9,109.3 L247.6,106.8 L246.9,105.4 L245.4,105.6 L244.4,103.3 L245.7,101.9 L245.5,99.1 L246.6,97.6 L244.6,96.3 L245.6,93.9 L244.6,88.6 L248.1,87.8 L252.6,82.0 L251.9,80.3 L253.3,76.8 L250.7,74.2 L251.8,71.8 L249.7,69.7 L250.7,67.0 L252.9,65.3 L258.6,68.4 L260.2,71.4 L262.3,70.5 L266.4,71.3 L267.7,70.8 L267.9,68.8 L269.6,69.0 L272.0,67.6 L273.5,69.5 L272.0,71.9 L277.9,72.8 L278.3,75.6 L279.7,76.1 L280.6,79.1 L278.5,81.6 L280.6,83.0 L279.6,84.4 L281.1,87.0 L280.1,89.6 L280.8,91.1 L279.2,92.6 L279.8,94.7 L284.2,91.9 L286.9,94.2 L293.1,94.1 L293.9,96.7 L295.8,97.4 L297.6,95.5 L299.5,95.9 L301.8,98.9 L298.5,101.6 L298.6,102.9 L303.0,103.9 L311.3,110.1 L312.8,110.2 L316.0,107.9 L319.5,112.7 L319.4,116.7 L315.6,116.8 L314.7,118.5 L310.2,119.8 L312.7,123.3 L312.4,126.2 L313.8,128.2 L313.1,130.2 L310.9,128.9 L308.2,130.4 L304.1,129.6 L299.9,132.7 L297.3,130.6 L297.2,128.1 L298.3,127.0 L297.6,126.1 L292.8,126.4 L291.5,122.8 L288.8,122.6 L290.1,120.5 L288.8,118.8 L285.4,117.7 L282.9,119.8 L278.5,115.8 L271.8,116.7 L268.9,120.7 L269.7,122.3 L267.4,125.3 L263.5,126.0 L263.2,127.9 L259.0,128.4 L258.0,127.6 L258.3,125.5 Z", "Lào Cai": "M151.7,127.4 L148.3,131.0 L145.6,130.9 L144.5,129.0 L140.7,127.1 L139.8,127.8 L137.8,125.9 L136.5,119.3 L137.8,118.1 L137.2,116.4 L140.2,113.2 L133.9,112.0 L131.7,113.5 L125.6,113.8 L121.7,112.1 L116.4,112.2 L115.1,108.4 L117.3,108.0 L118.1,106.2 L113.5,100.6 L113.3,98.2 L115.3,96.7 L116.7,97.5 L119.2,94.6 L117.4,92.6 L118.0,91.9 L116.4,84.3 L112.1,82.0 L112.4,80.7 L109.6,76.4 L105.8,74.1 L107.1,72.5 L105.1,68.4 L97.9,69.1 L93.8,65.1 L96.1,61.4 L94.7,58.3 L92.2,57.3 L94.7,54.5 L94.2,50.8 L97.5,46.0 L100.0,45.9 L112.6,59.0 L118.7,62.6 L120.8,61.6 L120.4,58.5 L122.9,49.0 L126.9,44.5 L135.5,42.5 L136.1,48.6 L140.2,49.8 L140.0,51.7 L141.5,52.7 L143.7,52.3 L144.7,55.0 L147.5,56.3 L147.8,58.5 L145.3,58.6 L144.7,61.3 L148.2,63.9 L146.7,65.4 L147.7,67.4 L154.5,71.9 L153.6,73.0 L154.5,74.6 L152.3,76.2 L152.8,78.3 L154.9,77.7 L156.2,75.3 L162.6,77.1 L163.1,80.8 L165.0,82.4 L170.5,81.6 L172.4,88.3 L175.5,89.2 L177.2,90.9 L179.3,90.1 L178.6,96.4 L180.6,96.4 L180.3,98.7 L185.3,103.6 L182.8,107.6 L185.4,111.4 L181.3,110.4 L178.2,112.0 L177.7,113.6 L176.8,112.8 L173.9,114.5 L173.8,115.8 L172.8,115.6 L173.4,118.4 L171.6,119.6 L174.2,125.4 L172.5,128.8 L173.3,131.5 L170.7,130.3 L170.5,131.9 L166.2,132.6 L164.5,131.1 L163.6,127.9 L161.0,128.2 L160.3,129.7 L155.1,126.9 L154.4,127.7 L151.7,127.4 Z", "Nghệ An": "M174.1,283.1 L170.9,284.0 L163.9,282.5 L162.5,280.1 L160.2,280.3 L157.4,277.3 L154.5,276.5 L151.6,271.5 L148.9,270.3 L146.7,271.5 L143.8,267.2 L138.5,265.4 L136.8,263.5 L132.8,263.5 L133.4,261.4 L132.0,261.0 L130.8,258.9 L127.9,258.6 L126.8,257.4 L126.2,258.0 L124.3,256.0 L120.0,257.0 L115.2,252.8 L112.7,252.5 L117.3,249.4 L118.6,247.0 L123.1,245.4 L124.3,246.0 L123.9,243.7 L127.4,240.9 L126.3,239.6 L126.5,236.9 L123.8,234.4 L124.3,230.2 L128.0,231.5 L129.8,229.3 L134.1,228.7 L138.2,229.3 L139.1,231.0 L144.8,228.7 L145.5,230.8 L149.2,231.9 L151.3,234.3 L156.4,233.0 L158.4,233.7 L159.9,230.0 L159.4,228.9 L161.7,226.9 L169.7,223.5 L170.1,215.7 L174.6,211.5 L177.0,211.7 L182.2,215.5 L184.9,215.0 L189.4,216.4 L190.6,219.5 L188.3,219.9 L187.3,221.6 L187.3,226.5 L189.1,227.8 L189.1,230.0 L192.7,232.2 L194.0,231.7 L196.2,234.8 L195.3,239.2 L196.9,242.4 L200.3,238.4 L202.9,243.8 L205.9,244.5 L210.5,243.1 L214.5,248.7 L216.6,248.0 L219.0,250.4 L218.8,252.0 L221.6,252.7 L223.4,251.4 L224.8,253.3 L227.0,252.7 L227.3,254.4 L226.0,254.3 L224.9,257.1 L223.2,257.8 L223.2,264.4 L220.5,265.8 L218.8,265.1 L216.3,269.4 L217.1,276.6 L222.0,279.5 L222.4,282.0 L224.7,284.7 L223.4,285.9 L225.0,289.8 L221.9,290.4 L219.8,295.6 L216.9,296.6 L215.0,295.7 L211.8,297.2 L209.4,293.8 L207.8,293.5 L201.8,295.6 L196.9,293.0 L193.0,294.8 L190.7,294.4 L191.1,291.7 L187.7,289.6 L187.4,287.6 L182.4,288.1 L183.0,287.0 L180.6,286.6 L180.7,285.6 L176.0,286.2 L175.8,284.1 L174.1,283.1 Z", "Ninh Bình": "M234.0,205.1 L223.4,200.3 L215.0,192.8 L212.8,192.5 L211.6,189.8 L215.0,189.7 L220.1,193.2 L222.7,191.2 L220.1,186.9 L222.6,187.4 L224.3,189.5 L224.0,185.3 L225.8,185.4 L226.4,184.4 L228.3,186.5 L230.3,186.0 L230.0,182.9 L227.3,181.7 L225.0,177.8 L226.7,177.6 L227.7,173.7 L228.9,172.9 L228.0,172.1 L231.6,173.1 L232.6,171.6 L235.4,170.8 L236.3,172.7 L238.6,171.0 L239.0,169.5 L240.8,170.8 L240.7,173.3 L242.0,175.0 L245.2,174.7 L246.7,177.3 L248.7,178.2 L249.5,182.4 L252.1,183.5 L251.7,186.8 L255.6,187.7 L253.8,190.2 L254.2,191.8 L259.0,188.9 L265.0,193.9 L270.2,192.6 L273.9,197.0 L272.1,199.2 L269.6,197.8 L261.7,199.7 L249.5,212.1 L244.2,213.4 L243.2,215.1 L240.2,212.4 L242.3,210.3 L243.0,207.3 L236.4,207.4 L234.0,205.1 Z", "Phú Thọ": "M192.9,181.3 L189.5,180.7 L185.7,177.3 L183.2,177.2 L182.1,178.3 L178.3,177.3 L176.5,173.2 L173.6,171.6 L169.8,172.1 L170.1,166.7 L172.4,165.8 L180.2,168.3 L178.9,166.5 L180.9,163.7 L179.3,162.9 L179.8,161.2 L178.0,157.4 L171.5,150.0 L170.7,147.4 L174.2,145.0 L170.7,142.9 L171.4,139.5 L170.2,138.5 L170.1,133.5 L168.4,132.2 L170.5,131.8 L170.7,130.3 L172.5,131.7 L173.5,131.1 L172.4,129.2 L174.2,125.4 L171.6,119.6 L173.4,118.4 L172.8,115.6 L173.8,115.8 L173.9,114.5 L176.8,112.8 L177.7,113.6 L178.2,112.0 L181.3,110.4 L185.2,111.6 L184.9,109.3 L193.4,112.9 L192.8,114.6 L197.4,121.8 L199.6,122.1 L201.5,120.8 L204.5,122.4 L210.4,120.2 L212.2,118.0 L218.1,124.8 L223.8,127.3 L226.0,130.6 L222.5,135.8 L223.2,138.0 L220.8,139.3 L220.3,138.0 L217.8,137.9 L218.5,138.9 L215.9,139.6 L216.6,141.6 L211.1,142.8 L207.2,141.1 L205.7,135.9 L202.8,134.0 L200.9,135.1 L200.1,138.5 L196.5,142.0 L198.4,145.4 L196.9,148.9 L198.1,151.3 L202.4,150.5 L205.8,154.6 L209.8,156.6 L213.9,156.2 L211.6,159.0 L214.3,161.1 L212.4,163.5 L214.0,163.1 L214.8,161.4 L217.2,161.5 L216.8,164.2 L217.9,164.2 L220.0,170.2 L219.1,171.2 L220.2,173.5 L219.0,174.7 L221.0,174.4 L221.4,175.8 L223.6,175.8 L226.6,180.9 L230.0,182.9 L230.3,186.0 L228.3,186.5 L226.4,184.4 L225.8,185.4 L224.0,185.3 L224.3,189.5 L222.6,187.4 L220.1,186.9 L222.7,191.3 L219.6,193.2 L213.9,189.4 L209.3,189.9 L199.9,188.1 L194.8,185.5 L195.3,184.3 L192.9,181.3 Z", "Quảng Ngãi": "M334.6,563.5 L333.2,566.0 L329.0,566.5 L329.3,568.3 L326.0,570.0 L325.3,571.9 L325.1,568.5 L324.3,567.5 L320.9,568.0 L319.3,565.7 L320.8,562.6 L317.8,561.1 L322.3,553.4 L321.3,548.0 L323.6,544.7 L323.0,543.1 L324.7,542.0 L325.4,543.2 L327.1,543.2 L329.6,534.4 L328.8,532.5 L330.4,531.1 L331.1,524.7 L329.1,524.4 L330.2,522.8 L328.1,520.6 L333.2,515.5 L326.8,510.9 L325.9,507.5 L330.2,505.0 L332.8,506.3 L333.3,504.9 L334.9,505.0 L333.6,502.8 L335.0,501.7 L334.2,500.1 L335.3,499.1 L332.7,496.4 L335.6,494.3 L334.6,490.9 L335.8,489.0 L334.3,488.1 L333.4,485.3 L334.9,483.5 L336.9,484.4 L337.5,487.0 L340.1,489.9 L341.4,489.7 L341.7,494.3 L349.8,495.5 L351.0,496.5 L353.1,495.5 L354.5,497.6 L357.4,498.7 L357.5,500.9 L354.6,504.7 L355.3,506.7 L363.7,510.9 L367.0,509.5 L366.1,505.3 L366.9,504.4 L371.7,506.0 L371.4,503.3 L375.6,497.6 L374.7,496.2 L375.7,494.8 L374.1,493.5 L376.1,490.2 L381.3,490.2 L382.9,488.6 L386.1,489.7 L395.5,486.1 L399.8,486.0 L401.3,484.3 L403.5,485.2 L405.3,484.1 L404.7,482.9 L406.5,483.2 L406.6,485.6 L409.9,488.7 L409.2,490.6 L413.4,494.0 L410.6,496.6 L411.0,503.3 L414.5,513.6 L421.4,525.6 L421.7,527.6 L420.6,528.5 L421.6,533.0 L419.4,531.2 L417.8,527.9 L412.5,525.6 L410.2,526.9 L407.2,526.2 L405.7,527.6 L403.0,527.2 L402.7,531.8 L401.0,532.4 L399.2,530.9 L393.8,535.8 L389.9,532.3 L388.8,534.4 L386.7,535.0 L383.4,534.3 L381.0,531.7 L379.7,531.6 L378.6,533.5 L380.2,536.3 L375.1,542.6 L375.0,544.1 L370.5,544.1 L366.1,546.7 L366.3,545.9 L364.3,545.7 L363.6,547.3 L362.1,547.6 L362.7,548.6 L361.0,551.5 L359.8,550.9 L358.1,553.0 L353.5,553.0 L350.1,550.5 L347.7,551.4 L347.8,553.4 L346.6,554.6 L344.6,553.9 L343.2,555.3 L338.9,554.2 L337.2,557.6 L336.7,563.4 L334.6,563.5 Z", "Quảng Ninh": "M297.7,155.5 L297.7,157.0 L296.7,157.1 L296.5,155.7 L297.7,155.5 Z M288.2,163.1 L285.1,161.7 L283.7,160.0 L284.5,156.5 L283.4,152.2 L275.8,151.3 L272.9,148.6 L269.4,149.2 L269.4,148.4 L265.3,147.8 L265.0,145.0 L267.5,144.3 L268.5,138.7 L275.1,141.9 L276.8,141.3 L285.9,143.1 L288.2,142.9 L287.8,140.8 L294.3,141.9 L296.8,138.5 L296.5,135.1 L299.3,134.2 L303.9,129.8 L308.2,130.4 L310.9,128.9 L313.1,130.2 L313.8,128.2 L312.4,126.2 L312.7,123.3 L310.4,119.6 L314.7,118.5 L315.6,116.8 L320.8,116.6 L322.8,114.0 L325.8,112.5 L327.6,115.5 L326.8,116.4 L330.3,117.0 L331.2,115.5 L338.8,115.7 L344.5,113.1 L348.1,113.9 L349.0,113.1 L354.7,120.1 L358.9,119.4 L360.3,120.4 L359.3,120.6 L359.0,123.0 L361.5,122.9 L358.0,124.1 L356.1,126.1 L354.7,125.8 L354.8,128.1 L352.8,128.1 L352.9,126.7 L351.1,126.4 L351.7,125.5 L350.6,126.0 L351.1,124.5 L348.5,124.7 L347.5,126.2 L347.1,124.1 L344.9,124.0 L343.4,125.4 L342.9,128.0 L337.6,129.4 L334.0,134.7 L327.8,134.6 L327.8,137.4 L329.9,139.8 L328.8,140.0 L330.7,140.8 L334.3,139.0 L334.1,139.9 L325.5,147.2 L320.8,149.5 L319.0,152.1 L312.7,152.1 L309.9,154.2 L309.9,155.8 L307.3,156.5 L306.7,155.4 L301.6,154.5 L295.8,154.9 L294.6,155.9 L295.1,157.5 L291.1,157.9 L290.1,159.7 L290.6,161.8 L288.2,163.1 Z M353.1,126.9 L352.9,127.0 L353.0,127.0 L353.1,126.9 Z M317.9,160.7 L318.8,162.6 L319.0,161.6 L320.8,162.1 L320.9,164.1 L318.5,163.6 L317.9,160.7 Z M321.1,154.0 L318.9,156.4 L316.5,155.7 L318.6,155.7 L321.1,154.0 Z M317.7,158.2 L321.1,158.5 L321.5,159.3 L320.2,159.3 L321.4,160.0 L319.2,160.4 L317.7,158.2 Z M323.0,156.7 L318.6,157.6 L322.2,156.7 L325.1,153.9 L323.0,156.7 Z M321.8,164.0 L323.2,164.0 L322.4,165.7 L321.8,164.0 Z M326.0,153.5 L325.7,155.1 L324.4,156.0 L326.0,153.5 Z M331.4,155.9 L327.3,160.4 L326.0,163.0 L327.3,159.5 L326.4,158.1 L328.6,157.6 L331.3,153.8 L331.4,155.9 Z M328.7,156.5 L321.5,158.5 L326.2,155.3 L327.3,153.2 L326.7,153.5 L326.4,152.8 L330.0,149.4 L330.0,151.4 L331.2,149.3 L330.7,152.9 L329.9,152.8 L328.7,156.5 Z M335.5,144.5 L332.3,153.2 L331.6,153.8 L332.9,147.7 L335.5,144.5 Z M332.7,144.5 L331.9,147.0 L330.3,146.8 L331.4,147.0 L330.1,148.1 L329.3,146.6 L332.7,144.5 Z M338.5,139.2 L337.6,143.3 L337.0,143.8 L337.0,140.9 L338.5,139.2 Z M344.7,152.5 L341.9,155.4 L343.3,153.8 L341.4,151.8 L342.2,150.7 L344.7,152.5 Z M347.9,149.3 L349.3,150.4 L345.9,153.4 L347.0,150.2 L347.9,149.3 Z M346.7,131.0 L342.4,133.8 L339.8,134.1 L345.3,131.1 L346.7,131.0 Z M354.4,130.8 L348.3,131.9 L348.1,131.5 L348.5,130.8 L348.3,131.4 L350.1,130.7 L348.9,130.2 L349.4,130.2 L349.8,129.9 L350.7,130.0 L349.8,129.9 L349.3,130.2 L348.7,129.8 L347.2,130.4 L349.4,129.4 L357.7,128.4 L354.4,130.8 Z M350.4,127.3 L352.0,128.3 L349.3,128.5 L350.4,127.3 Z", "Quảng Trị": "M296.0,427.7 L292.0,425.4 L292.2,423.4 L290.5,423.2 L291.6,418.3 L290.0,416.5 L288.0,416.1 L286.4,421.1 L284.5,420.9 L284.6,423.0 L282.7,424.2 L282.3,422.6 L281.9,423.4 L278.9,421.8 L277.1,417.6 L278.6,415.4 L278.3,414.0 L273.4,412.9 L271.5,407.5 L271.4,397.2 L269.4,395.4 L269.6,393.9 L271.3,393.7 L271.3,388.9 L269.4,391.0 L264.7,389.6 L262.6,386.3 L263.5,384.7 L256.7,377.0 L258.6,375.7 L257.0,375.2 L256.7,371.8 L255.0,371.8 L255.3,373.5 L253.6,374.9 L250.1,372.8 L244.2,367.9 L230.6,352.2 L225.8,349.2 L224.0,349.6 L223.6,346.5 L220.5,343.7 L220.1,340.0 L215.8,336.8 L217.1,330.5 L221.3,330.4 L223.3,327.8 L225.6,329.0 L228.6,328.1 L228.1,326.4 L234.8,324.7 L235.8,326.5 L237.9,326.2 L239.8,328.4 L242.2,329.0 L243.4,330.7 L241.5,333.1 L246.5,334.7 L253.0,334.1 L255.6,335.3 L255.9,333.3 L259.0,330.5 L264.6,331.6 L265.5,333.0 L269.1,332.3 L269.4,333.4 L265.4,337.9 L265.5,341.7 L269.0,349.7 L276.7,361.3 L287.2,371.8 L305.1,384.2 L304.7,388.1 L306.7,391.7 L321.2,404.5 L317.0,409.3 L317.6,410.1 L317.6,410.7 L317.3,409.9 L316.3,410.6 L317.4,412.8 L314.2,415.0 L312.6,413.8 L301.7,416.2 L301.6,417.9 L305.2,419.8 L306.2,421.6 L304.3,422.5 L301.5,422.1 L301.4,425.7 L299.0,427.2 L299.3,430.5 L296.1,430.6 L296.0,427.7 Z", "Sơn La": "M96.0,167.1 L90.9,166.5 L88.4,162.2 L86.7,164.2 L84.5,164.8 L78.0,161.6 L76.1,162.4 L74.3,161.3 L74.7,159.5 L73.4,158.4 L77.9,157.4 L77.2,155.6 L78.7,155.2 L77.0,148.8 L78.7,148.3 L77.8,146.4 L80.6,146.5 L82.8,148.3 L86.0,147.9 L84.2,143.2 L86.5,141.9 L86.9,135.2 L86.4,133.5 L82.7,132.3 L83.8,130.2 L82.3,129.9 L80.4,127.4 L81.2,126.5 L87.4,126.0 L88.0,121.2 L91.4,120.4 L94.0,114.8 L92.9,113.6 L95.0,111.4 L96.3,111.5 L92.9,105.8 L91.7,100.9 L89.2,98.1 L91.1,92.0 L93.1,90.8 L99.4,93.1 L102.6,99.5 L103.7,99.8 L102.1,103.0 L105.8,104.0 L105.5,105.7 L107.0,105.8 L108.7,108.2 L110.2,107.8 L111.4,111.1 L113.0,111.2 L113.1,109.9 L116.0,110.7 L116.4,112.2 L121.7,112.1 L125.4,113.8 L131.7,113.5 L133.9,112.0 L140.2,113.2 L137.2,116.4 L136.8,124.0 L139.7,127.7 L143.2,128.2 L145.2,130.7 L148.3,131.0 L151.7,127.4 L154.4,127.7 L155.1,126.9 L160.3,129.7 L161.0,128.2 L163.7,127.9 L165.7,132.4 L168.4,132.2 L170.1,133.5 L170.2,138.5 L171.4,139.5 L170.7,142.9 L174.3,145.3 L170.7,147.4 L171.0,148.8 L175.8,156.0 L178.0,157.4 L179.8,161.2 L179.3,162.9 L180.9,163.7 L178.9,166.5 L180.2,168.3 L172.4,165.8 L169.8,166.9 L170.3,172.6 L168.0,173.9 L167.6,176.6 L166.1,177.2 L164.0,177.2 L162.6,175.3 L160.7,175.9 L157.8,171.4 L155.2,171.2 L153.5,168.7 L151.0,169.7 L149.5,168.9 L148.8,165.7 L139.5,160.4 L139.8,159.0 L137.4,156.4 L135.1,157.9 L134.5,155.9 L131.3,154.4 L127.9,155.0 L126.3,153.2 L123.2,154.8 L123.0,157.0 L121.9,157.7 L114.1,157.5 L111.3,160.2 L109.0,159.9 L108.7,162.5 L107.0,163.6 L107.7,166.8 L104.1,168.0 L104.4,171.6 L101.2,172.0 L100.3,169.7 L96.0,167.1 Z", "Tây Ninh": "M244.8,773.6 L233.4,772.7 L228.9,766.8 L225.7,765.5 L214.8,755.3 L215.8,755.3 L214.0,751.7 L210.1,749.9 L209.0,748.1 L218.7,746.1 L222.3,743.9 L225.6,743.4 L230.7,751.2 L229.8,753.4 L234.9,754.9 L234.6,753.3 L236.2,752.2 L235.4,750.2 L242.9,756.4 L248.5,756.5 L250.0,757.8 L249.8,754.9 L247.1,750.4 L247.3,746.7 L250.9,746.6 L249.9,742.3 L247.9,739.3 L244.8,741.0 L240.0,736.8 L239.6,734.0 L235.2,733.1 L233.5,731.1 L233.3,728.5 L230.7,728.5 L231.8,724.0 L231.1,721.3 L233.0,718.8 L231.3,717.9 L231.7,712.9 L230.6,711.7 L228.0,711.6 L227.4,709.7 L229.1,706.9 L231.7,705.2 L236.0,707.4 L239.6,702.3 L239.7,699.7 L241.3,699.1 L245.4,701.2 L247.9,701.6 L250.0,700.6 L251.1,701.9 L254.5,702.6 L256.5,705.2 L260.8,704.0 L265.6,705.5 L267.9,711.5 L267.3,712.9 L264.2,713.6 L263.9,716.2 L260.7,718.7 L258.4,724.3 L258.7,727.8 L260.4,729.8 L259.6,730.5 L261.5,731.7 L261.8,734.3 L264.4,735.0 L265.4,737.5 L263.2,744.8 L259.9,745.8 L270.3,751.1 L268.7,757.8 L266.3,759.7 L267.9,761.7 L270.2,762.1 L271.9,766.2 L274.7,765.5 L276.4,767.5 L279.4,765.7 L281.6,766.3 L281.5,769.3 L283.0,770.5 L283.2,773.9 L279.2,778.5 L278.1,778.3 L277.0,776.0 L276.0,777.8 L273.5,778.8 L273.7,779.8 L271.9,780.1 L270.2,778.9 L265.8,781.2 L263.4,779.1 L265.7,777.9 L265.0,776.9 L262.7,775.4 L261.3,776.1 L259.4,772.3 L255.7,769.8 L244.8,770.5 L244.8,773.6 Z", "Thái Nguyên": "M217.1,122.7 L208.9,115.3 L207.9,112.0 L207.8,110.6 L210.6,106.4 L208.8,106.0 L208.7,102.8 L210.8,102.4 L210.2,100.0 L212.2,98.1 L212.4,95.2 L209.4,93.1 L206.9,88.2 L206.9,85.8 L208.7,83.3 L207.3,83.1 L205.0,79.8 L205.3,77.3 L208.6,75.2 L207.8,74.3 L209.9,71.9 L210.2,68.9 L212.8,68.6 L213.3,67.8 L212.2,68.2 L212.0,66.7 L214.9,63.6 L214.5,60.3 L210.8,55.9 L211.6,54.0 L215.2,53.0 L215.0,51.9 L217.9,51.2 L218.9,49.7 L221.0,50.0 L223.3,48.6 L225.5,51.6 L222.5,54.9 L224.0,57.8 L225.6,58.4 L225.2,60.0 L233.2,63.2 L234.7,61.3 L236.2,61.5 L241.6,58.3 L243.5,58.6 L243.1,59.7 L245.8,62.3 L245.9,64.6 L244.3,66.2 L244.9,68.8 L248.7,68.4 L251.7,71.5 L250.6,74.1 L253.3,76.8 L251.9,80.3 L252.6,82.0 L248.1,87.8 L244.6,88.6 L245.6,93.9 L244.6,96.3 L246.6,97.6 L245.5,99.1 L245.7,101.9 L244.4,103.3 L245.4,105.6 L246.9,105.4 L247.6,106.8 L252.9,109.4 L249.7,116.1 L248.2,114.8 L244.3,114.9 L242.1,116.2 L240.6,118.6 L242.1,119.4 L240.5,128.6 L236.5,126.1 L235.4,129.6 L233.4,129.7 L232.6,131.1 L233.3,131.3 L231.7,131.9 L232.3,132.7 L230.3,131.9 L230.3,129.6 L227.0,129.1 L225.4,130.6 L224.3,127.6 L222.7,127.7 L222.4,126.3 L218.1,124.8 L217.1,122.7 Z", "Thanh Hóa": "M196.2,234.8 L194.0,231.7 L192.7,232.2 L189.1,230.0 L189.1,227.8 L187.3,226.5 L187.3,221.6 L188.3,219.9 L190.6,219.5 L189.4,216.3 L184.9,215.0 L182.2,215.5 L177.0,211.7 L174.2,211.5 L179.0,205.7 L175.5,203.8 L175.1,201.9 L171.1,202.8 L166.0,199.5 L156.5,196.9 L156.8,189.8 L162.8,187.1 L159.6,184.4 L159.9,183.5 L157.2,183.9 L155.5,186.6 L151.4,186.7 L151.0,188.1 L147.9,189.4 L144.4,188.5 L144.7,186.0 L142.4,185.0 L143.1,182.3 L151.2,178.8 L152.2,175.8 L155.9,175.3 L158.0,172.4 L160.7,175.9 L162.6,175.3 L164.0,177.2 L166.1,177.2 L167.6,176.6 L168.1,173.7 L173.5,171.5 L176.5,173.2 L178.3,177.3 L182.1,178.3 L183.2,177.2 L185.7,177.3 L189.5,180.7 L193.1,181.4 L195.3,184.3 L194.8,185.5 L199.9,188.1 L209.3,189.9 L211.4,189.4 L212.8,192.5 L215.0,192.8 L223.4,200.3 L232.5,204.3 L236.4,207.4 L243.3,207.6 L241.9,211.0 L240.3,211.9 L240.3,213.7 L236.0,216.1 L235.7,217.8 L236.7,217.8 L235.0,220.6 L234.8,224.4 L232.7,227.7 L230.9,227.8 L229.1,231.2 L227.4,239.4 L227.7,245.1 L226.0,246.9 L228.1,252.0 L227.2,253.6 L227.0,252.7 L224.8,253.3 L223.4,251.4 L221.6,252.7 L218.8,252.0 L219.0,250.4 L216.6,248.0 L214.5,248.7 L210.6,243.1 L205.9,244.5 L202.6,243.6 L200.3,238.4 L196.9,242.4 L195.5,240.5 L196.2,234.8 Z", "TP. Hồ Chí Minh": "M307.9,780.9 L303.1,785.6 L301.4,782.0 L304.1,781.3 L304.8,778.8 L302.6,779.0 L300.5,777.0 L296.1,778.1 L297.2,779.8 L296.3,781.2 L288.3,783.6 L283.0,775.7 L283.0,770.5 L281.5,769.3 L281.6,766.3 L279.4,765.7 L276.4,767.5 L274.7,765.5 L271.9,766.2 L270.2,762.1 L267.9,761.7 L266.3,759.7 L268.7,757.8 L270.4,751.2 L259.9,745.8 L263.2,744.8 L265.4,737.5 L264.4,735.0 L261.8,734.3 L261.5,731.7 L259.6,730.5 L260.4,729.8 L258.7,727.8 L258.4,724.6 L260.7,718.7 L264.4,715.6 L267.8,715.7 L270.8,717.6 L271.8,716.5 L272.8,718.3 L270.9,720.0 L270.7,722.3 L272.1,723.4 L275.1,722.3 L275.3,723.8 L278.6,724.3 L278.8,721.5 L280.8,721.6 L283.6,718.6 L283.5,717.0 L286.0,716.1 L286.6,718.5 L284.4,720.0 L285.3,722.7 L289.6,723.0 L289.6,726.6 L290.7,727.1 L290.5,725.9 L292.6,724.3 L295.2,725.3 L293.6,729.2 L294.0,730.8 L292.8,731.0 L293.2,732.2 L292.2,732.9 L296.1,736.5 L295.0,741.8 L293.5,742.0 L292.6,744.0 L290.5,744.1 L287.9,741.5 L286.3,741.8 L287.0,743.5 L284.7,745.0 L286.0,746.9 L284.0,747.5 L285.5,749.9 L288.5,751.0 L291.0,756.3 L290.5,759.2 L288.9,758.6 L287.7,759.6 L287.3,758.3 L283.4,761.8 L283.7,763.5 L287.6,767.3 L291.1,766.2 L292.8,768.6 L297.1,770.3 L298.6,768.2 L298.0,767.0 L300.7,765.6 L303.8,765.9 L306.0,764.0 L306.2,760.5 L310.3,758.7 L310.6,760.0 L315.9,759.8 L315.9,764.1 L318.5,764.6 L319.5,761.4 L324.5,756.9 L328.1,758.9 L328.1,760.4 L330.4,762.7 L332.0,770.9 L328.7,774.8 L326.0,775.1 L324.3,776.9 L318.0,777.6 L313.2,782.1 L310.5,780.6 L307.9,780.9 Z", "Tuyên Quang": "M188.3,110.4 L184.0,109.1 L182.8,107.6 L185.4,103.8 L180.3,98.7 L180.6,96.4 L178.6,96.4 L179.3,90.1 L177.2,90.9 L172.0,87.9 L170.5,81.6 L165.4,82.6 L163.1,80.8 L162.9,77.4 L156.5,75.3 L154.9,77.7 L152.8,78.3 L152.3,76.2 L154.5,74.6 L153.6,73.0 L154.5,71.9 L147.7,67.4 L146.7,65.4 L148.2,63.9 L144.7,61.3 L145.3,58.6 L147.8,58.5 L147.5,56.3 L144.7,55.0 L143.7,52.3 L141.5,52.7 L139.9,51.6 L140.4,50.4 L142.1,51.8 L143.8,51.0 L154.4,42.0 L155.6,42.4 L155.7,44.2 L156.9,43.9 L157.1,42.4 L159.9,44.1 L163.6,43.8 L163.1,42.2 L165.0,41.7 L166.2,38.9 L171.4,36.5 L171.2,34.6 L169.3,33.4 L167.6,26.4 L172.0,25.8 L173.3,22.7 L176.3,24.4 L177.2,21.4 L179.3,21.3 L184.1,17.5 L186.0,18.7 L189.6,16.1 L193.3,17.8 L194.4,13.3 L196.3,13.0 L198.6,10.0 L201.4,14.4 L204.1,16.4 L205.6,15.5 L209.0,21.3 L211.7,21.8 L213.5,23.8 L212.9,26.2 L210.7,26.9 L208.4,32.7 L201.7,33.9 L200.9,36.9 L197.7,38.5 L197.5,40.6 L195.3,40.3 L195.2,41.2 L207.4,47.8 L207.7,50.0 L209.2,51.2 L208.3,52.7 L209.0,55.0 L211.0,55.1 L212.2,58.5 L214.9,61.6 L214.9,63.6 L212.0,66.7 L212.9,68.5 L210.2,68.9 L209.9,71.9 L207.8,74.3 L208.6,75.2 L205.3,77.3 L205.0,79.8 L207.3,83.1 L208.7,83.3 L206.9,85.8 L206.9,88.2 L209.4,93.1 L212.4,95.2 L212.2,98.1 L210.2,100.0 L210.8,102.4 L208.7,102.8 L208.8,106.0 L210.6,106.5 L207.8,110.6 L208.9,115.3 L211.6,117.9 L210.4,120.2 L204.5,122.4 L201.5,120.8 L199.6,122.1 L197.4,121.8 L192.8,114.6 L193.4,112.9 L188.7,111.5 L188.3,110.4 Z", "Vĩnh Long": "M253.6,827.5 L236.4,810.4 L230.4,806.6 L225.8,800.5 L219.9,796.7 L222.6,792.5 L224.9,794.0 L225.4,793.4 L227.0,795.4 L231.1,795.5 L231.4,793.4 L233.6,793.2 L234.0,792.1 L231.5,788.9 L237.3,785.1 L244.0,788.2 L261.1,784.4 L270.9,788.9 L279.8,790.9 L284.9,794.6 L285.3,798.9 L277.4,805.9 L277.3,808.4 L279.5,811.9 L272.2,819.9 L273.2,824.5 L269.4,830.2 L265.4,832.1 L261.0,832.5 L259.0,829.9 L253.6,827.5 Z"}}</script>
+<script>
+/* ============================================================
+   THÍ ĐIỂM PHÂN BỔ HẠN NGẠCH PHÁT THẢI KHÍ NHÀ KÍNH — Dashboard
+   ============================================================ */
+
+const DATA = JSON.parse(document.getElementById('data-bundle').textContent);
+const SVGMAP = JSON.parse(document.getElementById('svgmap-bundle').textContent);
+
+const COLORS = {
+  blue: '#004B87',
+  blueLight: '#e7f0f7',
+  orange: '#F26522',
+  orangeLight: '#fdeee5',
+  yellow: '#D9A404',
+  yellowLight: '#fdf3d6',
+  red: '#E4032E',
+  redLight: '#fbe4e7',
+  grayText: '#5A6068',
+  border: '#E3E7EC',
+};
+
+const SECTOR_COLOR = {
+  'Nhiệt điện': COLORS.red,
+  'Xi măng': COLORS.orange,
+  'Sắt thép': COLORS.yellow,
+};
+const SECTOR_COLOR_LIGHT = {
+  'Nhiệt điện': COLORS.redLight,
+  'Xi măng': COLORS.orangeLight,
+  'Sắt thép': COLORS.yellowLight,
+};
+const SECTOR_KEY = { 'nhietdien': 'Nhiệt điện', 'ximang': 'Xi măng', 'satthep': 'Sắt thép' };
+const SECTOR_LABEL_SHORT = { 'Nhiệt điện': 'Nhiệt điện', 'Xi măng': 'Xi măng', 'Sắt thép': 'Sắt thép' };
+
+// province name mapping between dataset ("Hồ Chí Minh") and geojson TinhThanh ("TP. Hồ Chí Minh")
+const PROV_TO_GEO = { 'Hồ Chí Minh': 'TP. Hồ Chí Minh' };
+function geoName(provName){ return PROV_TO_GEO[provName] || provName; }
+
+function fmt(n){
+  if (n === null || n === undefined || isNaN(n)) return '—';
+  return Math.round(n).toLocaleString('vi-VN');
+}
+function fmt1(n){
+  if (n === null || n === undefined || isNaN(n)) return '—';
+  return n.toLocaleString('vi-VN', {minimumFractionDigits:1, maximumFractionDigits:1});
+}
+function fmtPct(n){
+  if (n === null || n === undefined || isNaN(n)) return '—';
+  const sign = n > 0 ? '+' : '';
+  return sign + n.toLocaleString('vi-VN', {minimumFractionDigits:2, maximumFractionDigits:2}) + '%';
+}
+function median(arr){
+  const a = [...arr].sort((x,y)=>x-y);
+  const mid = Math.floor(a.length/2);
+  return a.length % 2 !== 0 ? a[mid] : (a[mid-1]+a[mid])/2;
+}
+function escapeHtml(s){
+  if (s === null || s === undefined) return '';
+  return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+function debounce(fn, ms){
+  let t;
+  return (...args)=>{ clearTimeout(t); t = setTimeout(()=>fn(...args), ms); };
+}
+
+/* ---------- Header meta (top-level KPIs) ---------- */
+function renderHeaderMeta(){
+  const ov = DATA.overview;
+  const el = document.getElementById('headerMeta');
+  el.innerHTML = `
+    <div class="metaitem"><b>${ov.total_dn}</b>Doanh nghiệp</div>
+    <div class="metaitem"><b>${fmt(ov.total_q2025)}</b>Hạn ngạch 2025 (tấn)</div>
+    <div class="metaitem"><b>${fmt(ov.total_q2026)}</b>Hạn ngạch 2026 (tấn)</div>
+    <div class="metaitem"><b>${fmtPct(ov.growth_pct)}</b>Tăng trưởng 25→26</div>
+  `;
+}
+
+/* ---------- Navigation ---------- */
+let currentPage = 'overview';
+const pageAccent = { overview:null, nhietdien:'red', ximang:'orange', satthep:'yellow' };
+
+function setPage(page){
+  currentPage = page;
+  document.querySelectorAll('.main-nav button').forEach(b=>{
+    b.classList.toggle('active', b.dataset.page === page);
+  });
+  document.querySelectorAll('.page').forEach(p=>{
+    p.classList.toggle('active', p.id === 'page-' + page);
+  });
+  // trigger plotly resize for freshly-shown charts
+  window.dispatchEvent(new Event('resize'));
+}
+
+document.getElementById('mainNav').addEventListener('click', (e)=>{
+  const btn = e.target.closest('button[data-page]');
+  if (!btn) return;
+  setPage(btn.dataset.page);
+});
+
+/* ---------- Boot ---------- */
+function boot(){
+  renderHeaderMeta();
+  const main = document.getElementById('mainContent');
+  main.innerHTML =
+    buildOverviewPage() +
+    buildSectorPage('nhietdien', 'red', 'Nhiệt điện') +
+    buildSectorPage('ximang', 'orange', 'Xi măng') +
+    buildSectorPage('satthep', 'yellow', 'Sắt thép');
+
+  initOverviewPage();
+  initSectorPage('nhietdien');
+  initSectorPage('ximang');
+  initSectorPage('satthep');
+
+  setPage('overview');
+}
+
+document.addEventListener('DOMContentLoaded', boot);
+
+/* ============================================================
+   PAGE 1 — TỔNG QUAN
+   ============================================================ */
+function buildOverviewPage(){
+  return `
+  <div class="page active" id="page-overview" data-accent="">
+    <div class="section-title"><span class="bar"></span>Tổng quan chung</div>
+    <div class="kpi-row" id="ov-kpi-row"></div>
+
+    <div class="section-title"><span class="bar"></span>Tổng quan theo lĩnh vực</div>
+    <div class="sector-card-row" id="ov-sector-cards"></div>
+
+    <div class="section-title"><span class="bar"></span>Phân bổ theo địa phương (bản đồ Việt Nam)
+      <span class="section-hint">— Chọn lĩnh vực và chỉ tiêu hiển thị</span>
+    </div>
+    <div class="panel">
+      <div class="panel-title">
+        <div>
+          <div class="chip-toggle" id="ov-map-sector-toggle">
+            <button data-val="all" class="active">Tất cả</button>
+            <button data-val="Nhiệt điện">Nhiệt điện</button>
+            <button data-val="Xi măng">Xi măng</button>
+            <button data-val="Sắt thép">Sắt thép</button>
+          </div>
+        </div>
+        <div class="chip-toggle" id="ov-map-metric-toggle">
+          <button data-val="quota" class="active">Tổng hạn ngạch</button>
+          <button data-val="count">Số doanh nghiệp</button>
+        </div>
+      </div>
+      <div class="grid-2">
+        <div>
+          <div id="ov-map-2025" style="height:420px;"></div>
+          <div style="text-align:center;font-size:12px;font-weight:bold;color:var(--iki-blue);margin-top:-6px;">Năm 2025</div>
+        </div>
+        <div>
+          <div id="ov-map-2026" style="height:420px;"></div>
+          <div style="text-align:center;font-size:12px;font-weight:bold;color:var(--iki-blue);margin-top:-6px;">Năm 2026</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-title"><span class="bar"></span>Top 10 tỉnh/thành được phân bổ hạn ngạch nhiều nhất</div>
+    <div class="grid-2">
+      <div class="panel">
+        <div class="panel-title">Top 10 tỉnh/thành <span class="ptag">2025</span></div>
+        <ul class="rank-list" id="ov-top-provinces-2025"></ul>
+      </div>
+      <div class="panel">
+        <div class="panel-title">Top 10 tỉnh/thành <span class="ptag">2026</span></div>
+        <ul class="rank-list" id="ov-top-provinces-2026"></ul>
+      </div>
+    </div>
+
+    <div class="section-title"><span class="bar"></span>Top 10 doanh nghiệp được phân bổ hạn ngạch nhiều nhất</div>
+    <div class="grid-2">
+      <div class="panel">
+        <div class="panel-title">Top 10 doanh nghiệp <span class="ptag">2025</span></div>
+        <ul class="rank-list" id="ov-top-enterprises-2025"></ul>
+      </div>
+      <div class="panel">
+        <div class="panel-title">Top 10 doanh nghiệp <span class="ptag">2026</span></div>
+        <ul class="rank-list" id="ov-top-enterprises-2026"></ul>
+      </div>
+    </div>
+
+    <div class="section-title"><span class="bar"></span>Đơn vị cùng mã số thuế (nhóm doanh nghiệp)
+      <span class="section-hint">— các cơ sở trực thuộc cùng một mã số thuế gốc, gộp từ các lĩnh vực</span>
+    </div>
+    <div class="panel" id="ov-group-panel"></div>
+
+    <div class="section-title"><span class="bar"></span>Danh sách doanh nghiệp</div>
+    <div class="panel">
+      <div class="search-row">
+        <input type="text" id="ov-search-name" placeholder="Tìm theo tên doanh nghiệp...">
+        <input type="text" id="ov-search-mst" placeholder="Tìm theo mã số thuế...">
+        <select id="ov-search-province"><option value="">Tất cả tỉnh/thành</option></select>
+        <select id="ov-search-sector">
+          <option value="">Tất cả lĩnh vực</option>
+          <option value="Nhiệt điện">Nhiệt điện</option>
+          <option value="Xi măng">Xi măng</option>
+          <option value="Sắt thép">Sắt thép</option>
+        </select>
+      </div>
+      <div class="result-count" id="ov-result-count"></div>
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead><tr>
+            <th>#</th><th>Doanh nghiệp</th><th>Lĩnh vực</th><th>Mã số thuế</th>
+            <th>Tỉnh/Thành (mới)</th><th>Hạn ngạch 2025</th><th>Hạn ngạch 2026</th>
+          </tr></thead>
+          <tbody id="ov-table-body"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="footer-note">Nguồn dữ liệu: Danh sách doanh nghiệp phân bổ hạn ngạch phát thải khí nhà kính theo Quyết định 13/QĐ-TTg và Quyết định 699/QĐ-BTNMT. Bản đồ hành chính 34 tỉnh/thành áp dụng từ 01/7/2025, bao gồm quần đảo Hoàng Sa và Trường Sa.</div>
+  </div>`;
+}
+
+function sectorGrowthClass(g){ return g >= 0 ? 'up' : 'down'; }
+function sectorGrowthArrow(g){ return g >= 0 ? '▲' : '▼'; }
+
+function renderOverviewKPIs(){
+  const ov = DATA.overview;
+  const el = document.getElementById('ov-kpi-row');
+  el.innerHTML = `
+    <div class="kpi-card">
+      <div class="kpi-label">Tổng doanh nghiệp được phân bổ</div>
+      <div class="kpi-value">${ov.total_dn} <span class="kpi-unit">DN</span></div>
+      <div class="kpi-foot">Thuộc 3 lĩnh vực: Nhiệt điện, Xi măng, Sắt thép</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Tổng hạn ngạch năm 2025</div>
+      <div class="kpi-value">${fmt(ov.total_q2025)} <span class="kpi-unit">tấn CO2tđ</span></div>
+      <div class="kpi-foot">Toàn quốc, 3 lĩnh vực thí điểm</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Tổng hạn ngạch năm 2026</div>
+      <div class="kpi-value">${fmt(ov.total_q2026)} <span class="kpi-unit">tấn CO2tđ</span></div>
+      <div class="kpi-foot">Toàn quốc, 3 lĩnh vực thí điểm</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Tốc độ tăng trưởng 2025→2026</div>
+      <div class="kpi-value">${fmtPct(ov.growth_pct)}</div>
+      <div class="kpi-foot ${sectorGrowthClass(ov.growth_pct)}">${sectorGrowthArrow(ov.growth_pct)} +${fmt(ov.total_q2026-ov.total_q2025)} tấn CO2tđ</div>
+    </div>
+  `;
+}
+
+function sectorCardClass(s){
+  if (s === 'Nhiệt điện') return 'nhietdien';
+  if (s === 'Xi măng') return 'ximang';
+  return 'satthep';
+}
+
+function renderOverviewSectorCards(){
+  const el = document.getElementById('ov-sector-cards');
+  el.innerHTML = ['Nhiệt điện','Xi măng','Sắt thép'].map(s=>{
+    const d = DATA.sector_summary[s];
+    const cls = sectorCardClass(s);
+    return `
+    <div class="sector-card ${cls}">
+      <div class="sc-head">
+        <div class="sc-title">${s}</div>
+        <div class="sc-badge">${d.count} DN</div>
+      </div>
+      <div class="sc-stat-grid">
+        <div class="sc-stat"><div class="lbl">Hạn ngạch 2025</div><div class="val">${fmt(d.q2025_total)}</div></div>
+        <div class="sc-stat"><div class="lbl">Hạn ngạch 2026</div><div class="val">${fmt(d.q2026_total)}</div></div>
+        <div class="sc-stat"><div class="lbl">So sánh 25/26</div><div class="val ${cls}"><span class="sc-growth ${sectorGrowthClass(d.growth_pct)}">${sectorGrowthArrow(d.growth_pct)} ${fmtPct(d.growth_pct)}</span></div></div>
+        <div class="sc-stat"><div class="lbl">Trung vị 2026</div><div class="val">${fmt(d.q26_median)}</div></div>
+      </div>
+      <div class="sc-boxplot" id="ov-box-${cls}" style="height:150px;"></div>
+    </div>`;
+  }).join('');
+
+  // render mini boxplots
+  ['Nhiệt điện','Xi măng','Sắt thép'].forEach(s=>{
+    const d = DATA.sector_summary[s];
+    const cls = sectorCardClass(s);
+    const color = SECTOR_COLOR[s];
+    drawBoxPlot('ov-box-'+cls, [
+      {label:'2025', values:d.q2025_list},
+      {label:'2026', values:d.q2026_list},
+    ], color);
+  });
+}
+
+/* ---------- Overview: Maps (custom lightweight SVG choropleth) ---------- */
+let ovMapSector = 'all';
+let ovMapMetric = 'quota'; // 'quota' | 'count'
+
+function getProvinceAggForSector(sectorFilter){
+  if (sectorFilter === 'all') return DATA.province_all;
+  return DATA.province_by_sector[sectorFilter] || {};
+}
+
+function hexToRgb(hex){
+  const v = parseInt(hex.slice(1), 16);
+  return [(v>>16)&255, (v>>8)&255, v&255];
+}
+function rgbToCss(rgb){ return `rgb(${rgb[0]},${rgb[1]},${rgb[2]})`; }
+function lerpColor(c1, c2, t){
+  return [0,1,2].map(i => Math.round(c1[i] + (c2[i]-c1[i])*t));
+}
+function makeColorScale(baseColorHex){
+  const from = hexToRgb('#eef2f6');
+  const to = hexToRgb(baseColorHex);
+  return (t) => rgbToCss(lerpColor(from, to, Math.max(0, Math.min(1, t))));
+}
+
+// shared tooltip element for all custom SVG charts (maps, box plots, bar charts, treemap)
+let mapTooltipEl = null;
+function ensureMapTooltip(){
+  if (mapTooltipEl) return mapTooltipEl;
+  const el = document.createElement('div');
+  el.style.cssText = 'position:fixed;pointer-events:none;z-index:9999;background:#fff;border:1px solid '+COLORS.border+';border-radius:8px;padding:8px 11px;font-family:Arial;font-size:12px;color:'+COLORS.grayText+';box-shadow:'+'0 4px 14px rgba(0,20,40,0.15)'+';display:none;max-width:240px;line-height:1.5;';
+  document.body.appendChild(el);
+  mapTooltipEl = el;
+  return el;
+}
+function showTooltip(evt, html){
+  const t = ensureMapTooltip();
+  t.innerHTML = html;
+  t.style.left = (evt.clientX + 14) + 'px';
+  t.style.top = (evt.clientY + 10) + 'px';
+  t.style.display = 'block';
+}
+function hideTooltip(){
+  if (mapTooltipEl) mapTooltipEl.style.display = 'none';
+}
+
+/* ---------- Generic quantile helper (for box plots) ---------- */
+function quantile(sortedArr, q){
+  const pos = (sortedArr.length - 1) * q;
+  const base = Math.floor(pos);
+  const rest = pos - base;
+  if (sortedArr[base+1] !== undefined){
+    return sortedArr[base] + rest * (sortedArr[base+1] - sortedArr[base]);
+  }
+  return sortedArr[base];
+}
+
+/* ---------- Custom SVG box plot (no external chart library) ---------- */
+function drawBoxPlot(containerId, series, colorHex, opts){
+  // series: [{label, values}, ...] — draws one box per series, side by side
+  const container = document.getElementById(containerId);
+  if (!container) return;
+  const W = (opts && opts.width) || 260, H = (opts && opts.height) || 150;
+  const padL = (opts && opts.padL) || 40, padR = 10, padT = 14, padB = 26;
+  const plotW = W - padL - padR, plotH = H - padT - padB;
+  const fontLbl = (opts && opts.fontLbl) || 9, fontAxis = (opts && opts.fontAxis) || 8;
+
+  const allVals = series.flatMap(s=>s.values);
+  const globalMin = Math.min(...allVals), globalMax = Math.max(...allVals);
+  const range = (globalMax - globalMin) || 1;
+  const y = (v) => padT + plotH - ((v - globalMin) / range) * plotH;
+
+  const boxW = plotW / series.length * ((opts && opts.boxWidthFrac) || 0.42);
+  const tooltip = ensureMapTooltip();
+
+  let svg = `<svg viewBox="0 0 ${W} ${H}" style="width:100%;height:100%;display:block;">`;
+  // y-axis gridlines + labels
+  const gridSteps = (opts && opts.gridSteps) || [globalMin, (globalMin+globalMax)/2, globalMax];
+  gridSteps.forEach(v=>{
+    const yy = y(v);
+    svg += `<line x1="${padL}" y1="${yy}" x2="${W-padR}" y2="${yy}" stroke="#eef1f4" stroke-width="1"></line>`;
+    svg += `<text x="${padL-4}" y="${yy+3}" text-anchor="end" font-size="${fontAxis}" fill="${COLORS.grayText}" font-family="Arial">${fmt(v)}</text>`;
+  });
+
+  series.forEach((s, i) => {
+    const sorted = [...s.values].sort((a,b)=>a-b);
+    const q1 = quantile(sorted, 0.25), med = quantile(sorted, 0.5), q3 = quantile(sorted, 0.75);
+    const mn = sorted[0], mx = sorted[sorted.length-1];
+    const cx = padL + plotW * ((i + 0.5) / series.length);
+    const opacity = i === series.length - 1 ? 1 : 0.55;
+
+    svg += `<line x1="${cx}" y1="${y(mx)}" x2="${cx}" y2="${y(q3)}" stroke="${colorHex}" stroke-width="1.3" opacity="${opacity}"></line>`;
+    svg += `<line x1="${cx}" y1="${y(q1)}" x2="${cx}" y2="${y(mn)}" stroke="${colorHex}" stroke-width="1.3" opacity="${opacity}"></line>`;
+    svg += `<line x1="${cx-boxW/3}" y1="${y(mx)}" x2="${cx+boxW/3}" y2="${y(mx)}" stroke="${colorHex}" stroke-width="1.3" opacity="${opacity}"></line>`;
+    svg += `<line x1="${cx-boxW/3}" y1="${y(mn)}" x2="${cx+boxW/3}" y2="${y(mn)}" stroke="${colorHex}" stroke-width="1.3" opacity="${opacity}"></line>`;
+    svg += `<rect x="${cx-boxW/2}" y="${y(q3)}" width="${boxW}" height="${Math.max(1,y(q1)-y(q3))}" fill="${colorHex}" opacity="${opacity*0.55}" stroke="${colorHex}" stroke-width="1.3" class="box-hover" data-tip="<b>${escapeHtml(s.label)}</b><br>Trung vị: ${fmt(med)}<br>Q1: ${fmt(q1)} — Q3: ${fmt(q3)}<br>Min: ${fmt(mn)} — Max: ${fmt(mx)}"></rect>`;
+    svg += `<line x1="${cx-boxW/2}" y1="${y(med)}" x2="${cx+boxW/2}" y2="${y(med)}" stroke="${colorHex}" stroke-width="2"></line>`;
+    svg += `<text x="${cx}" y="${H-6}" text-anchor="middle" font-size="${fontLbl}" font-weight="bold" fill="${COLORS.grayText}" font-family="Arial">${escapeHtml(s.label)}</text>`;
+  });
+  svg += `</svg>`;
+  container.innerHTML = svg;
+
+  container.querySelectorAll('.box-hover').forEach(el => {
+
+    el.style.cursor = 'pointer';
+    el.addEventListener('mousemove', (e)=> showTooltip(e, el.dataset.tip));
+    el.addEventListener('mouseleave', hideTooltip);
+  });
+}
+
+/* ---------- Custom SVG combo chart: bars (primary axis) + line (secondary axis) ---------- */
+function drawComboChart(containerId, categories, barVals, lineVals, barColorHex, lineColorHex, barLabel, lineLabel){
+  const container = document.getElementById(containerId);
+  if (!container) return;
+  const n = categories.length;
+  const W = Math.max(500, n * 46), H = 340;
+  const padL = 56, padR = 46, padT = 26, padB = 92;
+  const plotW = W - padL - padR, plotH = H - padT - padB;
+
+  const maxBar = Math.max(...barVals, 1);
+  const maxLine = Math.max(...lineVals, 1);
+  const yBar = (v) => padT + plotH - (v / maxBar) * plotH;
+  const yLine = (v) => padT + plotH - (v / maxLine) * plotH;
+  const bandW = plotW / n;
+  const barW = bandW * 0.55;
+  const tooltip = ensureMapTooltip();
+
+  let svg = `<svg viewBox="0 0 ${W} ${H}" style="width:100%;height:${H}px;display:block;">`;
+  // gridlines
+  for (let g = 0; g <= 4; g++){
+    const v = maxBar * g / 4;
+    const yy = yBar(v);
+    svg += `<line x1="${padL}" y1="${yy}" x2="${W-padR}" y2="${yy}" stroke="#eef1f4" stroke-width="1"></line>`;
+    svg += `<text x="${padL-6}" y="${yy+3}" text-anchor="end" font-size="9" fill="${COLORS.grayText}" font-family="Arial">${fmt(v)}</text>`;
+  }
+  for (let g = 0; g <= 4; g++){
+    const v = maxLine * g / 4;
+    const yy = yLine(v);
+    svg += `<text x="${W-padR+6}" y="${yy+3}" text-anchor="start" font-size="9" fill="${COLORS.blue}" font-family="Arial">${Math.round(v)}</text>`;
+  }
+
+  // bars
+  categories.forEach((cat, i) => {
+    const cx = padL + bandW * (i + 0.5);
+    const v = barVals[i];
+    const barH = plotH - (yBar(v) - padT);
+    svg += `<rect x="${cx-barW/2}" y="${yBar(v)}" width="${barW}" height="${Math.max(0,barH)}" fill="${barColorHex}" rx="2" class="combo-bar" data-tip="<b>${escapeHtml(cat)}</b><br>${barLabel}: ${fmt(v)}<br>${lineLabel}: ${lineVals[i]}"></rect>`;
+    svg += `<text x="${cx}" y="${H-padB+14}" text-anchor="end" font-size="9" fill="${COLORS.grayText}" font-family="Arial" transform="rotate(-45 ${cx} ${H-padB+14})">${escapeHtml(truncate(cat,16))}</text>`;
+  });
+
+  // line
+  const linePoints = categories.map((cat,i)=>{
+    const cx = padL + bandW * (i + 0.5);
+    return `${cx},${yLine(lineVals[i])}`;
+  }).join(' ');
+  svg += `<polyline points="${linePoints}" fill="none" stroke="${lineColorHex}" stroke-width="2"></polyline>`;
+  categories.forEach((cat,i)=>{
+    const cx = padL + bandW * (i + 0.5);
+    svg += `<circle cx="${cx}" cy="${yLine(lineVals[i])}" r="3" fill="${lineColorHex}" class="combo-dot" data-tip="<b>${escapeHtml(cat)}</b><br>${barLabel}: ${fmt(barVals[i])}<br>${lineLabel}: ${lineVals[i]}"></circle>`;
+  });
+
+  // legend
+  svg += `<rect x="${padL}" y="4" width="9" height="9" fill="${barColorHex}"></rect><text x="${padL+13}" y="12" font-size="9.5" fill="${COLORS.grayText}" font-family="Arial">${barLabel}</text>`;
+  const legend2X = padL + barLabel.length * 5.8 + 40;
+  svg += `<line x1="${legend2X}" y1="8" x2="${legend2X+14}" y2="8" stroke="${lineColorHex}" stroke-width="2"></line><text x="${legend2X+18}" y="12" font-size="9.5" fill="${COLORS.grayText}" font-family="Arial">${lineLabel}</text>`;
+
+  svg += `</svg>`;
+  container.innerHTML = svg;
+
+  container.querySelectorAll('.combo-bar, .combo-dot').forEach(el => {
+    el.style.cursor = 'pointer';
+    el.addEventListener('mousemove', (e)=> showTooltip(e, el.dataset.tip));
+    el.addEventListener('mouseleave', hideTooltip);
+  });
+}
+
+/* ---------- Custom SVG squarified treemap ---------- */
+function squarify(items, x, y, w, h){
+  // items: [{name, value, ...}] sorted desc by value; returns items with rect {x,y,w,h}
+  const results = [];
+  function worst(row, length){
+    const sum = row.reduce((a,b)=>a+b.value,0);
+    if (sum === 0) return Infinity;
+    let max = -Infinity, min = Infinity;
+    row.forEach(r=>{ if(r.value>max) max=r.value; if(r.value<min) min=r.value; });
+    const s2 = sum*sum, l2 = length*length;
+    return Math.max((l2*max)/s2, s2/(l2*min));
+  }
+  function layoutRow(row, x, y, w, h, horizontal){
+    const sum = row.reduce((a,b)=>a+b.value,0);
+    let offset = 0;
+    row.forEach(r=>{
+      const frac = sum ? r.value / sum : 0;
+      if (horizontal){
+        const rw = w, rh = h * frac;
+        results.push({...r, x, y: y+offset, w: rw, h: rh});
+        offset += rh;
+      } else {
+        const rw = w * frac, rh = h;
+        results.push({...r, x: x+offset, y, w: rw, h: rh});
+        offset += rw;
+      }
+    });
+  }
+  function recurse(items, x, y, w, h){
+    if (items.length === 0) return;
+    if (items.length === 1){
+      results.push({...items[0], x, y, w, h});
+      return;
+    }
+    const horizontal = w >= h;
+    const length = horizontal ? h : w;
+    let row = [items[0]];
+    let i = 1;
+    while (i < items.length){
+      const testRow = [...row, items[i]];
+      if (worst(testRow, length) <= worst(row, length)){
+        row = testRow;
+        i++;
+      } else break;
+    }
+    const rowSum = row.reduce((a,b)=>a+b.value,0);
+    const total = items.reduce((a,b)=>a+b.value,0);
+    if (horizontal){
+      const rowW = total ? w * (rowSum/total) : 0;
+      layoutRow(row, x, y, rowW, h, false);
+      recurse(items.slice(row.length), x+rowW, y, w-rowW, h);
+    } else {
+      const rowH = total ? h * (rowSum/total) : 0;
+      layoutRow(row, x, y, w, rowH, true);
+      recurse(items.slice(row.length), x, y+rowH, w, h-rowH);
+    }
+  }
+  recurse(items, x, y, w, h);
+  return results;
+}
+
+function drawTreemap(containerId, items, colorHexLight, colorHexDark){
+  const container = document.getElementById(containerId);
+  if (!container) return;
+  const W = 500, H = 420;
+  const sorted = [...items].filter(it=>it.value>0).sort((a,b)=>b.value-a.value);
+  const laidOut = squarify(sorted, 0, 0, W, H);
+  const maxV = Math.max(...sorted.map(i=>i.value), 1);
+  const scale = makeColorScale(colorHexDark);
+
+  let svg = `<svg viewBox="0 0 ${W} ${H}" style="width:100%;height:100%;display:block;">`;
+  laidOut.forEach(r => {
+    if (r.w <= 0 || r.h <= 0) return;
+    const t = r.value / maxV;
+    const fill = scale(0.25 + t*0.75);
+    svg += `<rect x="${r.x.toFixed(1)}" y="${r.y.toFixed(1)}" width="${Math.max(0,r.w-1).toFixed(1)}" height="${Math.max(0,r.h-1).toFixed(1)}" fill="${fill}" stroke="#fff" stroke-width="1" class="tm-cell" data-tip="<b>${escapeHtml(r.name)}</b><br>${escapeHtml(r.sub||'')}<br>${fmt(r.value)} tấn CO2tđ"></rect>`;
+    if (r.w > 46 && r.h > 20){
+      const fontSize = Math.min(11, Math.max(7, r.w/9));
+      svg += `<text x="${(r.x+4).toFixed(1)}" y="${(r.y+fontSize+3).toFixed(1)}" font-size="${fontSize}" fill="#fff" font-family="Arial" font-weight="bold" style="pointer-events:none;">${escapeHtml(truncate(r.name, Math.floor(r.w/6)))}</text>`;
+      if (r.h > 34){
+        svg += `<text x="${(r.x+4).toFixed(1)}" y="${(r.y+fontSize*2+5).toFixed(1)}" font-size="${Math.max(7,fontSize-1.5)}" fill="rgba(255,255,255,0.9)" font-family="Arial" style="pointer-events:none;">${fmt(r.value)}</text>`;
+      }
+    }
+  });
+  svg += `</svg>`;
+  container.innerHTML = svg;
+
+  container.querySelectorAll('.tm-cell').forEach(el => {
+    el.style.cursor = 'pointer';
+    el.addEventListener('mousemove', (e)=> showTooltip(e, el.dataset.tip));
+    el.addEventListener('mouseleave', hideTooltip);
+  });
+}
+
+function renderVietnamMap(containerId, valuesByProvince, colorHex, unitLabel, formatFn){
+  const container = document.getElementById(containerId);
+  if (!container) return;
+  const W = SVGMAP.width, H = SVGMAP.height;
+  const vals = Object.values(valuesByProvince).filter(v=>v>0);
+  const maxV = vals.length ? Math.max(...vals) : 1;
+  const minV = 0;
+  const scale = makeColorScale(colorHex);
+  const tooltip = ensureMapTooltip();
+
+  const provinceNames = Object.keys(SVGMAP.provinces);
+  let svg = `<svg viewBox="0 0 ${W} ${H}" style="width:100%;height:100%;display:block;" preserveAspectRatio="xMidYMid meet">`;
+  provinceNames.forEach(name => {
+    const d = SVGMAP.provinces[name];
+    // match dataset name (e.g. "Hồ Chí Minh" -> geo "TP. Hồ Chí Minh")
+    const dataName = Object.keys(PROV_TO_GEO).find(k=>PROV_TO_GEO[k]===name) || name;
+    const val = valuesByProvince[dataName] || 0;
+    const t = maxV > 0 ? val / maxV : 0;
+    const fill = val > 0 ? scale(t) : '#f3f5f7';
+    svg += `<path d="${d}" fill="${fill}" stroke="#ffffff" stroke-width="0.8" data-prov="${escapeHtml(dataName)}" data-val="${val}" class="vn-province" style="cursor:pointer;transition:opacity .1s;"></path>`;
+  });
+
+  // Hoàng Sa / Trường Sa inset box (standard convention on official Vietnamese maps)
+  const insetX = W - 132, insetY = H - 158, insetW = 118, insetH = 148;
+  svg += `
+    <g>
+      <rect x="${insetX}" y="${insetY}" width="${insetW}" height="${insetH}" fill="#fbfcfd" stroke="${COLORS.border}" stroke-width="1" stroke-dasharray="3,2" rx="4"></rect>
+      <text x="${insetX+insetW/2}" y="${insetY+16}" text-anchor="middle" font-size="8.5" font-weight="bold" fill="${COLORS.blue}" font-family="Arial">QUẦN ĐẢO VIỆT NAM</text>
+      <circle cx="${insetX+30}" cy="${insetY+45}" r="2.2" fill="${COLORS.blue}"></circle>
+      <circle cx="${insetX+36}" cy="${insetY+52}" r="1.6" fill="${COLORS.blue}"></circle>
+      <circle cx="${insetX+25}" cy="${insetY+56}" r="1.4" fill="${COLORS.blue}"></circle>
+      <text x="${insetX+insetW/2}" y="${insetY+74}" text-anchor="middle" font-size="7.5" fill="${COLORS.grayText}" font-family="Arial">Hoàng Sa</text>
+      <text x="${insetX+insetW/2}" y="${insetY+84}" text-anchor="middle" font-size="6.5" fill="${COLORS.grayText}" font-family="Arial">(TP. Đà Nẵng)</text>
+      <circle cx="${insetX+28}" cy="${insetY+108}" r="1.6" fill="${COLORS.blue}"></circle>
+      <circle cx="${insetX+38}" cy="${insetY+112}" r="1.3" fill="${COLORS.blue}"></circle>
+      <circle cx="${insetX+45}" cy="${insetY+104}" r="1.4" fill="${COLORS.blue}"></circle>
+      <circle cx="${insetX+33}" cy="${insetY+118}" r="1.2" fill="${COLORS.blue}"></circle>
+      <text x="${insetX+insetW/2}" y="${insetY+134}" text-anchor="middle" font-size="7.5" fill="${COLORS.grayText}" font-family="Arial">Trường Sa</text>
+      <text x="${insetX+insetW/2}" y="${insetY+144}" text-anchor="middle" font-size="6.5" fill="${COLORS.grayText}" font-family="Arial">(T. Khánh Hòa)</text>
+    </g>`;
+
+  svg += `</svg>`;
+  container.innerHTML = svg;
+
+  // interactivity
+  container.querySelectorAll('.vn-province').forEach(path => {
+    path.addEventListener('mousemove', (e) => {
+      const name = path.dataset.prov;
+      const val = Number(path.dataset.val);
+      tooltip.innerHTML = `<b>${escapeHtml(name)}</b><br>${unitLabel}: ${val > 0 ? formatFn(val) : 'Không có dữ liệu'}`;
+      tooltip.style.left = (e.clientX + 14) + 'px';
+      tooltip.style.top = (e.clientY + 10) + 'px';
+      tooltip.style.display = 'block';
+      path.style.opacity = '0.75';
+    });
+    path.addEventListener('mouseleave', () => {
+      tooltip.style.display = 'none';
+      path.style.opacity = '1';
+    });
+  });
+
+  // legend
+  const legendId = containerId + '-legend';
+  let legendEl = document.getElementById(legendId);
+  if (!legendEl){
+    legendEl = document.createElement('div');
+    legendEl.id = legendId;
+    legendEl.style.cssText = 'display:flex;align-items:center;gap:6px;font-size:10.5px;color:'+COLORS.grayText+';margin-top:6px;justify-content:center;';
+    container.parentElement.appendChild(legendEl);
+  }
+  const stops = [0,0.25,0.5,0.75,1].map(t=>scale(t)).join(',');
+  legendEl.innerHTML = `<span>Thấp</span><div style="width:90px;height:8px;border-radius:4px;background:linear-gradient(90deg,${stops});"></div><span>Cao (${formatFn(maxV)})</span>`;
+}
+
+function drawOverviewMaps(){
+  const agg = getProvinceAggForSector(ovMapSector);
+  const colorHex = ovMapSector === 'Nhiệt điện' ? COLORS.red
+    : ovMapSector === 'Xi măng' ? COLORS.orange
+    : ovMapSector === 'Sắt thép' ? COLORS.yellow
+    : COLORS.blue;
+
+  ['2025','2026'].forEach(year=>{
+    const values = {};
+    Object.entries(agg).forEach(([prov, d])=>{
+      values[prov] = ovMapMetric === 'quota' ? d['q'+year] : d.count;
+    });
+    const unitLabel = ovMapMetric === 'quota' ? `Hạn ngạch ${year} (tấn CO2tđ)` : 'Số doanh nghiệp';
+    const formatFn = ovMapMetric === 'quota' ? (v)=>fmt(v) : (v)=>String(Math.round(v));
+    renderVietnamMap('ov-map-'+year, values, colorHex, unitLabel, formatFn);
+  });
+}
+
+function initOverviewMapToggles(){
+  document.getElementById('ov-map-sector-toggle').addEventListener('click', (e)=>{
+    const btn = e.target.closest('button[data-val]');
+    if (!btn) return;
+    ovMapSector = btn.dataset.val;
+    document.querySelectorAll('#ov-map-sector-toggle button').forEach(b=>b.classList.toggle('active', b===btn));
+    drawOverviewMaps();
+  });
+  document.getElementById('ov-map-metric-toggle').addEventListener('click', (e)=>{
+    const btn = e.target.closest('button[data-val]');
+    if (!btn) return;
+    ovMapMetric = btn.dataset.val;
+    document.querySelectorAll('#ov-map-metric-toggle button').forEach(b=>b.classList.toggle('active', b===btn));
+    drawOverviewMaps();
+  });
+}
+
+/* ---------- Overview: Top rankings (2 thẻ: 2025 và 2026) ---------- */
+function renderTopProvinceList(elId, qKey){
+  const provArr = Object.entries(DATA.province_all).map(([name, d])=>({name, ...d}));
+  provArr.sort((a,b)=>b[qKey] - a[qKey]);
+  const top10prov = provArr.slice(0,10);
+  const maxProv = top10prov[0][qKey];
+  const provEl = document.getElementById(elId);
+  if (!provEl) return;
+  provEl.innerHTML = top10prov.map((p,i)=>`
+    <li>
+      <div class="rank-num ${i===0?'top1':''}">${i+1}</div>
+      <div style="flex:1;min-width:0;">
+        <div style="display:flex;justify-content:space-between;gap:8px;">
+          <span class="rank-name">${escapeHtml(p.name)}</span>
+          <span class="rank-val">${fmt(p[qKey])}</span>
+        </div>
+        <div class="rank-sub">${p.count} doanh nghiệp</div>
+        <div class="rank-bar-bg"><div class="rank-bar-fill" style="width:${(p[qKey]/maxProv*100).toFixed(1)}%"></div></div>
+      </div>
+    </li>`).join('');
+}
+
+function renderTopEnterpriseList(elId, qKey){
+  const entArr = [...DATA.enterprises].sort((a,b)=>b[qKey] - a[qKey]).slice(0,10);
+  const maxEnt = entArr[0][qKey];
+  const entEl = document.getElementById(elId);
+  if (!entEl) return;
+  entEl.innerHTML = entArr.map((e,i)=>`
+    <li>
+      <div class="rank-num ${i===0?'top1':''}">${i+1}</div>
+      <div style="flex:1;min-width:0;">
+        <div style="display:flex;justify-content:space-between;gap:8px;">
+          <span class="rank-name" title="${escapeHtml(e.name)}">${escapeHtml(e.name)}</span>
+          <span class="rank-val">${fmt(e[qKey])}</span>
+        </div>
+        <div class="rank-sub">${escapeHtml(e.sector)} · ${escapeHtml(e.province_new)}</div>
+        <div class="rank-bar-bg"><div class="rank-bar-fill" style="width:${(e[qKey]/maxEnt*100).toFixed(1)}%"></div></div>
+      </div>
+    </li>`).join('');
+}
+
+function renderOverviewTopLists(){
+  renderTopProvinceList('ov-top-provinces-2025', 'q2025');
+  renderTopProvinceList('ov-top-provinces-2026', 'q2026');
+  renderTopEnterpriseList('ov-top-enterprises-2025', 'q2025');
+  renderTopEnterpriseList('ov-top-enterprises-2026', 'q2026');
+}
+
+/* ---------- Overview: Search table ---------- */
+function populateProvinceFilter(selectEl, provList){
+  const opts = provList.map(p=>`<option value="${escapeHtml(p)}">${escapeHtml(p)}</option>`).join('');
+  selectEl.insertAdjacentHTML('beforeend', opts);
+}
+
+function renderOverviewTable(){
+  const nameQ = document.getElementById('ov-search-name').value.trim().toLowerCase();
+  const mstQ = document.getElementById('ov-search-mst').value.trim().toLowerCase();
+  const provQ = document.getElementById('ov-search-province').value;
+  const sectorQ = document.getElementById('ov-search-sector').value;
+
+  let rows = DATA.enterprises.filter(e=>{
+    if (nameQ && !e.name.toLowerCase().includes(nameQ)) return false;
+    if (mstQ && !e.mst.toLowerCase().includes(mstQ)) return false;
+    if (provQ && e.province_new !== provQ) return false;
+    if (sectorQ && e.sector !== sectorQ) return false;
+    return true;
+  });
+  rows = rows.slice().sort((a,b)=>b.q2026-a.q2026);
+
+  document.getElementById('ov-result-count').textContent = `Tìm thấy ${rows.length} / ${DATA.enterprises.length} doanh nghiệp`;
+
+  const tbody = document.getElementById('ov-table-body');
+  if (rows.length === 0){
+    tbody.innerHTML = `<tr><td colspan="7" style="text-align:center;color:var(--text-light);padding:20px;">Không tìm thấy kết quả phù hợp</td></tr>`;
+    return;
+  }
+  tbody.innerHTML = rows.slice(0,300).map((e,i)=>`
+    <tr>
+      <td>${i+1}</td>
+      <td><b>${escapeHtml(e.name)}</b><br><span style="color:var(--text-light);font-size:11px;">${escapeHtml(e.province_old)}</span></td>
+      <td><span class="tag-sector ${sectorCardClass(e.sector)}">${escapeHtml(e.sector)}</span></td>
+      <td>${escapeHtml(e.mst)}</td>
+      <td>${escapeHtml(e.province_new)}</td>
+      <td style="text-align:right;">${fmt(e.q2025)}</td>
+      <td style="text-align:right;">${fmt(e.q2026)}</td>
+    </tr>`).join('');
+}
+
+function initOverviewSearch(){
+  const provList = [...new Set(DATA.enterprises.map(e=>e.province_new))].sort((a,b)=>a.localeCompare(b,'vi'));
+  populateProvinceFilter(document.getElementById('ov-search-province'), provList);
+
+  const rerender = debounce(renderOverviewTable, 150);
+  ['ov-search-name','ov-search-mst'].forEach(id=>{
+    document.getElementById(id).addEventListener('input', rerender);
+  });
+  ['ov-search-province','ov-search-sector'].forEach(id=>{
+    document.getElementById(id).addEventListener('change', renderOverviewTable);
+  });
+  renderOverviewTable();
+}
+
+function initOverviewPage(){
+  renderOverviewKPIs();
+  renderOverviewSectorCards();
+  initOverviewMapToggles();
+  drawOverviewMaps();
+  renderOverviewTopLists();
+  renderOverviewGroups();
+  initOverviewSearch();
+}
+
+/* ============================================================
+   PAGE 2-4 — TRANG CHUYÊN NGÀNH (Nhiệt điện / Xi măng / Sắt thép)
+   ============================================================ */
+function buildSectorPage(key, accent, sectorName){
+  return `
+  <div class="page" id="page-${key}" data-accent="${accent}">
+    <div class="year-tabs" id="${key}-year-tabs">
+      <button data-year="2025" class="active">Năm 2025</button>
+      <button data-year="2026">Năm 2026</button>
+    </div>
+
+    <div class="section-title"><span class="bar"></span>Tổng quan ngành ${sectorName}</div>
+    <div class="kpi-row" id="${key}-kpi-row"></div>
+
+    <div class="section-title"><span class="bar"></span>Phân bổ hạn ngạch theo doanh nghiệp
+      <span class="section-hint">— Min / Max / Trung vị, so sánh 2025 và 2026</span>
+    </div>
+    <div class="panel">
+      <div class="grid-3">
+        <div id="${key}-boxplot" style="height:280px;"></div>
+        <div id="${key}-boxstats"></div>
+      </div>
+    </div>
+
+    <div class="section-title"><span class="bar"></span>Phân bổ hạn ngạch theo địa phương</div>
+    <div class="panel">
+      <div class="panel-title">
+        <span>Tổng hạn ngạch (tấn CO2tđ) và số doanh nghiệp theo tỉnh/thành</span>
+      </div>
+      <div id="${key}-province-chart" style="height:380px;"></div>
+    </div>
+
+    <div class="grid-3" style="margin-top:16px;">
+      <div class="panel">
+        <div class="panel-title">Phân bổ doanh nghiệp theo TOE (Treemap) <span class="ptag">${sectorName}</span></div>
+        <div id="${key}-treemap" style="height:420px;"></div>
+      </div>
+      <div class="panel">
+        <div class="panel-title">Doanh nghiệp phân bổ nhiều / ít nhất</div>
+        <div id="${key}-minmax"></div>
+      </div>
+    </div>
+
+    <div class="section-title"><span class="bar"></span>Danh sách doanh nghiệp ${sectorName}</div>
+    <div class="panel">
+      <div class="search-row">
+        <input type="text" id="${key}-search-name" placeholder="Tìm theo tên doanh nghiệp...">
+        <input type="text" id="${key}-search-mst" placeholder="Tìm theo mã số thuế...">
+        <select id="${key}-search-province"><option value="">Tất cả tỉnh/thành</option></select>
+      </div>
+      <div class="result-count" id="${key}-result-count"></div>
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead><tr>
+            <th>#</th><th>Doanh nghiệp</th><th>Mã số thuế</th><th>Tỉnh/Thành (mới)</th>
+            <th>Hạn ngạch 2025</th><th>Hạn ngạch 2026</th>
+          </tr></thead>
+          <tbody id="${key}-table-body"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>`;
+}
+
+const sectorState = {}; // key -> {year: '2025'|'2026'}
+
+function sectorAccentColor(key){
+  if (key === 'nhietdien') return COLORS.red;
+  if (key === 'satthep') return COLORS.yellow;
+  return COLORS.orange;
+}
+function sectorAccentLight(key){
+  if (key === 'nhietdien') return COLORS.redLight;
+  if (key === 'satthep') return COLORS.yellowLight;
+  return COLORS.orangeLight;
+}
+
+function renderSectorKPIs(key){
+  const sectorName = SECTOR_KEY[key];
+  const year = sectorState[key].year;
+  const d = DATA.sector_summary[sectorName];
+  const items = DATA.enterprises.filter(e=>e.sector===sectorName);
+  const qKey = 'q'+year;
+  const sorted = [...items].sort((a,b)=>b[qKey]-a[qKey]);
+  const most = sorted[0], least = sorted[sorted.length-1];
+  const growth = d.growth_pct;
+  const bc = sectorAccentColor(key);
+
+  const el = document.getElementById(key+'-kpi-row');
+  el.innerHTML = `
+    <div class="kpi-card" style="border-left-color:${bc}">
+      <div class="kpi-label">Số doanh nghiệp</div>
+      <div class="kpi-value">${d.count} <span class="kpi-unit">DN</span></div>
+      <div class="kpi-foot">Ngành ${sectorName}</div>
+    </div>
+    <div class="kpi-card" style="border-left-color:${bc}">
+      <div class="kpi-label">Hạn ngạch năm 2025</div>
+      <div class="kpi-value">${fmt(d.q2025_total)} <span class="kpi-unit">tấn CO2tđ</span></div>
+      <div class="kpi-foot">Trung vị: ${fmt(d.q2025_median)} tấn/DN</div>
+    </div>
+    <div class="kpi-card" style="border-left-color:${bc}">
+      <div class="kpi-label">Hạn ngạch năm 2026</div>
+      <div class="kpi-value">${fmt(d.q2026_total)} <span class="kpi-unit">tấn CO2tđ</span></div>
+      <div class="kpi-foot">Trung vị: ${fmt(d.q26_median)} tấn/DN</div>
+    </div>
+    <div class="kpi-card" style="border-left-color:${bc}">
+      <div class="kpi-label">So sánh 2025 / 2026</div>
+      <div class="kpi-value" style="color:${growth>=0?'#1a8f4c':'#c22222'}">${fmtPct(growth)}</div>
+      <div class="kpi-foot">+${fmt(d.q2026_total-d.q2025_total)} tấn CO2tđ</div>
+    </div>
+    <div class="kpi-card" style="border-left-color:${bc}">
+      <div class="kpi-label">DN nhiều nhất / ít nhất <span style="font-weight:normal;text-transform:none;">(năm ${year})</span></div>
+      <div class="kpi-value" style="font-size:12.5px;line-height:1.6;font-weight:normal;">
+        <div><span style="color:#1a8f4c;font-weight:bold;">▲ ${fmt(most[qKey])}</span> tấn — <b>${escapeHtml(most.name)}</b></div>
+        <div style="margin-top:4px;"><span style="color:#c22222;font-weight:bold;">▼ ${fmt(least[qKey])}</span> tấn — <b>${escapeHtml(least.name)}</b></div>
+      </div>
+    </div>
+  `;
+}
+function truncate(s,n){ return s.length>n? s.slice(0,n-1)+'…' : s; }
+
+function renderSectorProvinceChart(key){
+  const sectorName = SECTOR_KEY[key];
+  const year = sectorState[key].year;
+  const agg = DATA.province_by_sector[sectorName] || {};
+  let arr = Object.entries(agg).map(([name,d])=>({name, q:d['q'+year], count:d.count}));
+  arr.sort((a,b)=>b.q-a.q);
+
+  const color = sectorAccentColor(key);
+  drawComboChart(
+    key+'-province-chart',
+    arr.map(a=>a.name),
+    arr.map(a=>a.q),
+    arr.map(a=>a.count),
+    color,
+    COLORS.blue,
+    'Tổng hạn ngạch (tấn CO2tđ)',
+    'Số doanh nghiệp'
+  );
+}
+
+function renderSectorTreemap(key){
+  const sectorName = SECTOR_KEY[key];
+  const year = sectorState[key].year;
+  const items = DATA.enterprises.filter(e=>e.sector===sectorName);
+  const qKey = 'q'+year;
+  const color = sectorAccentColor(key);
+
+  const treeItems = items.map(e => ({
+    name: e.name,
+    sub: e.province_new,
+    value: e[qKey],
+  }));
+  drawTreemap(key+'-treemap', treeItems, sectorAccentLight(key), color);
+}
+
+function renderSectorMinMax(key){
+  const sectorName = SECTOR_KEY[key];
+  const year = sectorState[key].year;
+  const qKey = 'q'+year;
+  const items = [...DATA.enterprises.filter(e=>e.sector===sectorName)].sort((a,b)=>b[qKey]-a[qKey]);
+  const top5 = items.slice(0,5);
+  const bottom5 = items.slice(-5).reverse();
+  const color = sectorAccentColor(key);
+
+  function listHtml(list, label, dir){
+    return `<div style="margin-bottom:14px;">
+      <div style="font-size:11px;font-weight:bold;color:${COLORS.red};text-transform:uppercase;margin-bottom:6px;">${label}</div>
+      ${list.map(e=>`
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;padding:6px 0;border-bottom:1px solid var(--border);font-size:12px;">
+          <span style="flex:1;min-width:0;line-height:1.4;">${escapeHtml(e.name)}</span>
+          <b style="color:${color};white-space:nowrap;flex-shrink:0;">${fmt(e[qKey])}</b>
+        </div>`).join('')}
+    </div>`;
+  }
+  document.getElementById(key+'-minmax').innerHTML =
+    listHtml(top5, '5 DN phân bổ nhiều nhất', 'up') +
+    listHtml(bottom5, '5 DN phân bổ ít nhất', 'down');
+}
+
+/* ---------- Overview: Đơn vị cùng mã số thuế (chuyển từ các trang chuyên ngành) ---------- */
+function renderOverviewGroups(){
+  const el = document.getElementById('ov-group-panel');
+  const groups = DATA.groups;
+  if (!el) return;
+  if (!groups || groups.length === 0){
+    el.innerHTML = `<div style="color:var(--text-light);font-size:12.5px;padding:6px 2px;">Không có đơn vị nào cùng mã số thuế gốc.</div>`;
+    return;
+  }
+  el.innerHTML = groups.map(g=>{
+    const total2025 = g.items.reduce((s,i)=>s+i.q2025,0);
+    const total2026 = g.items.reduce((s,i)=>s+i.q2026,0);
+    return `
+    <div class="group-block">
+      <div class="group-head">
+        <span><b>${escapeHtml(g.group)}</b> — MST gốc: ${escapeHtml(g.base_mst)} (${g.count} cơ sở) <span class="tag-sector ${sectorCardClass(g.sector)}" style="margin-left:6px;">${escapeHtml(g.sector)}</span></span>
+        <span>Tổng hạn ngạch: <b>${fmt(total2025)}</b> (2025) / <b>${fmt(total2026)}</b> (2026) tấn CO2tđ</span>
+      </div>
+      <table class="group-sub-table">
+        <thead><tr>
+          <th style="text-align:left;padding:6px 12px;">Cơ sở</th>
+          <th style="text-align:left;padding:6px 12px;">Mã số thuế</th>
+          <th style="text-align:left;padding:6px 12px;">Tỉnh/Thành</th>
+          <th style="text-align:right;padding:6px 12px;">Hạn ngạch 2025</th>
+          <th style="text-align:right;padding:6px 12px;">Hạn ngạch 2026</th>
+        </tr></thead>
+        ${g.items.map(i=>`
+          <tr>
+            <td style="width:35%;">${escapeHtml(i.name)}</td>
+            <td style="color:var(--text-light);">${escapeHtml(i.mst)}</td>
+            <td style="color:var(--text-light);">${escapeHtml(i.province)}</td>
+            <td style="text-align:right;font-weight:bold;">${fmt(i.q2025)} tấn</td>
+            <td style="text-align:right;font-weight:bold;">${fmt(i.q2026)} tấn</td>
+          </tr>`).join('')}
+      </table>
+    </div>`;
+  }).join('');
+}
+
+function renderSectorTable(key){
+  const sectorName = SECTOR_KEY[key];
+  const nameQ = document.getElementById(key+'-search-name').value.trim().toLowerCase();
+  const mstQ = document.getElementById(key+'-search-mst').value.trim().toLowerCase();
+  const provQ = document.getElementById(key+'-search-province').value;
+
+  const all = DATA.enterprises.filter(e=>e.sector===sectorName);
+  let rows = all.filter(e=>{
+    if (nameQ && !e.name.toLowerCase().includes(nameQ)) return false;
+    if (mstQ && !e.mst.toLowerCase().includes(mstQ)) return false;
+    if (provQ && e.province_new !== provQ) return false;
+    return true;
+  });
+  rows = rows.slice().sort((a,b)=>b.q2026-a.q2026);
+
+  document.getElementById(key+'-result-count').textContent = `Tìm thấy ${rows.length} / ${all.length} doanh nghiệp`;
+  const tbody = document.getElementById(key+'-table-body');
+  if (rows.length === 0){
+    tbody.innerHTML = `<tr><td colspan="6" style="text-align:center;color:var(--text-light);padding:20px;">Không tìm thấy kết quả phù hợp</td></tr>`;
+    return;
+  }
+  tbody.innerHTML = rows.map((e,i)=>`
+    <tr>
+      <td>${i+1}</td>
+      <td><b>${escapeHtml(e.name)}</b></td>
+      <td>${escapeHtml(e.mst)}</td>
+      <td>${escapeHtml(e.province_new)}</td>
+      <td style="text-align:right;">${fmt(e.q2025)}</td>
+      <td style="text-align:right;">${fmt(e.q2026)}</td>
+    </tr>`).join('');
+}
+
+function initSectorSearch(key){
+  const sectorName = SECTOR_KEY[key];
+  const provList = [...new Set(DATA.enterprises.filter(e=>e.sector===sectorName).map(e=>e.province_new))].sort((a,b)=>a.localeCompare(b,'vi'));
+  populateProvinceFilter(document.getElementById(key+'-search-province'), provList);
+  const rerender = debounce(()=>renderSectorTable(key), 150);
+  document.getElementById(key+'-search-name').addEventListener('input', rerender);
+  document.getElementById(key+'-search-mst').addEventListener('input', rerender);
+  document.getElementById(key+'-search-province').addEventListener('change', ()=>renderSectorTable(key));
+  renderSectorTable(key);
+}
+
+function renderSectorBoxplot(key){
+  const sectorName = SECTOR_KEY[key];
+  const d = DATA.sector_summary[sectorName];
+  const color = sectorAccentColor(key);
+  drawBoxPlot(key+'-boxplot', [
+    {label:'Hạn ngạch 2025', values:d.q2025_list},
+    {label:'Hạn ngạch 2026', values:d.q2026_list},
+  ], color, {width:420, height:280, padL:60, fontLbl:11, fontAxis:10, boxWidthFrac:0.5,
+    gridSteps: [0, 0.25, 0.5, 0.75, 1].map(f => Math.min(...d.q2025_list, ...d.q2026_list) + f*(Math.max(...d.q2025_list, ...d.q2026_list)-Math.min(...d.q2025_list, ...d.q2026_list)))});
+
+  const statsEl = document.getElementById(key+'-boxstats');
+  if (statsEl){
+    const rows = [
+      {yr:'2025', min:d.q2025_min, med:d.q2025_median, max:d.q2025_max},
+      {yr:'2026', min:d.q26_min, med:d.q26_median, max:d.q26_max},
+    ];
+    statsEl.innerHTML = `
+      <div style="font-size:11px;font-weight:bold;color:${COLORS.grayText};text-transform:uppercase;margin-bottom:8px;">Thống kê hạn ngạch/DN (tấn CO2tđ)</div>
+      ${rows.map(r=>`
+        <div style="margin-bottom:12px;">
+          <div style="font-size:12.5px;font-weight:bold;color:${color};margin-bottom:4px;">Năm ${r.yr}</div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0;border-bottom:1px solid var(--border);"><span style="color:var(--text-light);">Min</span><b>${fmt(r.min)}</b></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0;border-bottom:1px solid var(--border);"><span style="color:var(--text-light);">Trung vị</span><b>${fmt(r.med)}</b></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0;"><span style="color:var(--text-light);">Max</span><b>${fmt(r.max)}</b></div>
+        </div>`).join('')}
+    `;
+  }
+}
+
+function renderSectorAll(key){
+  renderSectorKPIs(key);
+  renderSectorBoxplot(key);
+  renderSectorProvinceChart(key);
+  renderSectorTreemap(key);
+  renderSectorMinMax(key);
+}
+
+function initSectorPage(key){
+  sectorState[key] = {year:'2025'};
+  document.getElementById(key+'-year-tabs').addEventListener('click', (e)=>{
+    const btn = e.target.closest('button[data-year]');
+    if (!btn) return;
+    sectorState[key].year = btn.dataset.year;
+    document.querySelectorAll('#'+key+'-year-tabs button').forEach(b=>b.classList.toggle('active', b===btn));
+    renderSectorAll(key);
+  });
+  renderSectorAll(key);
+  initSectorSearch(key);
+}
+
+</script>
+</body>
+</html>
